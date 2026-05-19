@@ -295,98 +295,86 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-05-19T19:27:51+02:00",
+  "last_watch": "2026-05-19T19:57:04+02:00",
   "next_watch": "2026-05-25T08:00:00+02:00",
   "status": "success",
   "articles_added": 6,
   "tabs_processed": 3,
-  "summary": "Run de test execute avec succes: 6 nouveaux resultats ajoutes dans Supabase pour les veilles Jerem, Nathan et Pierre-Louis. Les resultats couvrent robotique nucleaire autonome, imagerie beta/Timepix et spectral unmixing bayesien.",
+  "summary": "Veille executee (fenetre glissante 6 mois, 2025-11-19 -> 2026-05-19) : 6 nouveaux resultats ajoutes. Focus sur (1) robotique de decommissioning en environnement radiologique (Fukushima/TEPCO) (2) detecteurs beta et spectrometrie in situ (Sr-90, contamination de surface) (3) inference bayesienne + incertitudes pour spectrometrie gamma mobile et unfolding de spectres.",
   "runs": [
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
       "watch_title": "Robotique nucleaire",
       "articles_added": 2,
-      "summary": "Deux resultats ajoutes: un article 2026 sur cartographie radiologique autonome par quadrupede Spot et une actualite industrielle HazardBot sur inspection nucleaire autonome avec edge AI.",
-      "refined_context": "La veille Jerem cible les robots mobiles d'investigation nucleaire capables de cartographier la radiation, naviguer en environnement degrade, realiser des inspections autonomes et soutenir le decommissioning.",
-      "suggested_sources": [
-        {
-          "name": "MDPI Applied Sciences",
-          "url": "https://www.mdpi.com/",
-          "reason": "Articles recents sur robotique autonome, SLAM et cartographie radiologique."
-        },
-        {
-          "name": "HKPC",
-          "url": "https://www.hkpc.org/",
-          "reason": "Actualites industrielles sur robots nucleaires deployables."
-        },
-        {
-          "name": "Nuclear Engineering International",
-          "url": "https://www.neimagazine.com/",
-          "reason": "Suivi terrain du decommissioning et de la robotique nucleaire."
-        }
-      ],
+      "summary": "Deux ajouts centres sur le decommissioning Fukushima: (1) papier JRM 2026 sur un robot teleopere parent/enfant pour inspection en espace confine, (2) note TEPCO 2026 documentant l'operation d'un bras robotise (X-6, VR/digital twin, radiotolerance).",
+      "refined_context": "J'ai recentre la veille sur les systemes robotises (UGV, bras, teleoperation, inspection) effectivement deployables en environnement radiologique, en privilegiant les retours terrain/industriels (Fukushima, contraintes radiotolerance, procedures) plutot que les papiers de navigation generiques.",
+      "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"systemes robotises d'investigation nucleaire\" -> \"nuclear inspection robotics\" ; \"radiation mapping\"/\"SLAM radiologique\" -> \"radiological SLAM / radiation mapping\" ; \"remote handling\"/\"decommissioning\" conserves. Les inputs (IEEE, arXiv, ScienceDirect, Wiley/Elsevier, SPIE, HAL, Scholar) ont ete traites comme indices: cette run a surtout privilegie les sources primaires et institutionnelles (J-STAGE, TEPCO) pour capter des signaux terrain recents; j'ai volontairement ecarté les resultats purement \"quadruped mapping\" sans lien clair avec radiologie/decommissioning.",
       "scanned_sources": [
         {
-          "name": "MDPI Applied Sciences",
-          "url": "https://www.mdpi.com/",
-          "reason": "Articles scientifiques recents sur robotique autonome et cartographie radiologique."
+          "name": "J-STAGE (Journal of Robotics and Mechatronics)",
+          "url": "https://www.jstage.jst.go.jp/browse/jrobomech/38/1/_contents/-char/en",
+          "reason": "Identification d'un papier 2026 sur robot teleopere pour inspection a Fukushima (decommissioning)."
         },
         {
-          "name": "HKPC",
-          "url": "https://www.hkpc.org/",
-          "reason": "Actualites industrielles sur HazardBot et inspection nucleaire autonome."
-        },
-        {
-          "name": "Nuclear Engineering International",
-          "url": "https://www.neimagazine.com/",
-          "reason": "Actualites terrain sur decommissioning, robotique et remote handling."
+          "name": "TEPCO (decommissioning references)",
+          "url": "https://www.tepco.co.jp/en/hd/decommission/information/newsrelease/reference/pdf/2026/reference_20260226_03-e.pdf",
+          "reason": "Source officielle de retours terrain sur bras robotise, VR/digital twin et radiotolerance."
         },
         {
           "name": "arXiv",
           "url": "https://arxiv.org/",
-          "reason": "Prepublications robotique, SLAM et autonomie."
-        },
-        {
-          "name": "ScienceDirect",
-          "url": "https://www.sciencedirect.com/",
-          "reason": "Articles sur planification, robotique nucleaire et environnements radiologiques."
+          "reason": "Scan des preprints robotique/decommissioning et inspection en environnements hostiles."
         },
         {
           "name": "IEEE Xplore",
           "url": "https://ieeexplore.ieee.org/",
-          "reason": "Source majeure pour robotique, capteurs, SLAM, edge AI et inspection autonome."
+          "reason": "Scan (via recherche web) des publications robotique/SLAM/inspection a potentiel nuclear."
         },
         {
-          "name": "Wiley Online Library",
-          "url": "https://onlinelibrary.wiley.com/",
-          "reason": "Revues techniques sur robotique, automatisation, instrumentation et environnements industriels."
+          "name": "MDPI",
+          "url": "https://www.mdpi.com/",
+          "reason": "Verification d'open access sur robotique et applications radiologiques (doublons evites)."
         },
         {
-          "name": "SpringerLink",
-          "url": "https://link.springer.com/",
-          "reason": "Articles et proceedings sur robotique mobile, perception et inspection d'infrastructures."
+          "name": "ScienceDirect",
+          "url": "https://www.sciencedirect.com/",
+          "reason": "Scan d'articles de decommissioning/remote handling (aucun nouveau retenu cette run)."
         },
         {
-          "name": "SPIE Digital Library",
-          "url": "https://www.spiedigitallibrary.org/",
-          "reason": "Conferences et articles sur imagerie, capteurs, vision et systemes optiques utiles a l'inspection."
+          "name": "OECD NEA (rapport RWM/R(2024)3)",
+          "url": "https://www.oecd-nea.org/upload/docs/application/pdf/2025-09/rwm_r_2024_3_2025-09-16_17-21-55_700.pdf",
+          "reason": "Source de contexte tres fiable, mais hors fenetre 6 mois (conservee comme reference)."
+        }
+      ],
+      "suggested_sources": [
+        {
+          "name": "TEPCO (decommissioning references)",
+          "url": "https://www.tepco.co.jp/en/hd/decommission/information/newsrelease/",
+          "reason": "Acces direct aux updates operationnelles sur robotique Fukushima (signal terrain)."
         },
         {
-          "name": "IAEA",
-          "url": "https://www.iaea.org/",
-          "reason": "Sources institutionnelles sur inspections nucleaires, safeguards et decommissioning."
+          "name": "J-STAGE (Journal of Robotics and Mechatronics)",
+          "url": "https://www.jstage.jst.go.jp/browse/jrobomech/-char/en",
+          "reason": "Papiers japonais souvent proches des contraintes reelles (Fukushima/decommissioning)."
         },
         {
-          "name": "OSTI",
-          "url": "https://www.osti.gov/",
-          "reason": "Rapports et publications DOE sur robotique, cartographie radiologique et cleanup nucleaire."
+          "name": "arXiv",
+          "url": "https://arxiv.org/",
+          "reason": "Detection rapide de nouveaux preprints en robotique d'inspection et autonomie."
+        },
+        {
+          "name": "OECD NEA",
+          "url": "https://www.oecd-nea.org/",
+          "reason": "Rapports institutionnels (barrieres, cost-benefit) pour cadrer le transfert vers l'industrie."
         }
       ],
       "search_terms": [
-        "radiation mapping quadruped robot",
-        "nuclear inspection robot edge AI",
-        "remote handling decommissioning robotics"
+        "2026 nuclear decommissioning robot remote inspection paper",
+        "2026 Fukushima decommissioning robot inspection paper",
+        "2026 radiological inspection robot autonomous nuclear facility",
+        "nuclear inspection robot edge AI SLAM",
+        "site:ieeexplore.ieee.org radiation mapping robot 2025 2026"
       ]
     },
     {
@@ -394,56 +382,52 @@
       "tab_name": "Nathan",
       "watch_title": "Imagerie et spectrometrie de contamination beta surfacique",
       "articles_added": 2,
-      "summary": "Deux resultats ajoutes: un workflow Timepix3 pour imagerie alpha/beta et une calibration iQID pour imagerie quantitative de beta-emetteurs.",
-      "refined_context": "La veille Nathan compare les familles detecteurs pour contamination beta surfacique: scintillateurs/SiPM, PMT, autoradiographie, Timepix/Medipix et approches quantitatives utiles au terrain.",
-      "suggested_sources": [
-        {
-          "name": "CERN / Medipix-Timepix",
-          "url": "https://www.home.cern/",
-          "reason": "Suivi des detecteurs pixel hybrides Timepix/Medipix."
-        },
-        {
-          "name": "ADVACAM",
-          "url": "https://advacam.com/",
-          "reason": "Produits et cas d'usage Timepix pour imagerie de rayonnements."
-        },
-        {
-          "name": "PubMed Central",
-          "url": "https://pmc.ncbi.nlm.nih.gov/",
-          "reason": "Articles ouverts sur autoradiographie et calibration beta."
-        }
-      ],
+      "summary": "Deux ajouts: (1) Physics Open (2026) sur l'optimisation du guide de lumiere d'un detecteur beta a scintillateur plastique pour monitor de contamination de surface, (2) Sensors (2026) sur beta-spectrometrie Sr-90/Y-90 in situ avec scintillateurs couples a des SiPM (contexte decommissioning).",
+      "refined_context": "J'ai garde l'objectif \"etat de l'art instruments\" mais en l'elargissant aux briques qui conditionnent la performance terrain: optique/collection de lumiere, limites electroniques, et cas d'usage decommissioning (Sr-90, controle contamination).",
+      "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"imagerie/spectrometrie de contamination beta surfacique\" -> \"beta surface contamination imaging / beta spectrometry\" ; \"scintillateurs plastiques + SiPM\" -> \"plastic scintillator + SiPM array\" ; \"chambres a gaz scintillantes (beta imager)\" -> \"gaseous scintillation / gas-based autoradiography\" ; \"Timepix/Medipix\" conserve. J'ai privilegie les papiers recents et actionnables (design de detecteur, mesures, limites) plutot que des pages produit; les sources industrielles ont ete vues comme indices, mais seuls les articles scientifiques ont ete retenus cette run.",
       "scanned_sources": [
         {
-          "name": "CERN / Medipix-Timepix",
-          "url": "https://www.home.cern/",
-          "reason": "Actualites et contexte detecteurs Timepix/Medipix."
+          "name": "Physics Open (Elsevier)",
+          "url": "https://www.sciencedirect.com/journal/physics-open",
+          "reason": "Papiers open access sur instrumentation; detection de l'article 2026 sur monitor beta de surface."
         },
         {
-          "name": "ADVACAM",
-          "url": "https://advacam.com/",
-          "reason": "Modules Timepix et cameras de rayonnements."
+          "name": "MDPI Sensors",
+          "url": "https://www.mdpi.com/journal/sensors",
+          "reason": "Papiers capteurs/instrumentation; beta-spectrometrie Sr-90 couplee a SiPM en contexte decommissioning."
+        },
+        {
+          "name": "University of Glasgow ePrints",
+          "url": "https://eprints.gla.ac.uk/",
+          "reason": "Acces ouvert et details (dates, DOI) pour la publication Sensors sur Sr-90."
+        },
+        {
+          "name": "PubMed / PMC",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "reason": "Verification de doublons sur autoradiographie digitale (iQID) deja presente."
+        }
+      ],
+      "suggested_sources": [
+        {
+          "name": "MDPI Sensors",
+          "url": "https://www.mdpi.com/journal/sensors",
+          "reason": "Bon flux d'articles instrumentation (SiPM, scintillateurs, detection beta)."
         },
         {
           "name": "PubMed Central",
           "url": "https://pmc.ncbi.nlm.nih.gov/",
-          "reason": "Articles ouverts sur autoradiographie beta et calibration."
+          "reason": "Acces aux articles ouverts (autoradiographie, calibration, detecteurs)."
         },
         {
-          "name": "ResearchGate",
-          "url": "https://www.researchgate.net/",
-          "reason": "Prepublications et workflows Timepix3."
-        },
-        {
-          "name": "PubMed",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/",
-          "reason": "Articles detecteurs alpha/beta et contamination de surface."
+          "name": "CERN / Medipix-Timepix",
+          "url": "https://home.cern/science/accelerators/medipix",
+          "reason": "Pour suivre l'ecosysteme Timepix/Medipix et les cas d'usage imagerie."
         }
       ],
       "search_terms": [
-        "Timepix3 beta imaging surface contamination",
-        "digital autoradiography beta emitters calibration",
-        "SiPM scintillator beta contamination monitor"
+        "beta surface contamination imaging SiPM scintillator 2026 paper",
+        "beta-ray detector surface contamination monitor light guide optimization 2026",
+        "in situ Sr-90 beta spectrometry SiPM scintillator 2026"
       ]
     },
     {
@@ -451,56 +435,52 @@
       "tab_name": "Pierre-Louis",
       "watch_title": "Traitement de donnees de mesure nucleaire",
       "articles_added": 2,
-      "summary": "Deux resultats ajoutes: une prepublication arXiv sur incertitude bayesienne pour spectral unmixing gamma et un article Applied Radiation and Isotopes sur spectral unmixing pour mesures gamma aeroportees.",
-      "refined_context": "La veille Pierre-Louis cible les methodes de traitement pour spectrometrie et detection: denoising, optimisation bayesienne, problemes inverses, unmixing spectral et quantification d'incertitude.",
-      "suggested_sources": [
-        {
-          "name": "arXiv",
-          "url": "https://arxiv.org/",
-          "reason": "Prepublications recentes en problemes inverses et methodes bayesiennes."
-        },
-        {
-          "name": "ScienceDirect",
-          "url": "https://www.sciencedirect.com/",
-          "reason": "Articles revus sur mesures nucleaires et detection gamma."
-        },
-        {
-          "name": "HAL",
-          "url": "https://hal.science/",
-          "reason": "Prepublications francaises pertinentes pour spectrometrie nucleaire."
-        }
-      ],
+      "summary": "Deux ajouts tres alignes UQ/problemes inverses: (1) preprint arXiv (Dec 2025/Jan 2026) sur inference bayesienne + Monte Carlo pour spectrometrie gamma mobile quantitative, (2) article NIM A (Feb 2026) sur unfolding bayesien haute dimension et quantification d'incertitude (MCMC + initialisation GRAVEL).",
+      "refined_context": "La veille a ete recadree vers des contributions directement transposables aux pipelines spectrometrie/detection: modeles probabilistes (Poisson/overdispersion), simulations physiques, UQ/MCMC, et methodes d'inversion (unfolding, source quantification).",
+      "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"traitement de donnees de mesure nucleaire\" -> \"nuclear measurement data processing\" ; \"AI denoising\" -> \"deep learning denoising / probabilistic denoising\" ; \"Bayesian optimization\" -> \"Bayesian optimization\" ; \"inverse problems\" -> \"inverse problems\" ; \"plug-and-play\" -> \"plug-and-play priors\" ; \"spectral unmixing\" -> \"spectral unmixing\" ; \"contamination detection\" -> \"radiological contamination detection\". J'ai volontairement evite les papiers IA generiques (sans donnees nucleaires) au profit de contributions en spectrometrie gamma/neutron avec dates claires dans la fenetre 6 mois.",
       "scanned_sources": [
         {
           "name": "arXiv",
           "url": "https://arxiv.org/",
-          "reason": "Prepublications sur unmixing spectral, incertitude et problemes inverses."
+          "reason": "Preprints recents sur inference bayesienne, UQ et spectrometrie gamma mobile."
         },
         {
-          "name": "ScienceDirect",
-          "url": "https://www.sciencedirect.com/",
-          "reason": "Articles revus en mesures nucleaires et spectrometrie gamma."
+          "name": "Duke Scholars",
+          "url": "https://scholars.duke.edu/",
+          "reason": "Page de publication (date + DOI) pour l'article NIM A sur unfolding bayesien."
         },
         {
-          "name": "HAL",
-          "url": "https://hal.science/",
-          "reason": "Prepublications francaises sur spectrometrie et traitement de donnees nucleaires."
+          "name": "ScienceDirect / NIM A",
+          "url": "https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a",
+          "reason": "Scan (via DOI) d'articles NIM A recents en spectrometrie et data processing."
         },
         {
           "name": "ResearchGate",
           "url": "https://www.researchgate.net/",
-          "reason": "Copies et signaux de prepublication complementaires."
+          "reason": "Repere de preprints/versions auteur (aucun nouveau retenu sans source primaire)."
+        }
+      ],
+      "suggested_sources": [
+        {
+          "name": "arXiv (physics.ins-det / physics.data-an)",
+          "url": "https://arxiv.org/",
+          "reason": "Signal rapide pour methodes bayesiennes, simulation et analyse de donnees en detection."
         },
         {
-          "name": "Applied Radiation and Isotopes",
-          "url": "https://www.sciencedirect.com/journal/applied-radiation-and-isotopes",
-          "reason": "Revue cible pour detection et analyse de spectres radioactifs."
+          "name": "Nuclear Instruments and Methods A (NIM A)",
+          "url": "https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a",
+          "reason": "Flux stable d'articles sur detecteurs + methodes d'analyse."
+        },
+        {
+          "name": "HAL",
+          "url": "https://hal.science/",
+          "reason": "Pour capter des preprints FR/Europe sur spectrometrie et modeles statistiques."
         }
       ],
       "search_terms": [
-        "Bayesian uncertainty spectral unmixing gamma spectrometry",
-        "inverse problems radiation detection",
-        "airborne gamma measurements spectral unmixing"
+        "mobile gamma-ray spectrometry Bayesian inference uncertainty quantification 2025 2026",
+        "high-dimensional Bayesian spectrum unfolding MCMC 2026",
+        "gamma spectrometry inverse problems uncertainty quantification 2025 2026"
       ]
     }
   ]
