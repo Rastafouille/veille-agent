@@ -192,65 +192,38 @@
   Généré pour une veille scientifique automatisée via GitHub Pages.
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const data = {
-    robotique: [
-      {
-        type: 'science',
-        title: 'Embodied AI for Autonomous Robotics',
-        description: 'Analyse des nouveaux modèles IA embarqués pour robots autonomes.',
-        link: 'https://arxiv.org/',
-        stars: 0
-      },
-      {
-        type: 'presse',
-        title: 'Boston Dynamics dévoile un nouveau robot humanoïde',
-        description: 'Présentation des dernières avancées en robotique mobile.',
-        link: 'https://www.theverge.com/',
-        stars: 0
-      }
-    ],
+  const SUPABASE_URL = 'https://uozgbhitaiewuqgibssf.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvemdiaGl0YWlld3VxZ2lic3NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODYwNjcsImV4cCI6MjA5NDc2MjA2N30.7k88FWFPgYtxlSrS5Kr6T7_lICvVrZjYTq4n8xPxaTU';
 
-    nucleaire: [
-      {
-        type: 'science',
-        title: 'Advanced Gamma Radiation Detection',
-        description: 'Étude sur les nouveaux capteurs gamma haute précision.',
-        link: 'https://ieeexplore.ieee.org/',
-        stars: 0
-      },
-      {
-        type: 'presse',
-        title: 'Nouveaux détecteurs pour la sûreté nucléaire',
-        description: 'Article sur les innovations en instrumentation nucléaire.',
-        link: 'https://www.sciencedaily.com/',
-        stars: 0
-      }
-    ],
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    numerique: [
-      {
-        type: 'science',
-        title: 'Large Language Models for Edge Computing',
-        description: 'Recherche sur les LLM optimisés pour systèmes embarqués.',
-        link: 'https://arxiv.org/',
-        stars: 0
-      },
-      {
-        type: 'presse',
-        title: 'L’essor des micro-datacenters IA',
-        description: 'Analyse des infrastructures numériques de proximité.',
-        link: 'https://techcrunch.com/',
-        stars: 0
-      }
-    ]
-  };
+  async function loadArticles() {
+    const { data, error } = await supabaseClient
+      .from('articles')
+      .select('*')
+      .eq('hidden', false)
+      .order('stars', { ascending: false });
 
-  function renderArticles(category) {
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    renderCategory('robotique', data);
+    renderCategory('nucleaire', data);
+    renderCategory('numerique', data);
+  }
+
+  function renderCategory(category, articles) {
     const container = document.getElementById(`${category}-list`);
+
     container.innerHTML = '';
 
-    data[category].forEach((article, index) => {
+    const filtered = articles.filter(a => a.category === category);
+
+    filtered.forEach(article => {
       const card = document.createElement('div');
       card.className = 'card';
 
@@ -261,16 +234,16 @@
 
         <h3>${article.title}</h3>
 
-        <p>${article.description}</p>
+        <p>${article.description || ''}</p>
 
         <a href="${article.link}" target="_blank">Lire l'article →</a>
 
         <div class="actions">
-          <button class="star-btn" onclick="addStar('${category}', ${index})">
+          <button class="star-btn" onclick="addStar(${article.id}, ${article.stars})">
             ⭐ ${article.stars}
           </button>
 
-          <button class="delete-btn" onclick="deleteArticle('${category}', ${index})">
+          <button class="delete-btn" onclick="deleteArticle(${article.id})">
             Supprimer
           </button>
         </div>
@@ -280,14 +253,32 @@
     });
   }
 
-  function addStar(category, index) {
-    data[category][index].stars++;
-    renderArticles(category);
+  async function addStar(id, currentStars) {
+    const { error } = await supabaseClient
+      .from('articles')
+      .update({ stars: currentStars + 1 })
+      .eq('id', id);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    loadArticles();
   }
 
-  function deleteArticle(category, index) {
-    data[category].splice(index, 1);
-    renderArticles(category);
+  async function deleteArticle(id) {
+    const { error } = await supabaseClient
+      .from('articles')
+      .update({ hidden: true })
+      .eq('id', id);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    loadArticles();
   }
 
   function openTab(tabName) {
@@ -304,9 +295,22 @@
     event.target.classList.add('active');
   }
 
-  renderArticles('robotique');
-  renderArticles('nucleaire');
-  renderArticles('numerique');
+  supabaseClient
+    .channel('articles-db-changes')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'articles'
+      },
+      () => {
+        loadArticles();
+      }
+    )
+    .subscribe();
+
+  loadArticles();
 </script>
 
 </body>
