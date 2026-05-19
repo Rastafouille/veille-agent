@@ -2,423 +2,591 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veille Scientifique</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E📚%3C/text%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veille Scientifique Collaborative</title>
+
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E📚%3C/text%3E%3C/svg%3E" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial,sans-serif;
     }
 
-    body {
-      background: #f4f6f9;
-      color: #222;
-      padding: 20px;
+    body{
+      background:#f4f6f9;
+      color:#222;
+      padding:20px;
     }
 
-    header {
-      margin-bottom: 25px;
+    header{
+      margin-bottom:25px;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+    h1{
+      font-size:2rem;
+      margin-bottom:10px;
     }
 
-    p {
-      color: #666;
+    p{
+      color:#666;
     }
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
     }
 
-    .tab-button {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 12px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-weight: bold;
+    .tab-button{
+      background:white;
+      border:1px solid #ddd;
+      padding:12px 18px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.2s;
+      font-weight:bold;
     }
 
-    .tab-button:hover {
-      background: #eceff3;
+    .tab-button.active{
+      background:#222;
+      color:white;
     }
 
-    .tab-button.active {
-      background: #222;
-      color: white;
+    .tab-content{
+      display:none;
     }
 
-    .tab-content {
-      display: none;
+    .tab-content.active{
+      display:block;
     }
 
-    .tab-content.active {
-      display: block;
+    .articles{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+      gap:20px;
     }
 
-    .articles {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
+    .card{
+      background:white;
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: 0.2s;
-      position: relative;
+    .badge{
+      display:inline-block;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:0.8rem;
+      margin-bottom:10px;
+      font-weight:bold;
     }
 
-    .card:hover {
-      transform: translateY(-2px);
+    .science{
+      background:#dff3ff;
+      color:#0060a8;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-      font-weight: bold;
+    .presse{
+      background:#fff0d9;
+      color:#a86000;
     }
 
-    .science {
-      background: #dff3ff;
-      color: #0060a8;
+    .card h3{
+      margin-bottom:10px;
     }
 
-    .presse {
-      background: #fff0d9;
-      color: #a86000;
+    .card p{
+      margin-bottom:15px;
+      line-height:1.5;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+    .card a{
+      text-decoration:none;
+      color:#0066cc;
+      font-weight:bold;
     }
 
-    .card p {
-      margin-bottom: 15px;
-      line-height: 1.5;
-      color: #555;
+    .actions{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .card a {
-      text-decoration: none;
-      color: #0066cc;
-      font-weight: bold;
+    .star-btn,
+    .delete-btn{
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      border:none;
     }
 
-    .actions {
-      margin-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .star-btn{
+      background:#ffe9a8;
     }
 
-    .star-btn {
-      background: #f7f7f7;
-      border: 1px solid #ddd;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.95rem;
+    .delete-btn{
+      background:#ffd8d8;
+      color:#c20000;
     }
 
-    .star-btn:hover {
-      background: #ffe9a8;
-    }
-
-    .delete-btn {
-      background: #ffefef;
-      border: 1px solid #ffbdbd;
-      color: #c20000;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .delete-btn:hover {
-      background: #ffd8d8;
-    }
-
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #888;
-      font-size: 0.9rem;
+    footer{
+      margin-top:50px;
     }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1>📚 Veille Scientifique & Presse</h1>
-  <p>Dashboard personnel de veille technologique et scientifique.</p>
+  <h1>📚 Veille Scientifique Collaborative</h1>
 
-  <div class="meta-panel" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px;">
-    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+  <p>
+    Plateforme collaborative de veille scientifique et technologique.
+  </p>
+
+  <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
+
+    <div style="background:white;padding:15px;border-radius:12px;">
       <strong>🕒 Dernière veille</strong>
-      <p id="last-watch">Chargement...</p>
+      <p id="last-watch"></p>
     </div>
 
-    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+    <div style="background:white;padding:15px;border-radius:12px;">
       <strong>⏭️ Prochaine veille</strong>
-      <p id="next-watch">Chargement...</p>
+      <p id="next-watch"></p>
     </div>
 
-    
   </div>
 </header>
 
 <div class="tabs">
-  <button class="tab-button active" onclick="openTab('robotique')">🤖 Robotique</button>
-  <button class="tab-button" onclick="openTab('nucleaire')">☢️ Mesure Nucléaire</button>
-  <button class="tab-button" onclick="openTab('numerique')">💻 Numérique</button>
+
+  <button class="tab-button active"
+          onclick="openTab('jerem', this)">
+    👨‍🔬 Jerem
+  </button>
+
+  <button class="tab-button"
+          onclick="openTab('julien-v', this)">
+    ☢️ Julien V
+  </button>
+
+  <button class="tab-button"
+          onclick="openTab('lucas', this)">
+    💻 Lucas
+  </button>
+
 </div>
 
-<div id="robotique" class="tab-content active">
-  
+<div style="margin-bottom:20px;display:flex;gap:10px;align-items:center;">
 
-  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
-    <h3>🔑 Mots-clés Robotique Investigation Nucléaire</h3>
-    <div id="robotique-keywords" style="margin:10px 0;"></div>
-    <input id="robotique-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-    <button onclick="addKeyword('robotique')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
-  </div>
-  <div class="articles" id="robotique-list"></div>
+  <input id="new-tab-input"
+         placeholder="Nouvel onglet utilisateur"
+         style="padding:10px;border-radius:8px;border:1px solid #ccc;">
+
+  <button onclick="addTab()"
+          style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
+    ➕ Ajouter onglet
+  </button>
+
 </div>
 
-<div id="nucleaire" class="tab-content">
-  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
-    <h3>🔑 Mots-clés Mesure Nucléaire</h3>
-    <div id="nucleaire-keywords" style="margin:10px 0;"></div>
-    <input id="nucleaire-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-    <button onclick="addKeyword('nucleaire')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
+<!-- Jerem -->
+<div id="jerem" class="tab-content active">
+
+  <div class="keyword-section"
+       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
+
+    <h3>🔑 Mots-clés Jerem</h3>
+
+    <div id="jerem-keywords" style="margin:10px 0;"></div>
+
+    <input id="jerem-input"
+           placeholder="Ajouter un mot-clé"
+           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+
+    <button onclick="addKeyword('jerem')"
+            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
+      Ajouter
+    </button>
+
   </div>
-  <div class="articles" id="nucleaire-list"></div>
+
+  <div class="articles" id="jerem-list"></div>
+
 </div>
 
-<div id="numerique" class="tab-content">
-  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
-    <h3>🔑 Mots-clés Numérique</h3>
-    <div id="numerique-keywords" style="margin:10px 0;"></div>
-    <input id="numerique-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-    <button onclick="addKeyword('numerique')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
+<!-- Julien -->
+<div id="julien-v" class="tab-content">
+
+  <div class="keyword-section"
+       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
+
+    <h3>🔑 Mots-clés Julien V</h3>
+
+    <div id="julien-v-keywords" style="margin:10px 0;"></div>
+
+    <input id="julien-v-input"
+           placeholder="Ajouter un mot-clé"
+           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+
+    <button onclick="addKeyword('julien-v')"
+            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
+      Ajouter
+    </button>
+
   </div>
-  <div class="articles" id="numerique-list"></div>
+
+  <div class="articles" id="julien-v-list"></div>
+
+</div>
+
+<!-- Lucas -->
+<div id="lucas" class="tab-content">
+
+  <div class="keyword-section"
+       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
+
+    <h3>🔑 Mots-clés Lucas</h3>
+
+    <div id="lucas-keywords" style="margin:10px 0;"></div>
+
+    <input id="lucas-input"
+           placeholder="Ajouter un mot-clé"
+           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+
+    <button onclick="addKeyword('lucas')"
+            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
+      Ajouter
+    </button>
+
+  </div>
+
+  <div class="articles" id="lucas-list"></div>
+
 </div>
 
 <footer>
-  <div style="background:white;padding:20px;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.08);max-width:900px;margin:auto;text-align:left;">
-    <h3 style="margin-bottom:15px;">🌐 Sources principales de veille</h3>
 
-    <ul style="line-height:2; padding-left:20px;">
-      <li><a href="https://www.sciencedirect.com/" target="_blank">ScienceDirect</a></li>
-      <li><a href="https://ieeexplore.ieee.org/" target="_blank">IEEE Xplore</a></li>
+  <div style="background:white;padding:20px;border-radius:14px;">
+
+    <h3 style="margin-bottom:15px;">
+      🌐 Sources principales de veille
+    </h3>
+
+    <ul style="line-height:2;padding-left:20px;">
+
       <li><a href="https://arxiv.org/" target="_blank">arXiv</a></li>
+      <li><a href="https://ieeexplore.ieee.org/" target="_blank">IEEE Xplore</a></li>
+      <li><a href="https://www.sciencedirect.com/" target="_blank">ScienceDirect</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a></li>
       <li><a href="https://www.iaea.org/" target="_blank">IAEA</a></li>
       <li><a href="https://www.gov.uk/government/organisations/uk-atomic-energy-authority" target="_blank">UKAEA</a></li>
-      <li><a href="https://world-nuclear-news.org/" target="_blank">World Nuclear News</a></li>
-      <li><a href="https://techcrunch.com/" target="_blank">TechCrunch</a></li>
-      <li><a href="https://www.sciencedaily.com/" target="_blank">ScienceDaily</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a></li>
+
     </ul>
+
   </div>
 
-  <p style="margin-top:20px;">
-    Généré pour une veille scientifique automatisée via GitHub Pages & Supabase.
-  </p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+
 const SUPABASE_URL = 'https://uozgbhitaiewuqgibssf.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvemdiaGl0YWlld3VxZ2lic3NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODYwNjcsImV4cCI6MjA5NDc2MjA2N30.7k88FWFPgYtxlSrS5Kr6T7_lICvVrZjYTq4n8xPxaTU';
 
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_KEY =
+'TON_ANON_KEY';
 
-async function loadArticles() {
-  const { data, error } = await supabaseClient
-    .from('articles')
-    .select('*')
-    .eq('hidden', false)
-    .order('created_at', { ascending: false });
+const supabaseClient =
+  supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  if (error) {
-    console.error(error);
-    return;
-  }
+function loadMeta(){
 
-  renderCategory('robotique', data);
-  renderCategory('nucleaire', data);
-  renderCategory('numerique', data);
-}
-
-function renderCategory(category, articles) {
-  const container = document.getElementById(`${category}-list`);
-  container.innerHTML = '';
-
-  const filtered = articles.filter(a => a.category === category);
-
-  filtered.forEach(article => {
-    const card = document.createElement('div');
-    card.className = 'card';
-
-    card.innerHTML = `
-      <span class="badge ${article.type}">
-        ${article.type === 'science' ? 'Article scientifique' : 'Article presse'}
-      </span>
-
-      <h3>${article.title}</h3>
-
-      <p style="font-size:0.85rem;color:#888;margin-bottom:10px;">
-        📅 ${article.published_at ? new Date(article.published_at).toLocaleDateString('fr-FR') : (article.created_at ? new Date(article.created_at).toLocaleDateString('fr-FR') : 'Date inconnue')}
-      </p>
-
-      <p>${article.description || ''}</p>
-
-      <a href="${article.link}" target="_blank">Lire l'article →</a>
-
-      <div class="actions">
-        <button class="star-btn" onclick="addStar(${article.id}, ${article.stars})">
-          ⭐ ${article.stars}
-        </button>
-
-        <button class="delete-btn" onclick="deleteArticle(${article.id})">
-          Supprimer
-        </button>
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-async function addStar(id, currentStars) {
-  const { error } = await supabaseClient
-    .from('articles')
-    .update({ stars: currentStars + 1 })
-    .eq('id', id);
-
-  if (error) {
-    console.error(error);
-  }
-
-  loadArticles();
-}
-
-async function deleteArticle(id) {
-  const { error } = await supabaseClient
-    .from('articles')
-    .update({ hidden: true })
-    .eq('id', id);
-
-  if (error) {
-    console.error(error);
-  }
-
-  loadArticles();
-}
-
-async function loadKeywords() {
-  const { data, error } = await supabaseClient
-    .from('keywords')
-    .select('*')
-    .order('keyword');
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  ['robotique', 'nucleaire', 'numerique'].forEach(category => {
-    const container = document.getElementById(`${category}-keywords`);
-    container.innerHTML = '';
-
-    data
-      .filter(k => k.category === category)
-      .forEach(k => {
-        const tag = document.createElement('span');
-
-        tag.style = 'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
-
-        tag.innerHTML = `${k.keyword} <button onclick="deleteKeyword(${k.id})" style="border:none;background:none;color:red;cursor:pointer;">✖</button>`;
-
-        container.appendChild(tag);
-      });
-  });
-}
-
-async function addKeyword(category) {
-  const input = document.getElementById(`${category}-input`);
-  const keyword = input.value.trim();
-
-  if (!keyword) return;
-
-  const { error } = await supabaseClient
-    .from('keywords')
-    .insert([{ category, keyword }]);
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  input.value = '';
-  loadKeywords();
-}
-
-async function deleteKeyword(id) {
-  const { error } = await supabaseClient
-    .from('keywords')
-    .delete()
-    .eq('id', id);
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  loadKeywords();
-}
-
-function loadMeta() {
   const lastDate = new Date();
   lastDate.setDate(lastDate.getDate() - 7);
 
   const nextDate = new Date();
   nextDate.setDate(nextDate.getDate() + 7);
 
-  document.getElementById('last-watch').innerText = lastDate.toLocaleString('fr-FR');
-  document.getElementById('next-watch').innerText = nextDate.toLocaleString('fr-FR');
+  document.getElementById('last-watch').innerText =
+    lastDate.toLocaleString('fr-FR');
+
+  document.getElementById('next-watch').innerText =
+    nextDate.toLocaleString('fr-FR');
 }
 
-function openTab(tabName) {
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
+async function loadArticles(){
 
-  document.querySelectorAll('.tab-button').forEach(button => {
-    button.classList.remove('active');
-  });
+  const { data, error } =
+    await supabaseClient
+      .from('articles')
+      .select('*')
+      .eq('hidden', false)
+      .order('published_at', { ascending:false });
 
-  document.getElementById(tabName).classList.add('active');
-  event.target.classList.add('active');
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  renderCategory('jerem', data);
+  renderCategory('julien-v', data);
+  renderCategory('lucas', data);
+}
+
+function renderCategory(category, articles){
+
+  const container =
+    document.getElementById(`${category}-list`);
+
+  if(!container) return;
+
+  container.innerHTML = '';
+
+  const filtered =
+    articles.filter(a => a.category === category);
+
+  filtered.forEach(article => {
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <span class="badge ${article.type}">
+        ${article.type === 'science'
+          ? 'Article scientifique'
+          : 'Article presse'}
+      </span>
+
+      <h3>${article.title}</h3>
+
+      <p style="font-size:0.85rem;color:#888;">
+        📅 ${
+          article.published_at
+            ? new Date(article.published_at)
+                .toLocaleDateString('fr-FR')
+            : 'Date inconnue'
+        }
+      </p>
+
+      <p>${article.description || ''}</p>
+
+      <a href="${article.link}" target="_blank">
+        Lire l'article →
+      </a>
+
+      <div class="actions">
+
+        <button class="star-btn"
+                onclick="addStar(${article.id}, ${article.stars})">
+          ⭐ ${article.stars}
+        </button>
+
+        <button class="delete-btn"
+                onclick="deleteArticle(${article.id})">
+          Supprimer
+        </button>
+
+      </div>
+    `;
+
+    container.appendChild(card);
+
+  });
+}
+
+async function addStar(id, currentStars){
+
+  await supabaseClient
+    .from('articles')
+    .update({
+      stars: currentStars + 1
+    })
+    .eq('id', id);
+
+  loadArticles();
+}
+
+async function deleteArticle(id){
+
+  await supabaseClient
+    .from('articles')
+    .update({
+      hidden:true
+    })
+    .eq('id', id);
+
+  loadArticles();
+}
+
+async function loadKeywords(){
+
+  const { data, error } =
+    await supabaseClient
+      .from('keywords')
+      .select('*')
+      .order('keyword');
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  ['jerem','julien-v','lucas']
+    .forEach(category => {
+
+      const container =
+        document.getElementById(`${category}-keywords`);
+
+      if(!container) return;
+
+      container.innerHTML = '';
+
+      data
+        .filter(k => k.category === category)
+        .forEach(k => {
+
+          const tag = document.createElement('span');
+
+          tag.style =
+            'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
+
+          tag.innerHTML = `
+            ${k.keyword}
+
+            <button onclick="deleteKeyword(${k.id})"
+                    style="border:none;background:none;color:red;cursor:pointer;">
+              ✖
+            </button>
+          `;
+
+          container.appendChild(tag);
+
+        });
+
+    });
+}
+
+async function addKeyword(category){
+
+  const input =
+    document.getElementById(`${category}-input`);
+
+  const keyword = input.value.trim();
+
+  if(!keyword) return;
+
+  await supabaseClient
+    .from('keywords')
+    .insert([{
+      category,
+      keyword
+    }]);
+
+  input.value = '';
+
+  loadKeywords();
+}
+
+async function deleteKeyword(id){
+
+  await supabaseClient
+    .from('keywords')
+    .delete()
+    .eq('id', id);
+
+  loadKeywords();
+}
+
+function openTab(tabName, button){
+
+  document.querySelectorAll('.tab-content')
+    .forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+  document.querySelectorAll('.tab-button')
+    .forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+  document
+    .getElementById(tabName)
+    .classList.add('active');
+
+  button.classList.add('active');
+}
+
+function addTab(){
+
+  const input =
+    document.getElementById('new-tab-input');
+
+  const name = input.value.trim();
+
+  if(!name) return;
+
+  const id =
+    name.toLowerCase().replace(/\s+/g, '-');
+
+  const button =
+    document.createElement('button');
+
+  button.className = 'tab-button';
+
+  button.innerText = `👤 ${name}`;
+
+  button.setAttribute(
+    'onclick',
+    `openTab('${id}', this)`
+  );
+
+  document.querySelector('.tabs')
+    .appendChild(button);
+
+  const content =
+    document.createElement('div');
+
+  content.id = id;
+  content.className = 'tab-content';
+
+  content.innerHTML = `
+    <div class="keyword-section"
+         style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
+
+      <h3>🔑 Mots-clés ${name}</h3>
+
+      <div id="${id}-keywords"
+           style="margin:10px 0;"></div>
+
+      <input id="${id}-input"
+             placeholder="Ajouter un mot-clé"
+             style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+
+      <button onclick="addKeyword('${id}')">
+        Ajouter
+      </button>
+
+    </div>
+
+    <div class="articles"
+         id="${id}-list"></div>
+  `;
+
+  document.body.insertBefore(
+    content,
+    document.querySelector('footer')
+  );
+
+  input.value = '';
 }
 
 window.addKeyword = addKeyword;
@@ -426,34 +594,21 @@ window.deleteKeyword = deleteKeyword;
 window.addStar = addStar;
 window.deleteArticle = deleteArticle;
 window.openTab = openTab;
+window.addTab = addTab;
 
-supabaseClient
-  .channel('articles-db-changes')
-  .on('postgres_changes', {
-    event: '*',
-    schema: 'public',
-    table: 'articles'
-  }, () => {
-    loadArticles();
-  })
-  .subscribe();
+window.addEventListener(
+  'DOMContentLoaded',
+  async () => {
 
-supabaseClient
-  .channel('keywords-db-changes')
-  .on('postgres_changes', {
-    event: '*',
-    schema: 'public',
-    table: 'keywords'
-  }, () => {
-    loadKeywords();
-  })
-  .subscribe();
+    loadMeta();
 
-window.addEventListener('DOMContentLoaded', async () => {
-  loadMeta();
-  await loadKeywords();
-  await loadArticles();
-});
+    await loadKeywords();
+
+    await loadArticles();
+
+  }
+);
+
 </script>
 
 </body>
