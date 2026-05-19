@@ -280,7 +280,12 @@
 
     <h3>🌐 Sources principales de veille</h3>
 
-    <ul style="line-height:2;padding-left:20px;margin-top:10px;">
+    <div class="run-summaries"
+         id="watch-sources-by-user">
+    </div>
+
+    <ul id="fallback-watch-sources"
+        style="line-height:2;padding-left:20px;margin-top:10px;">
 
       <li><a href="https://arxiv.org/" target="_blank">arXiv</a></li>
       <li><a href="https://ieeexplore.ieee.org/" target="_blank">IEEE Xplore</a></li>
@@ -450,6 +455,7 @@ function loadMeta(){
     meta.summary || 'Aucune veille lancee pour le moment.';
 
   renderRunSummaries(meta.runs || []);
+  renderWatchSources(meta.runs || []);
 }
 
 function renderRunSummaries(runs){
@@ -498,6 +504,82 @@ function renderRunSummaries(runs){
     card.appendChild(summary);
     card.appendChild(details);
 
+    container.appendChild(card);
+
+  });
+}
+
+function renderWatchSources(runs){
+
+  const container =
+    document.getElementById('watch-sources-by-user');
+
+  const fallback =
+    document.getElementById('fallback-watch-sources');
+
+  container.innerHTML = '';
+
+  const runsWithSources =
+    runs.filter(run =>
+      Array.isArray(run.suggested_sources) &&
+      run.suggested_sources.length > 0
+    );
+
+  fallback.style.display =
+    runsWithSources.length ? 'none' : 'block';
+
+  runsWithSources.forEach(run => {
+
+    const card =
+      document.createElement('div');
+
+    card.className = 'run-summary';
+
+    const title =
+      document.createElement('strong');
+
+    title.textContent =
+      run.tab_name || run.tab_slug;
+
+    const list =
+      document.createElement('ul');
+
+    list.style.lineHeight = '1.8';
+    list.style.paddingLeft = '18px';
+
+    run.suggested_sources.forEach(source => {
+
+      const item =
+        document.createElement('li');
+
+      const link =
+        document.createElement('a');
+
+      link.href = source.url || '#';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = source.name || source.url || source;
+
+      item.appendChild(link);
+
+      if(source.reason){
+
+        const reason =
+          document.createElement('span');
+
+        reason.textContent =
+          ` - ${source.reason}`;
+
+        item.appendChild(reason);
+
+      }
+
+      list.appendChild(item);
+
+    });
+
+    card.appendChild(title);
+    card.appendChild(list);
     container.appendChild(card);
 
   });
