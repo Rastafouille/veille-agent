@@ -246,6 +246,27 @@
       return;
     }
 
+    if (data.length === 0) {
+      const inserts = [];
+
+      Object.entries(defaultKeywords).forEach(([category, keywords]) => {
+        keywords.forEach(keyword => {
+          inserts.push({ category, keyword });
+        });
+      });
+
+      const { error: insertError } = await supabaseClient
+        .from('keywords')
+        .insert(inserts);
+
+      if (insertError) {
+        console.error(insertError);
+        return;
+      }
+
+      return loadKeywords();
+    }
+
     renderCategory('robotique', data);
     renderCategory('nucleaire', data);
     renderCategory('numerique', data);
@@ -300,6 +321,12 @@
     }
 
     async function loadKeywords() {
+    const defaultKeywords = {
+      robotique: ['ROS2', 'SLAM', 'Lidar', 'Robot Humanoïde'],
+      nucleaire: ['Gamma', 'Dosimétrie', 'Scintillation'],
+      numerique: ['LLM', 'Edge AI', 'IoT']
+    };
+
     const { data, error } = await supabaseClient
       .from('keywords')
       .select('*')
