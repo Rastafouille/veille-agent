@@ -275,6 +275,8 @@ const supabaseClient =
     SUPABASE_KEY
   );
 
+let currentTab = null;
+
 function loadMeta(){
 
   const lastDate = new Date();
@@ -316,12 +318,17 @@ async function loadTabs(){
 
     const tab = data[i];
 
+    const isActive =
+      currentTab
+        ? tab.slug === currentTab
+        : i === 0;
+
     const button =
       document.createElement('button');
 
     button.className = 'tab-button';
 
-    if(i===0){
+    if(isActive){
       button.classList.add('active');
     }
 
@@ -339,7 +346,7 @@ async function loadTabs(){
     content.id = tab.slug;
     content.className = 'tab-content';
 
-    if(i===0){
+    if(isActive){
       content.classList.add('active');
     }
 
@@ -727,6 +734,8 @@ async function addTab(){
 
 function openTab(tabName, button){
 
+  currentTab = tabName;
+
   document.querySelectorAll('.tab-content')
     .forEach(tab => {
       tab.classList.remove('active');
@@ -758,6 +767,8 @@ window.addEventListener(
   async () => {
 
     loadMeta();
+
+    currentTab = null;
 
     await loadTabs();
 
