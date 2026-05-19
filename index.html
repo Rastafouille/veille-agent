@@ -181,10 +181,7 @@
       <p id="next-watch">Chargement...</p>
     </div>
 
-    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
-      <strong>🗄️ Bases sondées</strong>
-      <p>arXiv · HAL · IEEE · PubMed · TechCrunch · ScienceDaily</p>
-    </div>
+    
   </div>
 </header>
 
@@ -195,19 +192,7 @@
 </div>
 
 <div id="robotique" class="tab-content active">
-  <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);margin-bottom:20px;">
-    <h3>🌐 Sources Robotique Investigation Nucléaire</h3>
-    <ul style="margin-top:10px;padding-left:20px;line-height:1.8;">
-      <li>ScienceDirect</li>
-      <li>IEEE Xplore</li>
-      <li>arXiv</li>
-      <li>IAEA</li>
-      <li>UKAEA</li>
-      <li>RAICo</li>
-      <li>World Nuclear News</li>
-      <li>Electronics For You</li>
-    </ul>
-  </div>
+  
 
   <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
     <h3>🔑 Mots-clés Robotique Investigation Nucléaire</h3>
@@ -272,7 +257,7 @@ async function loadArticles() {
     .from('articles')
     .select('*')
     .eq('hidden', false)
-    .order('published_at', { ascending: false });
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error(error);
@@ -302,7 +287,7 @@ function renderCategory(category, articles) {
       <h3>${article.title}</h3>
 
       <p style="font-size:0.85rem;color:#888;margin-bottom:10px;">
-        📅 ${article.published_at ? new Date(article.published_at).toLocaleDateString('fr-FR') : 'Date inconnue'}
+        📅 ${article.published_at ? new Date(article.published_at).toLocaleDateString('fr-FR') : (article.created_at ? new Date(article.created_at).toLocaleDateString('fr-FR') : 'Date inconnue')}
       </p>
 
       <p>${article.description || ''}</p>
