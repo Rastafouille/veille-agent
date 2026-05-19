@@ -80,6 +80,30 @@
       margin-bottom:6px;
     }
 
+    .tab-meta{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+      align-items:start;
+      margin:0 0 24px;
+    }
+
+    .tab-meta .watch-section{
+      margin-top:0;
+      height:100%;
+    }
+
+    .run-details{
+      display:inline-block;
+      margin-top:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eef2f7;
+      color:#3d4a5c;
+      font-size:0.85rem;
+      font-weight:bold;
+    }
+
     .tabs-row{
       display:flex;
       justify-content:space-between;
@@ -153,6 +177,7 @@
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
       gap:20px;
+      margin-top:8px;
     }
 
     .card{
@@ -593,33 +618,38 @@ async function loadTabs(){
 
     content.innerHTML = `
 
-      <div class="watch-section">
+      <div class="tab-meta">
 
-        <h3>Resume du dernier run</h3>
+        <div class="watch-section">
 
-        <p id="${tab.slug}-run-summary">
-          Aucun resume pour cet utilisateur.
-        </p>
+          <h3>Resume du dernier run</h3>
 
-        <p id="${tab.slug}-run-details"
-           style="font-size:0.85rem;margin-top:8px;">
-        </p>
+          <p id="${tab.slug}-run-summary"
+             style="margin-top:10px;">
+            Aucun resume pour cet utilisateur.
+          </p>
+
+          <p id="${tab.slug}-run-details"
+             class="run-details">
+          </p>
+
+        </div>
+
+        <div class="watch-section">
+
+          <h3>Sources scannees</h3>
+
+          <ul id="${tab.slug}-scanned-sources"
+              style="line-height:1.8;padding-left:18px;margin-top:10px;">
+            <li>Aucune source scannee pour le moment.</li>
+          </ul>
+
+        </div>
 
       </div>
 
       <div class="articles"
            id="${tab.slug}-list">
-      </div>
-
-      <div class="watch-section">
-
-        <h3>Sources scannees</h3>
-
-        <ul id="${tab.slug}-scanned-sources"
-            style="line-height:1.8;padding-left:18px;margin-top:10px;">
-          <li>Aucune source scannee pour le moment.</li>
-        </ul>
-
       </div>
 
       <div class="watch-section">
