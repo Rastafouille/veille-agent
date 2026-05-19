@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille Scientifique</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      color: #222;
+      padding: 20px;
+    }
+
+    header {
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    .tab-button:hover {
+      background: #eceff3;
+    }
+
+    .tab-button.active {
+      background: #222;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .science {
+      background: #dff3ff;
+      color: #0060a8;
+    }
+
+    .presse {
+      background: #fff0d9;
+      color: #a86000;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: bold;
+    }
+
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .star-btn {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .star-btn:hover {
+      background: #ffe9a8;
+    }
+
+    .delete-btn {
+      background: #ffefef;
+      border: 1px solid #ffbdbd;
+      color: #c20000;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: #ffd8d8;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Veille Scientifique & Presse</h1>
+  <p>Dashboard personnel de veille technologique et scientifique.</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-button active" onclick="openTab('robotique')">🤖 Robotique</button>
+  <button class="tab-button" onclick="openTab('nucleaire')">☢️ Mesure Nucléaire</button>
+  <button class="tab-button" onclick="openTab('numerique')">💻 Numérique</button>
+</div>
+
+<div id="robotique" class="tab-content active">
+  <div class="articles" id="robotique-list"></div>
+</div>
+
+<div id="nucleaire" class="tab-content">
+  <div class="articles" id="nucleaire-list"></div>
+</div>
+
+<div id="numerique" class="tab-content">
+  <div class="articles" id="numerique-list"></div>
+</div>
+
+<footer>
+  Généré pour une veille scientifique automatisée via GitHub Pages.
+</footer>
+
+<script>
+  const data = {
+    robotique: [
+      {
+        type: 'science',
+        title: 'Embodied AI for Autonomous Robotics',
+        description: 'Analyse des nouveaux modèles IA embarqués pour robots autonomes.',
+        link: 'https://arxiv.org/',
+        stars: 0
+      },
+      {
+        type: 'presse',
+        title: 'Boston Dynamics dévoile un nouveau robot humanoïde',
+        description: 'Présentation des dernières avancées en robotique mobile.',
+        link: 'https://www.theverge.com/',
+        stars: 0
+      }
+    ],
+
+    nucleaire: [
+      {
+        type: 'science',
+        title: 'Advanced Gamma Radiation Detection',
+        description: 'Étude sur les nouveaux capteurs gamma haute précision.',
+        link: 'https://ieeexplore.ieee.org/',
+        stars: 0
+      },
+      {
+        type: 'presse',
+        title: 'Nouveaux détecteurs pour la sûreté nucléaire',
+        description: 'Article sur les innovations en instrumentation nucléaire.',
+        link: 'https://www.sciencedaily.com/',
+        stars: 0
+      }
+    ],
+
+    numerique: [
+      {
+        type: 'science',
+        title: 'Large Language Models for Edge Computing',
+        description: 'Recherche sur les LLM optimisés pour systèmes embarqués.',
+        link: 'https://arxiv.org/',
+        stars: 0
+      },
+      {
+        type: 'presse',
+        title: 'L’essor des micro-datacenters IA',
+        description: 'Analyse des infrastructures numériques de proximité.',
+        link: 'https://techcrunch.com/',
+        stars: 0
+      }
+    ]
+  };
+
+  function renderArticles(category) {
+    const container = document.getElementById(`${category}-list`);
+    container.innerHTML = '';
+
+    data[category].forEach((article, index) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <span class="badge ${article.type}">
+          ${article.type === 'science' ? 'Article scientifique' : 'Article presse'}
+        </span>
+
+        <h3>${article.title}</h3>
+
+        <p>${article.description}</p>
+
+        <a href="${article.link}" target="_blank">Lire l'article →</a>
+
+        <div class="actions">
+          <button class="star-btn" onclick="addStar('${category}', ${index})">
+            ⭐ ${article.stars}
+          </button>
+
+          <button class="delete-btn" onclick="deleteArticle('${category}', ${index})">
+            Supprimer
+          </button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  function addStar(category, index) {
+    data[category][index].stars++;
+    renderArticles(category);
+  }
+
+  function deleteArticle(category, index) {
+    data[category].splice(index, 1);
+    renderArticles(category);
+  }
+
+  function openTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.classList.remove('active');
+    });
+
+    document.getElementById(tabName).classList.add('active');
+
+    event.target.classList.add('active');
+  }
+
+  renderArticles('robotique');
+  renderArticles('nucleaire');
+  renderArticles('numerique');
+</script>
+
+</body>
+</html>
