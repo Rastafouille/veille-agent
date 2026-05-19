@@ -236,11 +236,6 @@
 
   </div>
 
-  <div class="summary-card" id="watch-summary-card">
-    <strong>Resume du dernier run</strong>
-    <p id="watch-summary"></p>
-  </div>
-
 </header>
 
 <div class="tabs-row">
@@ -272,31 +267,6 @@
 </div>
 
 <div id="content-container"></div>
-
-<footer>
-
-  <div class="watch-section">
-
-    <h3>🌐 Sources principales de veille</h3>
-
-    <div class="run-summaries"
-         id="watch-sources-by-user">
-    </div>
-
-    <ul id="fallback-watch-sources"
-        style="line-height:2;padding-left:20px;margin-top:10px;">
-
-      <li><a href="https://arxiv.org/" target="_blank">arXiv</a></li>
-      <li><a href="https://ieeexplore.ieee.org/" target="_blank">IEEE Xplore</a></li>
-      <li><a href="https://www.sciencedirect.com/" target="_blank">ScienceDirect</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a></li>
-      <li><a href="https://www.iaea.org/" target="_blank">IAEA</a></li>
-
-    </ul>
-
-  </div>
-
-</footer>
 
 <script id="watch-agent-meta" type="application/json">
 {
@@ -331,6 +301,33 @@
           "reason": "Suivi terrain du decommissioning et de la robotique nucleaire."
         }
       ],
+      "scanned_sources": [
+        {
+          "name": "MDPI Applied Sciences",
+          "url": "https://www.mdpi.com/",
+          "reason": "Articles scientifiques recents sur robotique autonome et cartographie radiologique."
+        },
+        {
+          "name": "HKPC",
+          "url": "https://www.hkpc.org/",
+          "reason": "Actualites industrielles sur HazardBot et inspection nucleaire autonome."
+        },
+        {
+          "name": "Nuclear Engineering International",
+          "url": "https://www.neimagazine.com/",
+          "reason": "Actualites terrain sur decommissioning, robotique et remote handling."
+        },
+        {
+          "name": "arXiv",
+          "url": "https://arxiv.org/",
+          "reason": "Prepublications robotique, SLAM et autonomie."
+        },
+        {
+          "name": "ScienceDirect",
+          "url": "https://www.sciencedirect.com/",
+          "reason": "Articles sur planification, robotique nucleaire et environnements radiologiques."
+        }
+      ],
       "search_terms": [
         "radiation mapping quadruped robot",
         "nuclear inspection robot edge AI",
@@ -361,6 +358,33 @@
           "reason": "Articles ouverts sur autoradiographie et calibration beta."
         }
       ],
+      "scanned_sources": [
+        {
+          "name": "CERN / Medipix-Timepix",
+          "url": "https://www.home.cern/",
+          "reason": "Actualites et contexte detecteurs Timepix/Medipix."
+        },
+        {
+          "name": "ADVACAM",
+          "url": "https://advacam.com/",
+          "reason": "Modules Timepix et cameras de rayonnements."
+        },
+        {
+          "name": "PubMed Central",
+          "url": "https://pmc.ncbi.nlm.nih.gov/",
+          "reason": "Articles ouverts sur autoradiographie beta et calibration."
+        },
+        {
+          "name": "ResearchGate",
+          "url": "https://www.researchgate.net/",
+          "reason": "Prepublications et workflows Timepix3."
+        },
+        {
+          "name": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "reason": "Articles detecteurs alpha/beta et contamination de surface."
+        }
+      ],
       "search_terms": [
         "Timepix3 beta imaging surface contamination",
         "digital autoradiography beta emitters calibration",
@@ -389,6 +413,33 @@
           "name": "HAL",
           "url": "https://hal.science/",
           "reason": "Prepublications francaises pertinentes pour spectrometrie nucleaire."
+        }
+      ],
+      "scanned_sources": [
+        {
+          "name": "arXiv",
+          "url": "https://arxiv.org/",
+          "reason": "Prepublications sur unmixing spectral, incertitude et problemes inverses."
+        },
+        {
+          "name": "ScienceDirect",
+          "url": "https://www.sciencedirect.com/",
+          "reason": "Articles revus en mesures nucleaires et spectrometrie gamma."
+        },
+        {
+          "name": "HAL",
+          "url": "https://hal.science/",
+          "reason": "Prepublications francaises sur spectrometrie et traitement de donnees nucleaires."
+        },
+        {
+          "name": "ResearchGate",
+          "url": "https://www.researchgate.net/",
+          "reason": "Copies et signaux de prepublication complementaires."
+        },
+        {
+          "name": "Applied Radiation and Isotopes",
+          "url": "https://www.sciencedirect.com/journal/applied-radiation-and-isotopes",
+          "reason": "Revue cible pour detection et analyse de spectres radioactifs."
         }
       ],
       "search_terms": [
@@ -450,86 +501,6 @@ function loadMeta(){
       ? nextDate.toLocaleString('fr-FR')
       : 'Planifiee le lundi matin';
 
-  document.getElementById('watch-summary').innerText =
-    meta.summary || 'Aucune veille lancee pour le moment.';
-
-  renderWatchSources(meta.runs || []);
-}
-
-function renderWatchSources(runs){
-
-  const container =
-    document.getElementById('watch-sources-by-user');
-
-  const fallback =
-    document.getElementById('fallback-watch-sources');
-
-  container.innerHTML = '';
-
-  const runsWithSources =
-    runs.filter(run =>
-      Array.isArray(run.suggested_sources) &&
-      run.suggested_sources.length > 0
-    );
-
-  fallback.style.display =
-    runsWithSources.length ? 'none' : 'block';
-
-  runsWithSources.forEach(run => {
-
-    const card =
-      document.createElement('div');
-
-    card.className = 'run-summary';
-
-    const title =
-      document.createElement('strong');
-
-    title.textContent =
-      run.tab_name || run.tab_slug;
-
-    const list =
-      document.createElement('ul');
-
-    list.style.lineHeight = '1.8';
-    list.style.paddingLeft = '18px';
-
-    run.suggested_sources.forEach(source => {
-
-      const item =
-        document.createElement('li');
-
-      const link =
-        document.createElement('a');
-
-      link.href = source.url || '#';
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = source.name || source.url || source;
-
-      item.appendChild(link);
-
-      if(source.reason){
-
-        const reason =
-          document.createElement('span');
-
-        reason.textContent =
-          ` - ${source.reason}`;
-
-        item.appendChild(reason);
-
-      }
-
-      list.appendChild(item);
-
-    });
-
-    card.appendChild(title);
-    card.appendChild(list);
-    container.appendChild(card);
-
-  });
 }
 
 async function loadTabs(){
@@ -608,6 +579,17 @@ async function loadTabs(){
 
       <div class="articles"
            id="${tab.slug}-list">
+      </div>
+
+      <div class="watch-section">
+
+        <h3>Sources scannees</h3>
+
+        <ul id="${tab.slug}-scanned-sources"
+            style="line-height:1.8;padding-left:18px;margin-top:10px;">
+          <li>Aucune source scannee pour le moment.</li>
+        </ul>
+
       </div>
 
       <div class="watch-section">
@@ -695,10 +677,18 @@ function renderTabRunSummaries(){
         `${run.tab_slug}-run-details`
       );
 
-    if(!summary || !details) return;
+    const sourcesList =
+      document.getElementById(
+        `${run.tab_slug}-scanned-sources`
+      );
 
-    const sources =
-      (run.suggested_sources || [])
+    if(!summary || !details || !sourcesList) return;
+
+    const displaySources =
+      (run.scanned_sources || run.suggested_sources || []);
+
+    const sourceNames =
+      displaySources
         .slice(0, 3)
         .map(source => source.name || source)
         .filter(Boolean)
@@ -710,7 +700,62 @@ function renderTabRunSummaries(){
 
     details.innerText =
       `${run.articles_added || 0} article(s) ajoute(s)` +
-      (sources ? ` - Sources: ${sources}` : '');
+      (sourceNames ? ` - Sources: ${sourceNames}` : '');
+
+    sourcesList.innerHTML = '';
+
+    if(!displaySources.length){
+
+      const emptyItem =
+        document.createElement('li');
+
+      emptyItem.innerText =
+        'Aucune source scannee pour le moment.';
+
+      sourcesList.appendChild(emptyItem);
+      return;
+
+    }
+
+    displaySources.forEach(source => {
+
+      const item =
+        document.createElement('li');
+
+      if(source.url){
+
+        const link =
+          document.createElement('a');
+
+        link.href = source.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.innerText = source.name || source.url;
+
+        item.appendChild(link);
+
+      } else {
+
+        item.innerText =
+          source.name || source;
+
+      }
+
+      if(source.reason){
+
+        const reason =
+          document.createElement('span');
+
+        reason.innerText =
+          ` - ${source.reason}`;
+
+        item.appendChild(reason);
+
+      }
+
+      sourcesList.appendChild(item);
+
+    });
 
   });
 }
