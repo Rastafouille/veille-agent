@@ -296,13 +296,104 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": null,
-  "next_watch": null,
-  "status": "pending",
-  "articles_added": 0,
-  "tabs_processed": 0,
-  "summary": "Aucune veille lancee pour le moment.",
-  "runs": []
+  "last_watch": "2026-05-19T19:27:51+02:00",
+  "next_watch": "2026-05-25T08:00:00+02:00",
+  "status": "success",
+  "articles_added": 6,
+  "tabs_processed": 3,
+  "summary": "Run de test execute avec succes: 6 nouveaux resultats ajoutes dans Supabase pour les veilles Jerem, Nathan et Pierre-Louis. Les resultats couvrent robotique nucleaire autonome, imagerie beta/Timepix et spectral unmixing bayesien.",
+  "runs": [
+    {
+      "tab_slug": "jerem",
+      "tab_name": "Jerem",
+      "watch_title": "Robotique nucleaire",
+      "articles_added": 2,
+      "summary": "Deux resultats ajoutes: un article 2026 sur cartographie radiologique autonome par quadrupede Spot et une actualite industrielle HazardBot sur inspection nucleaire autonome avec edge AI.",
+      "refined_context": "La veille Jerem cible les robots mobiles d'investigation nucleaire capables de cartographier la radiation, naviguer en environnement degrade, realiser des inspections autonomes et soutenir le decommissioning.",
+      "suggested_sources": [
+        {
+          "name": "MDPI Applied Sciences",
+          "url": "https://www.mdpi.com/",
+          "reason": "Articles recents sur robotique autonome, SLAM et cartographie radiologique."
+        },
+        {
+          "name": "HKPC",
+          "url": "https://www.hkpc.org/",
+          "reason": "Actualites industrielles sur robots nucleaires deployables."
+        },
+        {
+          "name": "Nuclear Engineering International",
+          "url": "https://www.neimagazine.com/",
+          "reason": "Suivi terrain du decommissioning et de la robotique nucleaire."
+        }
+      ],
+      "search_terms": [
+        "radiation mapping quadruped robot",
+        "nuclear inspection robot edge AI",
+        "remote handling decommissioning robotics"
+      ]
+    },
+    {
+      "tab_slug": "nathan",
+      "tab_name": "Nathan",
+      "watch_title": "Imagerie et spectrometrie de contamination beta surfacique",
+      "articles_added": 2,
+      "summary": "Deux resultats ajoutes: un workflow Timepix3 pour imagerie alpha/beta et une calibration iQID pour imagerie quantitative de beta-emetteurs.",
+      "refined_context": "La veille Nathan compare les familles detecteurs pour contamination beta surfacique: scintillateurs/SiPM, PMT, autoradiographie, Timepix/Medipix et approches quantitatives utiles au terrain.",
+      "suggested_sources": [
+        {
+          "name": "CERN / Medipix-Timepix",
+          "url": "https://www.home.cern/",
+          "reason": "Suivi des detecteurs pixel hybrides Timepix/Medipix."
+        },
+        {
+          "name": "ADVACAM",
+          "url": "https://advacam.com/",
+          "reason": "Produits et cas d'usage Timepix pour imagerie de rayonnements."
+        },
+        {
+          "name": "PubMed Central",
+          "url": "https://pmc.ncbi.nlm.nih.gov/",
+          "reason": "Articles ouverts sur autoradiographie et calibration beta."
+        }
+      ],
+      "search_terms": [
+        "Timepix3 beta imaging surface contamination",
+        "digital autoradiography beta emitters calibration",
+        "SiPM scintillator beta contamination monitor"
+      ]
+    },
+    {
+      "tab_slug": "pierre-louis",
+      "tab_name": "Pierre-Louis",
+      "watch_title": "Traitement de donnees de mesure nucleaire",
+      "articles_added": 2,
+      "summary": "Deux resultats ajoutes: une prepublication arXiv sur incertitude bayesienne pour spectral unmixing gamma et un article Applied Radiation and Isotopes sur spectral unmixing pour mesures gamma aeroportees.",
+      "refined_context": "La veille Pierre-Louis cible les methodes de traitement pour spectrometrie et detection: denoising, optimisation bayesienne, problemes inverses, unmixing spectral et quantification d'incertitude.",
+      "suggested_sources": [
+        {
+          "name": "arXiv",
+          "url": "https://arxiv.org/",
+          "reason": "Prepublications recentes en problemes inverses et methodes bayesiennes."
+        },
+        {
+          "name": "ScienceDirect",
+          "url": "https://www.sciencedirect.com/",
+          "reason": "Articles revus sur mesures nucleaires et detection gamma."
+        },
+        {
+          "name": "HAL",
+          "url": "https://hal.science/",
+          "reason": "Prepublications francaises pertinentes pour spectrometrie nucleaire."
+        }
+      ],
+      "search_terms": [
+        "Bayesian uncertainty spectral unmixing gamma spectrometry",
+        "inverse problems radiation detection",
+        "airborne gamma measurements spectral unmixing"
+      ]
+    }
+  ]
 }
 </script>
 
