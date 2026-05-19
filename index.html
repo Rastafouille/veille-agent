@@ -254,7 +254,7 @@ async function loadArticles() {
     .from('articles')
     .select('*')
     .eq('hidden', false)
-    .order('stars', { ascending: false });
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error(error);
@@ -282,6 +282,10 @@ function renderCategory(category, articles) {
       </span>
 
       <h3>${article.title}</h3>
+
+      <p style="font-size:0.85rem;color:#888;margin-bottom:10px;">
+        📅 ${article.created_at ? new Date(article.created_at).toLocaleDateString('fr-FR') : 'Date inconnue'}
+      </p>
 
       <p>${article.description || ''}</p>
 
