@@ -344,7 +344,13 @@ async function loadTabs(){
     }
 
     content.innerHTML = `
-      <div class="watch-section">
+
+
+      <div class="articles"
+           id="${tab.slug}-list">
+      </div>
+
+            <div class="watch-section">
 
         <h3>🧠 Prompt de veille</h3>
 
@@ -389,10 +395,6 @@ async function loadTabs(){
 
         </div>
 
-      </div>
-
-      <div class="articles"
-           id="${tab.slug}-list">
       </div>
     `;
 
