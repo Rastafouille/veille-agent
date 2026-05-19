@@ -239,7 +239,25 @@
 </div>
 
 <footer>
-  Généré pour une veille scientifique automatisée via GitHub Pages.
+  <div style="background:white;padding:20px;border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,0.08);max-width:900px;margin:auto;text-align:left;">
+    <h3 style="margin-bottom:15px;">🌐 Sources principales de veille</h3>
+
+    <ul style="line-height:2; padding-left:20px;">
+      <li><a href="https://www.sciencedirect.com/" target="_blank">ScienceDirect</a></li>
+      <li><a href="https://ieeexplore.ieee.org/" target="_blank">IEEE Xplore</a></li>
+      <li><a href="https://arxiv.org/" target="_blank">arXiv</a></li>
+      <li><a href="https://www.iaea.org/" target="_blank">IAEA</a></li>
+      <li><a href="https://www.gov.uk/government/organisations/uk-atomic-energy-authority" target="_blank">UKAEA</a></li>
+      <li><a href="https://world-nuclear-news.org/" target="_blank">World Nuclear News</a></li>
+      <li><a href="https://techcrunch.com/" target="_blank">TechCrunch</a></li>
+      <li><a href="https://www.sciencedaily.com/" target="_blank">ScienceDaily</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a></li>
+    </ul>
+  </div>
+
+  <p style="margin-top:20px;">
+    Généré pour une veille scientifique automatisée via GitHub Pages & Supabase.
+  </p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -254,7 +272,7 @@ async function loadArticles() {
     .from('articles')
     .select('*')
     .eq('hidden', false)
-    .order('created_at', { ascending: false });
+    .order('published_at', { ascending: false });
 
   if (error) {
     console.error(error);
@@ -284,7 +302,7 @@ function renderCategory(category, articles) {
       <h3>${article.title}</h3>
 
       <p style="font-size:0.85rem;color:#888;margin-bottom:10px;">
-        📅 ${article.created_at ? new Date(article.created_at).toLocaleDateString('fr-FR') : 'Date inconnue'}
+        📅 ${article.published_at ? new Date(article.published_at).toLocaleDateString('fr-FR') : 'Date inconnue'}
       </p>
 
       <p>${article.description || ''}</p>
