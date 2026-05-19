@@ -94,7 +94,7 @@
       background:white;
       padding:18px;
       border-radius:14px;
-      margin-bottom:20px;
+      margin-top:20px;
       box-shadow:0 4px 12px rgba(0,0,0,0.08);
     }
 
@@ -345,12 +345,11 @@ async function loadTabs(){
 
     content.innerHTML = `
 
-
       <div class="articles"
            id="${tab.slug}-list">
       </div>
 
-            <div class="watch-section">
+      <div class="watch-section">
 
         <h3>🧠 Prompt de veille</h3>
 
@@ -396,6 +395,7 @@ async function loadTabs(){
         </div>
 
       </div>
+
     `;
 
     contentContainer.appendChild(content);
@@ -573,15 +573,52 @@ async function loadArticles(){
     card.className = 'card';
 
     card.innerHTML = `
+
       <span class="badge ${article.type}">
         ${article.type === 'science'
           ? 'Article scientifique'
           : 'Article presse'}
       </span>
 
-      <h3>${article.title}</h3>
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:10px;
+      ">
 
-      <p style="font-size:0.85rem;color:#888;">
+        <h3 style="margin:0;">
+          ${article.title}
+        </h3>
+
+        <button
+          onclick="toggleRead(${article.id}, ${article.is_new})"
+
+          style="
+            border:none;
+            background:none;
+            cursor:pointer;
+            font-size:1.4rem;
+          "
+
+          title="${
+            article.is_new
+              ? 'Marquer comme lu'
+              : 'Déjà lu'
+          }"
+        >
+
+          ${
+            article.is_new
+              ? '🆕'
+              : '✅'
+          }
+
+        </button>
+
+      </div>
+
+      <p style="font-size:0.85rem;color:#888;margin-top:10px;">
         📅 ${
           article.published_at
             ? new Date(article.published_at)
@@ -590,7 +627,9 @@ async function loadArticles(){
         }
       </p>
 
-      <p>${article.description || ''}</p>
+      <p style="margin-top:12px;">
+        ${article.description || ''}
+      </p>
 
       <a href="${article.link}"
          target="_blank">
@@ -615,6 +654,19 @@ async function loadArticles(){
     container.appendChild(card);
 
   });
+
+}
+
+async function toggleRead(id, currentState){
+
+  await supabaseClient
+    .from('articles')
+    .update({
+      is_new: !currentState
+    })
+    .eq('id', id);
+
+  loadTabs();
 
 }
 
@@ -699,6 +751,7 @@ window.addResearchInput = addResearchInput;
 window.deleteResearchInput = deleteResearchInput;
 window.addStar = addStar;
 window.deleteArticle = deleteArticle;
+window.toggleRead = toggleRead;
 
 window.addEventListener(
   'DOMContentLoaded',
