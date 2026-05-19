@@ -31,6 +31,10 @@
       margin-bottom:10px;
     }
 
+    p{
+      color:#666;
+    }
+
     header{
       margin-bottom:30px;
     }
@@ -96,22 +100,23 @@
 
     textarea{
       width:100%;
-      min-height:160px;
+      min-height:180px;
       margin-top:12px;
       padding:12px;
       border-radius:10px;
       border:1px solid #ccc;
       resize:vertical;
+      line-height:1.5;
     }
 
-    .sources{
+    .research-inputs{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       margin-top:15px;
     }
 
-    .source-tag{
+    .input-tag{
       background:#eef2f7;
       padding:10px 14px;
       border-radius:999px;
@@ -187,7 +192,7 @@
   <h1>📚 Veille Scientifique Collaborative</h1>
 
   <p>
-    Plateforme collaborative de veille scientifique et technologique.
+    Plateforme collaborative de veille scientifique pilotée par IA.
   </p>
 
   <div class="top-info">
@@ -314,8 +319,7 @@ async function loadTabs(){
     const button =
       document.createElement('button');
 
-    button.className =
-      'tab-button';
+    button.className = 'tab-button';
 
     if(i===0){
       button.classList.add('active');
@@ -333,9 +337,7 @@ async function loadTabs(){
       document.createElement('div');
 
     content.id = tab.slug;
-
-    content.className =
-      'tab-content';
+    content.className = 'tab-content';
 
     if(i===0){
       content.classList.add('active');
@@ -347,7 +349,7 @@ async function loadTabs(){
         <h3>🧠 Prompt de veille</h3>
 
         <textarea id="${tab.slug}-prompt"
-                  placeholder="Décrire la veille..."></textarea>
+                  placeholder="Décrire la veille scientifique..."></textarea>
 
         <button onclick="savePrompt('${tab.slug}')"
                 style="
@@ -364,23 +366,24 @@ async function loadTabs(){
 
       <div class="watch-section">
 
-        <h3>🌐 Sources surveillées</h3>
+        <h3>🔍 Inputs de recherche</h3>
 
-        <div class="sources"
-             id="${tab.slug}-sources">
+        <div class="research-inputs"
+             id="${tab.slug}-inputs">
         </div>
 
         <div style="margin-top:15px;display:flex;gap:10px;">
 
-          <input id="${tab.slug}-source-name"
-                 placeholder="Nom source"
-                 style="padding:10px;border-radius:8px;border:1px solid #ccc;">
+          <input id="${tab.slug}-input"
+                 placeholder="Ajouter un terme / techno / labo..."
+                 style="
+                   padding:10px;
+                   border-radius:8px;
+                   border:1px solid #ccc;
+                   width:350px;
+                 ">
 
-          <input id="${tab.slug}-source-url"
-                 placeholder="URL"
-                 style="padding:10px;border-radius:8px;border:1px solid #ccc;width:300px;">
-
-          <button onclick="addSource('${tab.slug}')">
+          <button onclick="addResearchInput('${tab.slug}')">
             Ajouter
           </button>
 
@@ -398,7 +401,7 @@ async function loadTabs(){
   }
 
   await loadWatchConfigs();
-  await loadSources();
+  await loadResearchInputs();
   await loadArticles();
 
 }
@@ -463,19 +466,19 @@ async function savePrompt(tabSlug){
 
 }
 
-async function loadSources(){
+async function loadResearchInputs(){
 
   const { data } =
     await supabaseClient
-      .from('sources')
+      .from('research_inputs')
       .select('*')
-      .order('priority');
+      .order('created_at');
 
-  data.forEach(src => {
+  data.forEach(input => {
 
     const container =
       document.getElementById(
-        `${src.tab_slug}-sources`
+        `${input.tab_slug}-inputs`
       );
 
     if(!container) return;
@@ -484,15 +487,12 @@ async function loadSources(){
       document.createElement('div');
 
     tag.className =
-      'source-tag';
+      'input-tag';
 
     tag.innerHTML = `
-      <a href="${src.url}"
-         target="_blank">
-         ${src.name}
-      </a>
+      ${input.input}
 
-      <button onclick="deleteSource(${src.id})"
+      <button onclick="deleteResearchInput(${input.id})"
               style="
                 margin-left:8px;
                 border:none;
@@ -510,36 +510,35 @@ async function loadSources(){
 
 }
 
-async function addSource(tabSlug){
+async function addResearchInput(tabSlug){
 
-  const name =
+  const inputField =
     document.getElementById(
-      `${tabSlug}-source-name`
-    ).value;
+      `${tabSlug}-input`
+    );
 
-  const url =
-    document.getElementById(
-      `${tabSlug}-source-url`
-    ).value;
+  const value =
+    inputField.value.trim();
 
-  if(!name || !url) return;
+  if(!value) return;
 
   await supabaseClient
-    .from('sources')
+    .from('research_inputs')
     .insert([{
       tab_slug: tabSlug,
-      name,
-      url
+      input: value
     }]);
+
+  inputField.value = '';
 
   loadTabs();
 
 }
 
-async function deleteSource(id){
+async function deleteResearchInput(id){
 
   await supabaseClient
-    .from('sources')
+    .from('research_inputs')
     .delete()
     .eq('id', id);
 
@@ -569,8 +568,7 @@ async function loadArticles(){
     const card =
       document.createElement('div');
 
-    card.className =
-      'card';
+    card.className = 'card';
 
     card.innerHTML = `
       <span class="badge ${article.type}">
@@ -694,9 +692,9 @@ function openTab(tabName, button){
 }
 
 window.addTab = addTab;
-window.addSource = addSource;
-window.deleteSource = deleteSource;
 window.savePrompt = savePrompt;
+window.addResearchInput = addResearchInput;
+window.deleteResearchInput = deleteResearchInput;
 window.addStar = addStar;
 window.deleteArticle = deleteArticle;
 
