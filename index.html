@@ -230,202 +230,209 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const SUPABASE_URL = 'https://uozgbhitaiewuqgibssf.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvemdiaGl0YWlld3VxZ2lic3NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODYwNjcsImV4cCI6MjA5NDc2MjA2N30.7k88FWFPgYtxlSrS5Kr6T7_lICvVrZjYTq4n8xPxaTU';
+const SUPABASE_URL = 'https://uozgbhitaiewuqgibssf.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvemdiaGl0YWlld3VxZ2lic3NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODYwNjcsImV4cCI6MjA5NDc2MjA2N30.7k88FWFPgYtxlSrS5Kr6T7_lICvVrZjYTq4n8xPxaTU';
 
-  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  async function loadArticles() {
-    const { data, error } = await supabaseClient
-      .from('articles')
-      .select('*')
-      .eq('hidden', false)
-      .order('stars', { ascending: false });
+async function loadArticles() {
+  const { data, error } = await supabaseClient
+    .from('articles')
+    .select('*')
+    .eq('hidden', false)
+    .order('stars', { ascending: false });
 
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    
-
-    renderCategory('robotique', data);
-    renderCategory('nucleaire', data);
-    renderCategory('numerique', data);
+  if (error) {
+    console.error(error);
+    return;
   }
 
-  function renderCategory(category, articles) {
-    const container = document.getElementById(`${category}-list`);
+  renderCategory('robotique', data);
+  renderCategory('nucleaire', data);
+  renderCategory('numerique', data);
+}
 
+function renderCategory(category, articles) {
+  const container = document.getElementById(`${category}-list`);
+  container.innerHTML = '';
+
+  const filtered = articles.filter(a => a.category === category);
+
+  filtered.forEach(article => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <span class="badge ${article.type}">
+        ${article.type === 'science' ? 'Article scientifique' : 'Article presse'}
+      </span>
+
+      <h3>${article.title}</h3>
+
+      <p>${article.description || ''}</p>
+
+      <a href="${article.link}" target="_blank">Lire l'article →</a>
+
+      <div class="actions">
+        <button class="star-btn" onclick="addStar(${article.id}, ${article.stars})">
+          ⭐ ${article.stars}
+        </button>
+
+        <button class="delete-btn" onclick="deleteArticle(${article.id})">
+          Supprimer
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+async function addStar(id, currentStars) {
+  const { error } = await supabaseClient
+    .from('articles')
+    .update({ stars: currentStars + 1 })
+    .eq('id', id);
+
+  if (error) {
+    console.error(error);
+  }
+
+  loadArticles();
+}
+
+async function deleteArticle(id) {
+  const { error } = await supabaseClient
+    .from('articles')
+    .update({ hidden: true })
+    .eq('id', id);
+
+  if (error) {
+    console.error(error);
+  }
+
+  loadArticles();
+}
+
+async function loadKeywords() {
+  const { data, error } = await supabaseClient
+    .from('keywords')
+    .select('*')
+    .order('keyword');
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  ['robotique', 'nucleaire', 'numerique'].forEach(category => {
+    const container = document.getElementById(`${category}-keywords`);
     container.innerHTML = '';
 
-    const filtered = articles.filter(a => a.category === category);
-
-    filtered.forEach(article => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      card.innerHTML = `
-        <span class="badge ${article.type}">
-          ${article.type === 'science' ? 'Article scientifique' : 'Article presse'}
-        </span>
-
-        <h3>${article.title}</h3>
-
-        <p>${article.description || ''}</p>
-
-        <a href="${article.link}" target="_blank">Lire l'article →</a>
-
-        <div class="actions">
-          <button class="star-btn" onclick="addStar(${article.id}, ${article.stars})">
-            ⭐ ${article.stars}
-          </button>
-
-          <button class="delete-btn" onclick="deleteArticle(${article.id})">
-            Supprimer
-          </button>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
-  }
-
-  async function addStar(id, currentStars) {
-    const { error } = await supabaseClient
-      .from('articles')
-      .update({ stars: currentStars + 1 })
-      .eq('id', id);
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    async function loadKeywords() {
-    
-
-    const { data, error } = await supabaseClient
-      .from('keywords')
-      .select('*')
-      .order('keyword');
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    ['robotique','nucleaire','numerique'].forEach(category => {
-      const container = document.getElementById(`${category}-keywords`);
-      container.innerHTML = '';
-
-      data.filter(k => k.category === category).forEach(k => {
+    data
+      .filter(k => k.category === category)
+      .forEach(k => {
         const tag = document.createElement('span');
+
         tag.style = 'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
 
         tag.innerHTML = `${k.keyword} <button onclick="deleteKeyword(${k.id})" style="border:none;background:none;color:red;cursor:pointer;">✖</button>`;
 
         container.appendChild(tag);
       });
-    });
+  });
+}
+
+async function addKeyword(category) {
+  const input = document.getElementById(`${category}-input`);
+  const keyword = input.value.trim();
+
+  if (!keyword) return;
+
+  const { error } = await supabaseClient
+    .from('keywords')
+    .insert([{ category, keyword }]);
+
+  if (error) {
+    console.error(error);
+    return;
   }
 
-  async function addKeyword(category) {
-    const input = document.getElementById(`${category}-input`);
-    const keyword = input.value.trim();
-
-    if (!keyword) return;
-
-    const { error } = await supabaseClient
-      .from('keywords')
-      .insert([{ category, keyword }]);
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    input.value = '';
-    loadKeywords();
-  }
-
-  async function deleteKeyword(id) {
-    const { error } = await supabaseClient
-      .from('keywords')
-      .delete()
-      .eq('id', id);
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    loadKeywords();
-  }
-
-  async function loadMeta() {
-    const lastDate = new Date();
-    lastDate.setDate(lastDate.getDate() - 7);
-
-    const nextDate = new Date();
-    nextDate.setDate(nextDate.getDate() + 7);
-
-    document.getElementById('last-watch').innerText =
-      lastDate.toLocaleString('fr-FR');
-
-    document.getElementById('next-watch').innerText =
-      nextDate.toLocaleString('fr-FR');
-  }
-
-  loadMeta();
+  input.value = '';
   loadKeywords();
-  loadArticles();
+}
+
+async function deleteKeyword(id) {
+  const { error } = await supabaseClient
+    .from('keywords')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(error);
+    return;
   }
 
-  async function deleteArticle(id) {
-    const { error } = await supabaseClient
-      .from('articles')
-      .update({ hidden: true })
-      .eq('id', id);
+  loadKeywords();
+}
 
-    if (error) {
-      console.error(error);
-      return;
-    }
+function loadMeta() {
+  const lastDate = new Date();
+  lastDate.setDate(lastDate.getDate() - 7);
 
+  const nextDate = new Date();
+  nextDate.setDate(nextDate.getDate() + 7);
+
+  document.getElementById('last-watch').innerText = lastDate.toLocaleString('fr-FR');
+  document.getElementById('next-watch').innerText = nextDate.toLocaleString('fr-FR');
+}
+
+function openTab(tabName) {
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.classList.remove('active');
+  });
+
+  document.getElementById(tabName).classList.add('active');
+  event.target.classList.add('active');
+}
+
+window.addKeyword = addKeyword;
+window.deleteKeyword = deleteKeyword;
+window.addStar = addStar;
+window.deleteArticle = deleteArticle;
+window.openTab = openTab;
+
+supabaseClient
+  .channel('articles-db-changes')
+  .on('postgres_changes', {
+    event: '*',
+    schema: 'public',
+    table: 'articles'
+  }, () => {
     loadArticles();
-  }
+  })
+  .subscribe();
 
-  function openTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-      tab.classList.remove('active');
-    });
+supabaseClient
+  .channel('keywords-db-changes')
+  .on('postgres_changes', {
+    event: '*',
+    schema: 'public',
+    table: 'keywords'
+  }, () => {
+    loadKeywords();
+  })
+  .subscribe();
 
-    document.querySelectorAll('.tab-button').forEach(button => {
-      button.classList.remove('active');
-    });
-
-    document.getElementById(tabName).classList.add('active');
-
-    event.target.classList.add('active');
-  }
-
-  supabaseClient
-    .channel('articles-db-changes')
-    .on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'articles'
-      },
-      () => {
-        loadArticles();
-      }
-    )
-    .subscribe();
-
-  loadArticles();
+window.addEventListener('DOMContentLoaded', async () => {
+  loadMeta();
+  await loadKeywords();
+  await loadArticles();
+});
 </script>
 
 </body>
