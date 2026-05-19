@@ -1,145 +1,153 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Veille Scientifique Collaborative</title>
 
   <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E📚%3C/text%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E📚%3C/text%3E%3C/svg%3E" />
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:Arial,sans-serif;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
     }
 
-    body{
-      background:#f4f6f9;
-      color:#222;
-      padding:20px;
+    body {
+      background: #f4f6f9;
+      color: #222;
+      padding: 20px;
     }
 
-    header{
-      margin-bottom:25px;
+    h1 {
+      margin-bottom: 10px;
     }
 
-    h1{
-      font-size:2rem;
-      margin-bottom:10px;
+    p {
+      color: #666;
     }
 
-    p{
-      color:#666;
+    header {
+      margin-bottom: 30px;
     }
 
-    .tabs{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:20px;
+    .top-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    .tab-button{
-      background:white;
-      border:1px solid #ddd;
-      padding:12px 18px;
-      border-radius:10px;
-      cursor:pointer;
-      transition:0.2s;
-      font-weight:bold;
+    .info-card {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    .tab-button.active{
-      background:#222;
-      color:white;
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .tab-content{
-      display:none;
+    .tab-button {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
     }
 
-    .tab-content.active{
-      display:block;
+    .tab-button.active {
+      background: #222;
+      color: white;
     }
 
-    .articles{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
-      gap:20px;
+    .tab-content {
+      display: none;
     }
 
-    .card{
-      background:white;
-      border-radius:14px;
-      padding:18px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    .tab-content.active {
+      display: block;
     }
 
-    .badge{
-      display:inline-block;
-      padding:5px 10px;
-      border-radius:999px;
-      font-size:0.8rem;
-      margin-bottom:10px;
-      font-weight:bold;
+    .keyword-section {
+      margin-bottom: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    .science{
-      background:#dff3ff;
-      color:#0060a8;
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
     }
 
-    .presse{
-      background:#fff0d9;
-      color:#a86000;
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .card h3{
-      margin-bottom:10px;
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
-    .card p{
-      margin-bottom:15px;
-      line-height:1.5;
+    .science {
+      background: #dff3ff;
+      color: #0060a8;
     }
 
-    .card a{
-      text-decoration:none;
-      color:#0066cc;
-      font-weight:bold;
+    .presse {
+      background: #fff0d9;
+      color: #a86000;
     }
 
-    .actions{
-      margin-top:18px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .star-btn,
-    .delete-btn{
-      padding:8px 12px;
-      border-radius:8px;
-      cursor:pointer;
-      border:none;
+    .delete-btn {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    .star-btn{
-      background:#ffe9a8;
+    .star-btn {
+      background: #ffe9a8;
     }
 
-    .delete-btn{
-      background:#ffd8d8;
-      color:#c20000;
+    .delete-btn {
+      background: #ffd8d8;
+      color: #c20000;
     }
 
-    footer{
-      margin-top:50px;
+    footer {
+      margin-top: 50px;
     }
   </style>
 </head>
@@ -147,45 +155,30 @@
 <body>
 
 <header>
+
   <h1>📚 Veille Scientifique Collaborative</h1>
 
   <p>
     Plateforme collaborative de veille scientifique et technologique.
   </p>
 
-  <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
+  <div class="top-info">
 
-    <div style="background:white;padding:15px;border-radius:12px;">
+    <div class="info-card">
       <strong>🕒 Dernière veille</strong>
       <p id="last-watch"></p>
     </div>
 
-    <div style="background:white;padding:15px;border-radius:12px;">
+    <div class="info-card">
       <strong>⏭️ Prochaine veille</strong>
       <p id="next-watch"></p>
     </div>
 
   </div>
+
 </header>
 
-<div class="tabs">
-
-  <button class="tab-button active"
-          onclick="openTab('jerem', this)">
-    👨‍🔬 Jerem
-  </button>
-
-  <button class="tab-button"
-          onclick="openTab('julien-v', this)">
-    ☢️ Julien V
-  </button>
-
-  <button class="tab-button"
-          onclick="openTab('lucas', this)">
-    💻 Lucas
-  </button>
-
-</div>
+<div class="tabs" id="tabs-container"></div>
 
 <div style="margin-bottom:20px;display:flex;gap:10px;align-items:center;">
 
@@ -200,80 +193,7 @@
 
 </div>
 
-<!-- Jerem -->
-<div id="jerem" class="tab-content active">
-
-  <div class="keyword-section"
-       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
-
-    <h3>🔑 Mots-clés Jerem</h3>
-
-    <div id="jerem-keywords" style="margin:10px 0;"></div>
-
-    <input id="jerem-input"
-           placeholder="Ajouter un mot-clé"
-           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-
-    <button onclick="addKeyword('jerem')"
-            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="articles" id="jerem-list"></div>
-
-</div>
-
-<!-- Julien -->
-<div id="julien-v" class="tab-content">
-
-  <div class="keyword-section"
-       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
-
-    <h3>🔑 Mots-clés Julien V</h3>
-
-    <div id="julien-v-keywords" style="margin:10px 0;"></div>
-
-    <input id="julien-v-input"
-           placeholder="Ajouter un mot-clé"
-           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-
-    <button onclick="addKeyword('julien-v')"
-            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="articles" id="julien-v-list"></div>
-
-</div>
-
-<!-- Lucas -->
-<div id="lucas" class="tab-content">
-
-  <div class="keyword-section"
-       style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
-
-    <h3>🔑 Mots-clés Lucas</h3>
-
-    <div id="lucas-keywords" style="margin:10px 0;"></div>
-
-    <input id="lucas-input"
-           placeholder="Ajouter un mot-clé"
-           style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-
-    <button onclick="addKeyword('lucas')"
-            style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="articles" id="lucas-list"></div>
-
-</div>
+<div id="content-container"></div>
 
 <footer>
 
@@ -300,15 +220,19 @@
 
 <script>
 
-const SUPABASE_URL = 'https://uozgbhitaiewuqgibssf.supabase.co';
+const SUPABASE_URL =
+'https://uozgbhitaiewuqgibssf.supabase.co';
 
 const SUPABASE_KEY =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVvemdiaGl0YWlld3VxZ2lic3NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODYwNjcsImV4cCI6MjA5NDc2MjA2N30.7k88FWFPgYtxlSrS5Kr6T7_lICvVrZjYTq4n8xPxaTU';
+'REMPLACE_PAR_TA_CLE_ANON';
 
 const supabaseClient =
-  supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-function loadMeta(){
+function loadMeta() {
 
   const lastDate = new Date();
   lastDate.setDate(lastDate.getDate() - 7);
@@ -323,6 +247,95 @@ function loadMeta(){
     nextDate.toLocaleString('fr-FR');
 }
 
+async function loadTabs() {
+
+  const { data, error } =
+    await supabaseClient
+      .from('tabs')
+      .select('*')
+      .order('created_at');
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  const tabsContainer =
+    document.getElementById('tabs-container');
+
+  const contentContainer =
+    document.getElementById('content-container');
+
+  tabsContainer.innerHTML = '';
+  contentContainer.innerHTML = '';
+
+  data.forEach((tab, index) => {
+
+    const button =
+      document.createElement('button');
+
+    button.className =
+      'tab-button';
+
+    if(index === 0){
+      button.classList.add('active');
+    }
+
+    button.innerText =
+      `👤 ${tab.name}`;
+
+    button.onclick = () =>
+      openTab(tab.slug, button);
+
+    tabsContainer.appendChild(button);
+
+    const content =
+      document.createElement('div');
+
+    content.id = tab.slug;
+
+    content.className =
+      'tab-content';
+
+    if(index === 0){
+      content.classList.add('active');
+    }
+
+    content.innerHTML = `
+      <div class="keyword-section">
+
+        <h3>
+          🔑 Mots-clés ${tab.name}
+        </h3>
+
+        <div id="${tab.slug}-keywords"
+             style="margin:10px 0;">
+        </div>
+
+        <input id="${tab.slug}-input"
+               placeholder="Ajouter un mot-clé"
+               style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+
+        <button onclick="addKeyword('${tab.slug}')"
+                style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="articles"
+           id="${tab.slug}-list">
+      </div>
+    `;
+
+    contentContainer.appendChild(content);
+
+  });
+
+  await loadKeywords();
+  await loadArticles();
+}
+
 async function loadArticles(){
 
   const { data, error } =
@@ -330,33 +343,26 @@ async function loadArticles(){
       .from('articles')
       .select('*')
       .eq('hidden', false)
-      .order('published_at', { ascending:false });
+      .order('published_at',
+             { ascending:false });
 
   if(error){
     console.error(error);
     return;
   }
 
-  renderCategory('jerem', data);
-  renderCategory('julien-v', data);
-  renderCategory('lucas', data);
-}
+  data.forEach(article => {
 
-function renderCategory(category, articles){
+    const container =
+      document.getElementById(
+        `${article.category}-list`
+      );
 
-  const container =
-    document.getElementById(`${category}-list`);
+    if(!container) return;
 
-  if(!container) return;
+    const card =
+      document.createElement('div');
 
-  container.innerHTML = '';
-
-  const filtered =
-    articles.filter(a => a.category === category);
-
-  filtered.forEach(article => {
-
-    const card = document.createElement('div');
     card.className = 'card';
 
     card.innerHTML = `
@@ -379,8 +385,9 @@ function renderCategory(category, articles){
 
       <p>${article.description || ''}</p>
 
-      <a href="${article.link}" target="_blank">
-        Lire l'article →
+      <a href="${article.link}"
+         target="_blank">
+         Lire l'article →
       </a>
 
       <div class="actions">
@@ -401,30 +408,7 @@ function renderCategory(category, articles){
     container.appendChild(card);
 
   });
-}
 
-async function addStar(id, currentStars){
-
-  await supabaseClient
-    .from('articles')
-    .update({
-      stars: currentStars + 1
-    })
-    .eq('id', id);
-
-  loadArticles();
-}
-
-async function deleteArticle(id){
-
-  await supabaseClient
-    .from('articles')
-    .update({
-      hidden:true
-    })
-    .eq('id', id);
-
-  loadArticles();
 }
 
 async function loadKeywords(){
@@ -440,47 +424,69 @@ async function loadKeywords(){
     return;
   }
 
-  ['jerem','julien-v','lucas']
-    .forEach(category => {
+  data.forEach(k => {
 
-      const container =
-        document.getElementById(`${category}-keywords`);
+    const container =
+      document.getElementById(
+        `${k.category}-keywords`
+      );
 
-      if(!container) return;
+    if(!container) return;
 
-      container.innerHTML = '';
+    const tag =
+      document.createElement('span');
 
-      data
-        .filter(k => k.category === category)
-        .forEach(k => {
+    tag.style =
+      'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
 
-          const tag = document.createElement('span');
+    tag.innerHTML = `
+      ${k.keyword}
 
-          tag.style =
-            'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
+      <button onclick="deleteKeyword(${k.id})"
+              style="border:none;background:none;color:red;cursor:pointer;">
+        ✖
+      </button>
+    `;
 
-          tag.innerHTML = `
-            ${k.keyword}
+    container.appendChild(tag);
 
-            <button onclick="deleteKeyword(${k.id})"
-                    style="border:none;background:none;color:red;cursor:pointer;">
-              ✖
-            </button>
-          `;
+  });
 
-          container.appendChild(tag);
+}
 
-        });
+async function addStar(id, currentStars){
 
-    });
+  await supabaseClient
+    .from('articles')
+    .update({
+      stars: currentStars + 1
+    })
+    .eq('id', id);
+
+  loadTabs();
+}
+
+async function deleteArticle(id){
+
+  await supabaseClient
+    .from('articles')
+    .update({
+      hidden:true
+    })
+    .eq('id', id);
+
+  loadTabs();
 }
 
 async function addKeyword(category){
 
   const input =
-    document.getElementById(`${category}-input`);
+    document.getElementById(
+      `${category}-input`
+    );
 
-  const keyword = input.value.trim();
+  const keyword =
+    input.value.trim();
 
   if(!keyword) return;
 
@@ -493,7 +499,7 @@ async function addKeyword(category){
 
   input.value = '';
 
-  loadKeywords();
+  loadTabs();
 }
 
 async function deleteKeyword(id){
@@ -503,7 +509,35 @@ async function deleteKeyword(id){
     .delete()
     .eq('id', id);
 
-  loadKeywords();
+  loadTabs();
+}
+
+async function addTab(){
+
+  const input =
+    document.getElementById(
+      'new-tab-input'
+    );
+
+  const name =
+    input.value.trim();
+
+  if(!name) return;
+
+  const slug =
+    name.toLowerCase()
+        .replace(/\s+/g, '-');
+
+  await supabaseClient
+    .from('tabs')
+    .insert([{
+      name,
+      slug
+    }]);
+
+  input.value = '';
+
+  loadTabs();
 }
 
 function openTab(tabName, button){
@@ -525,75 +559,10 @@ function openTab(tabName, button){
   button.classList.add('active');
 }
 
-function addTab(){
-
-  const input =
-    document.getElementById('new-tab-input');
-
-  const name = input.value.trim();
-
-  if(!name) return;
-
-  const id =
-    name.toLowerCase().replace(/\s+/g, '-');
-
-  const button =
-    document.createElement('button');
-
-  button.className = 'tab-button';
-
-  button.innerText = `👤 ${name}`;
-
-  button.setAttribute(
-    'onclick',
-    `openTab('${id}', this)`
-  );
-
-  document.querySelector('.tabs')
-    .appendChild(button);
-
-  const content =
-    document.createElement('div');
-
-  content.id = id;
-  content.className = 'tab-content';
-
-  content.innerHTML = `
-    <div class="keyword-section"
-         style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;">
-
-      <h3>🔑 Mots-clés ${name}</h3>
-
-      <div id="${id}-keywords"
-           style="margin:10px 0;"></div>
-
-      <input id="${id}-input"
-             placeholder="Ajouter un mot-clé"
-             style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
-
-      <button onclick="addKeyword('${id}')">
-        Ajouter
-      </button>
-
-    </div>
-
-    <div class="articles"
-         id="${id}-list"></div>
-  `;
-
-  document.body.insertBefore(
-    content,
-    document.querySelector('footer')
-  );
-
-  input.value = '';
-}
-
 window.addKeyword = addKeyword;
 window.deleteKeyword = deleteKeyword;
 window.addStar = addStar;
 window.deleteArticle = deleteArticle;
-window.openTab = openTab;
 window.addTab = addTab;
 
 window.addEventListener(
@@ -602,9 +571,7 @@ window.addEventListener(
 
     loadMeta();
 
-    await loadKeywords();
-
-    await loadArticles();
+    await loadTabs();
 
   }
 );
