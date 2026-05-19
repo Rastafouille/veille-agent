@@ -53,6 +53,33 @@
       box-shadow:0 4px 10px rgba(0,0,0,0.08);
     }
 
+    .summary-card{
+      margin-top:15px;
+      background:white;
+      padding:15px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .run-summaries{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .run-summary{
+      background:#f7f9fc;
+      border:1px solid #e4e8ef;
+      border-radius:10px;
+      padding:12px;
+    }
+
+    .run-summary strong{
+      display:block;
+      margin-bottom:6px;
+    }
+
     .tabs-row{
       display:flex;
       justify-content:space-between;
@@ -209,6 +236,12 @@
 
   </div>
 
+  <div class="summary-card" id="watch-summary-card">
+    <strong>Resume du dernier run</strong>
+    <p id="watch-summary"></p>
+    <div class="run-summaries" id="watch-run-summaries"></div>
+  </div>
+
 </header>
 
 <div class="tabs-row">
@@ -261,6 +294,18 @@
 
 </footer>
 
+<script id="watch-agent-meta" type="application/json">
+{
+  "last_watch": null,
+  "next_watch": null,
+  "status": "pending",
+  "articles_added": 0,
+  "tabs_processed": 0,
+  "summary": "Aucune veille lancee pour le moment.",
+  "runs": []
+}
+</script>
+
 <script>
 
 const SUPABASE_URL =
@@ -279,17 +324,92 @@ let currentTab = null;
 
 function loadMeta(){
 
-  const lastDate = new Date();
-  lastDate.setDate(lastDate.getDate() - 7);
+  const metaElement =
+    document.getElementById('watch-agent-meta');
 
-  const nextDate = new Date();
-  nextDate.setDate(nextDate.getDate() + 7);
+  let meta = {};
+
+  try{
+    meta = JSON.parse(metaElement.textContent);
+  } catch(error){
+    console.error('Invalid watch metadata', error);
+  }
+
+  const lastDate =
+    meta.last_watch
+      ? new Date(meta.last_watch)
+      : null;
+
+  const nextDate =
+    meta.next_watch
+      ? new Date(meta.next_watch)
+      : null;
 
   document.getElementById('last-watch').innerText =
-    lastDate.toLocaleString('fr-FR');
+    lastDate
+      ? lastDate.toLocaleString('fr-FR')
+      : 'Aucune veille lancee';
 
   document.getElementById('next-watch').innerText =
-    nextDate.toLocaleString('fr-FR');
+    nextDate
+      ? nextDate.toLocaleString('fr-FR')
+      : 'Planifiee le lundi matin';
+
+  document.getElementById('watch-summary').innerText =
+    meta.summary || 'Aucune veille lancee pour le moment.';
+
+  renderRunSummaries(meta.runs || []);
+}
+
+function renderRunSummaries(runs){
+
+  const container =
+    document.getElementById('watch-run-summaries');
+
+  container.innerHTML = '';
+
+  runs.forEach(run => {
+
+    const card =
+      document.createElement('div');
+
+    card.className = 'run-summary';
+
+    const sources =
+      (run.suggested_sources || [])
+        .slice(0, 3)
+        .map(source => source.name || source)
+        .filter(Boolean)
+        .join(', ');
+
+    const title =
+      document.createElement('strong');
+
+    title.textContent =
+      run.tab_name || run.tab_slug;
+
+    const summary =
+      document.createElement('p');
+
+    summary.textContent =
+      run.summary || run.refined_context || '';
+
+    const details =
+      document.createElement('p');
+
+    details.style.fontSize = '0.85rem';
+    details.style.marginTop = '8px';
+    details.textContent =
+      `${run.articles_added || 0} article(s) ajoute(s)` +
+      (sources ? ` - Sources: ${sources}` : '');
+
+    card.appendChild(title);
+    card.appendChild(summary);
+    card.appendChild(details);
+
+    container.appendChild(card);
+
+  });
 }
 
 async function loadTabs(){
