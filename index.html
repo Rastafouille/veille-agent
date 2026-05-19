@@ -246,26 +246,7 @@
       return;
     }
 
-    if (data.length === 0) {
-      const inserts = [];
-
-      Object.entries(defaultKeywords).forEach(([category, keywords]) => {
-        keywords.forEach(keyword => {
-          inserts.push({ category, keyword });
-        });
-      });
-
-      const { error: insertError } = await supabaseClient
-        .from('keywords')
-        .insert(inserts);
-
-      if (insertError) {
-        console.error(insertError);
-        return;
-      }
-
-      return loadKeywords();
-    }
+    
 
     renderCategory('robotique', data);
     renderCategory('nucleaire', data);
@@ -321,11 +302,7 @@
     }
 
     async function loadKeywords() {
-    const defaultKeywords = {
-      robotique: ['ROS2', 'SLAM', 'Lidar', 'Robot Humanoïde'],
-      nucleaire: ['Gamma', 'Dosimétrie', 'Scintillation'],
-      numerique: ['LLM', 'Edge AI', 'IoT']
-    };
+    
 
     const { data, error } = await supabaseClient
       .from('keywords')
@@ -386,8 +363,17 @@
   }
 
   async function loadMeta() {
-    document.getElementById('last-watch').innerText = '19 mai 2026 - 08:00';
-    document.getElementById('next-watch').innerText = '26 mai 2026 - 08:00';
+    const lastDate = new Date();
+    lastDate.setDate(lastDate.getDate() - 7);
+
+    const nextDate = new Date();
+    nextDate.setDate(nextDate.getDate() + 7);
+
+    document.getElementById('last-watch').innerText =
+      lastDate.toLocaleString('fr-FR');
+
+    document.getElementById('next-watch').innerText =
+      nextDate.toLocaleString('fr-FR');
   }
 
   loadMeta();
