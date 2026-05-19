@@ -239,7 +239,6 @@
   <div class="summary-card" id="watch-summary-card">
     <strong>Resume du dernier run</strong>
     <p id="watch-summary"></p>
-    <div class="run-summaries" id="watch-run-summaries"></div>
   </div>
 
 </header>
@@ -454,59 +453,7 @@ function loadMeta(){
   document.getElementById('watch-summary').innerText =
     meta.summary || 'Aucune veille lancee pour le moment.';
 
-  renderRunSummaries(meta.runs || []);
   renderWatchSources(meta.runs || []);
-}
-
-function renderRunSummaries(runs){
-
-  const container =
-    document.getElementById('watch-run-summaries');
-
-  container.innerHTML = '';
-
-  runs.forEach(run => {
-
-    const card =
-      document.createElement('div');
-
-    card.className = 'run-summary';
-
-    const sources =
-      (run.suggested_sources || [])
-        .slice(0, 3)
-        .map(source => source.name || source)
-        .filter(Boolean)
-        .join(', ');
-
-    const title =
-      document.createElement('strong');
-
-    title.textContent =
-      run.tab_name || run.tab_slug;
-
-    const summary =
-      document.createElement('p');
-
-    summary.textContent =
-      run.summary || run.refined_context || '';
-
-    const details =
-      document.createElement('p');
-
-    details.style.fontSize = '0.85rem';
-    details.style.marginTop = '8px';
-    details.textContent =
-      `${run.articles_added || 0} article(s) ajoute(s)` +
-      (sources ? ` - Sources: ${sources}` : '');
-
-    card.appendChild(title);
-    card.appendChild(summary);
-    card.appendChild(details);
-
-    container.appendChild(card);
-
-  });
 }
 
 function renderWatchSources(runs){
@@ -645,6 +592,20 @@ async function loadTabs(){
 
     content.innerHTML = `
 
+      <div class="watch-section">
+
+        <h3>Resume du dernier run</h3>
+
+        <p id="${tab.slug}-run-summary">
+          Aucun resume pour cet utilisateur.
+        </p>
+
+        <p id="${tab.slug}-run-details"
+           style="font-size:0.85rem;margin-top:8px;">
+        </p>
+
+      </div>
+
       <div class="articles"
            id="${tab.slug}-list">
       </div>
@@ -705,7 +666,53 @@ async function loadTabs(){
   await loadWatchConfigs();
   await loadResearchInputs();
   await loadArticles();
+  renderTabRunSummaries();
 
+}
+
+function renderTabRunSummaries(){
+
+  const metaElement =
+    document.getElementById('watch-agent-meta');
+
+  let meta = {};
+
+  try{
+    meta = JSON.parse(metaElement.textContent);
+  } catch(error){
+    console.error('Invalid watch metadata', error);
+  }
+
+  (meta.runs || []).forEach(run => {
+
+    const summary =
+      document.getElementById(
+        `${run.tab_slug}-run-summary`
+      );
+
+    const details =
+      document.getElementById(
+        `${run.tab_slug}-run-details`
+      );
+
+    if(!summary || !details) return;
+
+    const sources =
+      (run.suggested_sources || [])
+        .slice(0, 3)
+        .map(source => source.name || source)
+        .filter(Boolean)
+        .join(', ');
+
+    summary.innerText =
+      run.summary || run.refined_context ||
+      'Aucun resume pour cet utilisateur.';
+
+    details.innerText =
+      `${run.articles_added || 0} article(s) ajoute(s)` +
+      (sources ? ` - Sources: ${sources}` : '');
+
+  });
 }
 
 async function loadWatchConfigs(){
