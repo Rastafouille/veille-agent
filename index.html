@@ -168,6 +168,23 @@
 <header>
   <h1>📚 Veille Scientifique & Presse</h1>
   <p>Dashboard personnel de veille technologique et scientifique.</p>
+
+  <div class="meta-panel" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px;">
+    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+      <strong>🕒 Dernière veille</strong>
+      <p id="last-watch">Chargement...</p>
+    </div>
+
+    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+      <strong>⏭️ Prochaine veille</strong>
+      <p id="next-watch">Chargement...</p>
+    </div>
+
+    <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+      <strong>🗄️ Bases sondées</strong>
+      <p>arXiv · HAL · IEEE · PubMed · TechCrunch · ScienceDaily</p>
+    </div>
+  </div>
 </header>
 
 <div class="tabs">
@@ -177,14 +194,32 @@
 </div>
 
 <div id="robotique" class="tab-content active">
+  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+    <h3>🔑 Mots-clés Robotique</h3>
+    <div id="robotique-keywords" style="margin:10px 0;"></div>
+    <input id="robotique-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+    <button onclick="addKeyword('robotique')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
+  </div>
   <div class="articles" id="robotique-list"></div>
 </div>
 
 <div id="nucleaire" class="tab-content">
+  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+    <h3>🔑 Mots-clés Mesure Nucléaire</h3>
+    <div id="nucleaire-keywords" style="margin:10px 0;"></div>
+    <input id="nucleaire-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+    <button onclick="addKeyword('nucleaire')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
+  </div>
   <div class="articles" id="nucleaire-list"></div>
 </div>
 
 <div id="numerique" class="tab-content">
+  <div class="keyword-section" style="margin-bottom:20px;background:white;padding:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+    <h3>🔑 Mots-clés Numérique</h3>
+    <div id="numerique-keywords" style="margin:10px 0;"></div>
+    <input id="numerique-input" placeholder="Ajouter un mot-clé" style="padding:10px;border-radius:8px;border:1px solid #ccc;width:70%;">
+    <button onclick="addKeyword('numerique')" style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;">Ajouter</button>
+  </div>
   <div class="articles" id="numerique-list"></div>
 </div>
 
@@ -264,7 +299,73 @@
       return;
     }
 
-    loadArticles();
+    async function loadKeywords() {
+    const { data, error } = await supabaseClient
+      .from('keywords')
+      .select('*')
+      .order('keyword');
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    ['robotique','nucleaire','numerique'].forEach(category => {
+      const container = document.getElementById(`${category}-keywords`);
+      container.innerHTML = '';
+
+      data.filter(k => k.category === category).forEach(k => {
+        const tag = document.createElement('span');
+        tag.style = 'display:inline-block;background:#eceff3;padding:8px 12px;border-radius:999px;margin:5px;';
+
+        tag.innerHTML = `${k.keyword} <button onclick="deleteKeyword(${k.id})" style="border:none;background:none;color:red;cursor:pointer;">✖</button>`;
+
+        container.appendChild(tag);
+      });
+    });
+  }
+
+  async function addKeyword(category) {
+    const input = document.getElementById(`${category}-input`);
+    const keyword = input.value.trim();
+
+    if (!keyword) return;
+
+    const { error } = await supabaseClient
+      .from('keywords')
+      .insert([{ category, keyword }]);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    input.value = '';
+    loadKeywords();
+  }
+
+  async function deleteKeyword(id) {
+    const { error } = await supabaseClient
+      .from('keywords')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    loadKeywords();
+  }
+
+  async function loadMeta() {
+    document.getElementById('last-watch').innerText = '19 mai 2026 - 08:00';
+    document.getElementById('next-watch').innerText = '26 mai 2026 - 08:00';
+  }
+
+  loadMeta();
+  loadKeywords();
+  loadArticles();
   }
 
   async function deleteArticle(id) {
