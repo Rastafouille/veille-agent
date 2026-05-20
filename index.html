@@ -614,11 +614,11 @@ async function loadTabs(){
 
         <div class="watch-section">
 
-          <h3>Resume du dernier run</h3>
+          <h3>Résumé du dernier run</h3>
 
           <p id="${tab.slug}-run-summary"
              style="margin-top:10px;">
-            Aucun resume pour cet utilisateur.
+            Aucun résumé pour cet utilisateur.
           </p>
 
           <p id="${tab.slug}-run-details"
@@ -629,11 +629,11 @@ async function loadTabs(){
 
         <div class="watch-section">
 
-          <h3>Sources scannees</h3>
+          <h3>Sources scannées</h3>
 
           <ul id="${tab.slug}-scanned-sources"
               style="line-height:1.8;padding-left:18px;margin-top:10px;">
-            <li>Aucune source scannee pour le moment.</li>
+            <li>Aucune source scannée pour le moment.</li>
           </ul>
 
         </div>
@@ -748,7 +748,7 @@ function renderTabRunSummaries(){
 
     summary.innerText =
       run.summary || run.refined_context ||
-      'Aucun resume pour cet utilisateur.';
+      'Aucun résumé pour cet utilisateur.';
 
     details.innerText =
       `${run.articles_added || 0} article(s) ajoute(s)` +
@@ -762,7 +762,7 @@ function renderTabRunSummaries(){
         document.createElement('li');
 
       emptyItem.innerText =
-        'Aucune source scannee pour le moment.';
+        'Aucune source scannée pour le moment.';
 
       sourcesList.appendChild(emptyItem);
       return;
