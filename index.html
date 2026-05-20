@@ -225,6 +225,23 @@
       line-height:1.45;
     }
 
+    .article-description.collapsed{
+      display:-webkit-box;
+      -webkit-line-clamp:5;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .more-btn{
+      align-self:flex-start;
+      border:none;
+      background:none;
+      color:#1d4ed8;
+      cursor:pointer;
+      font-weight:bold;
+      padding:0;
+    }
+
     .article-link{
       font-weight:bold;
       color:#1d4ed8;
@@ -1146,9 +1163,16 @@ async function loadArticles(){
         }
       </p>
 
-      <p class="article-description">
+      <p class="article-description collapsed"
+         id="article-description-${article.id}">
         ${article.description || ''}
       </p>
+
+      <button class="more-btn"
+              onclick="toggleDescription(${article.id}, this)"
+              style="${article.description ? '' : 'display:none;'}">
+        Voir plus
+      </button>
 
       <a class="article-link"
          href="${article.link}"
@@ -1206,6 +1230,25 @@ async function toggleRead(id, currentState){
     .eq('id', id);
 
   reloadTabsKeepingScroll();
+
+}
+
+function toggleDescription(id, button){
+
+  const description =
+    document.getElementById(
+      `article-description-${id}`
+    );
+
+  if(!description) return;
+
+  const isCollapsed =
+    description.classList.toggle('collapsed');
+
+  button.innerText =
+    isCollapsed
+      ? 'Voir plus'
+      : 'Reduire';
 
 }
 
@@ -1320,6 +1363,7 @@ window.addResearchInput = addResearchInput;
 window.deleteResearchInput = deleteResearchInput;
 window.addStar = addStar;
 window.changeRating = changeRating;
+window.toggleDescription = toggleDescription;
 window.deleteArticle = deleteArticle;
 window.toggleRead = toggleRead;
 
