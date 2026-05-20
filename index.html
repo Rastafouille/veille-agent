@@ -234,6 +234,21 @@
       margin-top:50px;
     }
 
+    .main-btn{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#666;
+  color:white;
+  font-weight:bold;
+  transition:0.2s;
+}
+
+.main-btn:hover{
+  background:#444;
+}
+
   </style>
 </head>
 
@@ -277,15 +292,12 @@
              border:1px solid #ccc;
            ">
 
-    <button onclick="addTab()"
-            style="
-              padding:10px 15px;
-              border:none;
-              border-radius:8px;
-              cursor:pointer;
-            ">
-      ➕ Ajouter
-    </button>
+      <button
+        onclick="addTab()"
+        class="main-btn"
+      >
+        ➕ Ajouter
+      </button>
 
   </div>
 
@@ -639,25 +651,13 @@ async function loadTabs(){
         <textarea id="${tab.slug}-prompt"
                   placeholder="Décrire la veille scientifique..."></textarea>
 
-        <button
-          id="${tab.slug}-save-btn"
-        
-          onclick="savePrompt('${tab.slug}')"
-        
-          style="
-            margin-top:10px;
-            padding:10px 15px;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            background:#222;
-            color:white;
-            font-weight:bold;
-            transition:0.2s;
-          "
-        >
-          💾 Sauvegarder
-        </button>
+      <button
+        id="${tab.slug}-save-btn"
+        onclick="savePrompt('${tab.slug}')"
+        class="main-btn"
+      >
+        💾 Sauvegarder
+      </button>
 
       </div>
 
@@ -680,25 +680,12 @@ async function loadTabs(){
                    width:350px;
                  ">
 
-            <button
-              onclick="addResearchInput('${tab.slug}')"
-            
-              style="
-                padding:10px 16px;
-                border:none;
-                border-radius:10px;
-                cursor:pointer;
-                background:#222;
-                color:white;
-                font-weight:bold;
-                transition:0.2s;
-              "
-            
-              onmouseover="this.style.opacity='0.85'"
-              onmouseout="this.style.opacity='1'"
-            >
-              ➕ Ajouter
-            </button>
+      <button
+        onclick="addResearchInput('${tab.slug}')"
+        class="main-btn"
+      >
+        ➕ Ajouter
+      </button>
 
         </div>
 
