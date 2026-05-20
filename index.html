@@ -213,7 +213,7 @@
       align-items:center;
     }
 
-    .star-btn,
+    .rating-btn,
     .delete-btn{
       border:none;
       padding:8px 12px;
@@ -221,8 +221,34 @@
       cursor:pointer;
     }
 
+    .rating-control{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 8px;
+      border-radius:10px;
+      background:#eef2f7;
+    }
+
+    .rating-btn{
+      width:30px;
+      height:30px;
+      padding:0;
+      background:white;
+      border:1px solid #cfd7e3;
+      font-weight:bold;
+      line-height:1;
+    }
+
+    .rating-value{
+      min-width:58px;
+      text-align:center;
+      font-weight:bold;
+      color:#263241;
+    }
+
     .star-btn{
-      background:#ffe9a8;
+      display:none;
     }
 
     .delete-btn{
@@ -990,6 +1016,11 @@ async function loadArticles(){
 
   data.forEach(article => {
 
+    const rating =
+      Number.isFinite(Number(article.rating))
+        ? Number(article.rating)
+        : 5;
+
     const container =
       document.getElementById(
         `${article.category}-list`
@@ -1068,6 +1099,25 @@ async function loadArticles(){
 
       <div class="actions">
 
+        <div class="rating-control"
+             title="Note utilisee par l'agent pour orienter la veille">
+
+          <button class="rating-btn"
+                  onclick="changeRating(${article.id}, ${rating}, -1)">
+            -
+          </button>
+
+          <span class="rating-value">
+            ${rating}/10
+          </span>
+
+          <button class="rating-btn"
+                  onclick="changeRating(${article.id}, ${rating}, 1)">
+            +
+          </button>
+
+        </div>
+
         <button class="star-btn"
                 onclick="addStar(${article.id}, ${article.stars})">
           ⭐ ${article.stars}
@@ -1108,6 +1158,34 @@ async function addStar(id, currentStars){
       stars: currentStars + 1
     })
     .eq('id', id);
+
+  loadTabs();
+
+}
+
+async function changeRating(id, currentRating, delta){
+
+  const nextRating =
+    Math.max(
+      0,
+      Math.min(10, currentRating + delta)
+    );
+
+  const { error } =
+    await supabaseClient
+      .from('articles')
+      .update({
+        rating: nextRating
+      })
+      .eq('id', id);
+
+  if(error){
+    console.error(error);
+    alert(
+      "Impossible de sauvegarder la note. La colonne rating doit exister dans Supabase."
+    );
+    return;
+  }
 
   loadTabs();
 
@@ -1182,6 +1260,7 @@ window.savePrompt = savePrompt;
 window.addResearchInput = addResearchInput;
 window.deleteResearchInput = deleteResearchInput;
 window.addStar = addStar;
+window.changeRating = changeRating;
 window.deleteArticle = deleteArticle;
 window.toggleRead = toggleRead;
 
