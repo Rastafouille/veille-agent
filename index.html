@@ -639,14 +639,23 @@ async function loadTabs(){
         <textarea id="${tab.slug}-prompt"
                   placeholder="Décrire la veille scientifique..."></textarea>
 
-        <button onclick="savePrompt('${tab.slug}')"
-                style="
-                  margin-top:10px;
-                  padding:10px 15px;
-                  border:none;
-                  border-radius:8px;
-                  cursor:pointer;
-                ">
+        <button
+          id="${tab.slug}-save-btn"
+        
+          onclick="savePrompt('${tab.slug}')"
+        
+          style="
+            margin-top:10px;
+            padding:10px 15px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#222;
+            color:white;
+            font-weight:bold;
+            transition:0.2s;
+          "
+        >
           💾 Sauvegarder
         </button>
 
@@ -671,9 +680,25 @@ async function loadTabs(){
                    width:350px;
                  ">
 
-          <button onclick="addResearchInput('${tab.slug}')">
-            Ajouter
-          </button>
+            <button
+              onclick="addResearchInput('${tab.slug}')"
+            
+              style="
+                padding:10px 16px;
+                border:none;
+                border-radius:10px;
+                cursor:pointer;
+                background:#222;
+                color:white;
+                font-weight:bold;
+                transition:0.2s;
+              "
+            
+              onmouseover="this.style.opacity='0.85'"
+              onmouseout="this.style.opacity='1'"
+            >
+              ➕ Ajouter
+            </button>
 
         </div>
 
@@ -829,6 +854,11 @@ async function savePrompt(tabSlug){
       `${tabSlug}-prompt`
     );
 
+  const button =
+    document.getElementById(
+      `${tabSlug}-save-btn`
+    );
+
   const prompt =
     textarea.value;
 
@@ -857,6 +887,27 @@ async function savePrompt(tabSlug){
       }]);
 
   }
+
+  // feedback visuel
+
+  const originalText =
+    button.innerHTML;
+
+  button.innerHTML =
+    '✅ Sauvegardé';
+
+  button.style.background =
+    '#1f9d55';
+
+  setTimeout(() => {
+
+    button.innerHTML =
+      originalText;
+
+    button.style.background =
+      '#222';
+
+  }, 1800);
 
 }
 
