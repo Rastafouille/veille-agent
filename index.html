@@ -178,13 +178,61 @@
       grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
       gap:20px;
       margin-top:8px;
+      align-items:start;
     }
 
     .card{
       background:white;
-      border-radius:14px;
+      border-radius:10px;
       padding:18px;
       box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .card-title{
+      margin:0;
+      font-size:1.05rem;
+      line-height:1.25;
+    }
+
+    .read-btn{
+      border:none;
+      background:#f2f5f9;
+      border-radius:8px;
+      cursor:pointer;
+      min-width:38px;
+      height:34px;
+      font-weight:bold;
+      color:#334155;
+    }
+
+    .article-meta{
+      color:#667085;
+      font-size:0.85rem;
+    }
+
+    .article-description{
+      color:#303846;
+      line-height:1.45;
+    }
+
+    .article-link{
+      font-weight:bold;
+      color:#1d4ed8;
+      text-decoration:none;
+    }
+
+    .article-link:hover{
+      text-decoration:underline;
     }
 
     .badge{
@@ -207,10 +255,13 @@
     }
 
     .actions{
-      margin-top:18px;
       display:flex;
       justify-content:space-between;
       align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:12px;
+      border-top:1px solid #edf0f5;
     }
 
     .rating-btn,
@@ -241,7 +292,7 @@
     }
 
     .rating-value{
-      min-width:58px;
+      min-width:76px;
       text-align:center;
       font-weight:bold;
       color:#263241;
@@ -540,6 +591,22 @@ const supabaseClient =
   );
 
 let currentTab = null;
+
+async function reloadTabsKeepingScroll(){
+
+  const scrollX =
+    window.scrollX;
+
+  const scrollY =
+    window.scrollY;
+
+  await loadTabs();
+
+  requestAnimationFrame(() => {
+    window.scrollTo(scrollX, scrollY);
+  });
+
+}
 
 function loadMeta(){
 
@@ -989,7 +1056,7 @@ async function addResearchInput(tabSlug){
 
   inputField.value = '';
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
@@ -1000,7 +1067,7 @@ async function deleteResearchInput(id){
     .delete()
     .eq('id', id);
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
@@ -1035,32 +1102,23 @@ async function loadArticles(){
 
     card.innerHTML = `
 
-      <span class="badge ${article.type}">
-        ${article.type === 'science'
-          ? 'Article scientifique'
-          : 'Article presse'}
-      </span>
+      <div>
+        <span class="badge ${article.type}">
+          ${article.type === 'science'
+            ? 'Article scientifique'
+            : 'Article presse'}
+        </span>
+      </div>
 
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        gap:10px;
-      ">
+      <div class="card-header">
 
-        <h3 style="margin:0;">
+        <h3 class="card-title">
           ${article.title}
         </h3>
 
         <button
+          class="read-btn"
           onclick="toggleRead(${article.id}, ${article.is_new})"
-
-          style="
-            border:none;
-            background:none;
-            cursor:pointer;
-            font-size:1.4rem;
-          "
 
           title="${
             article.is_new
@@ -1079,7 +1137,7 @@ async function loadArticles(){
 
       </div>
 
-      <p style="font-size:0.85rem;color:#888;margin-top:10px;">
+      <p class="article-meta">
         📅 ${
           article.published_at
             ? new Date(article.published_at)
@@ -1088,11 +1146,12 @@ async function loadArticles(){
         }
       </p>
 
-      <p style="margin-top:12px;">
+      <p class="article-description">
         ${article.description || ''}
       </p>
 
-      <a href="${article.link}"
+      <a class="article-link"
+         href="${article.link}"
          target="_blank">
         Lire l'article →
       </a>
@@ -1108,7 +1167,7 @@ async function loadArticles(){
           </button>
 
           <span class="rating-value">
-            ${rating}/10
+            ⭐ ${rating}/10
           </span>
 
           <button class="rating-btn"
@@ -1146,7 +1205,7 @@ async function toggleRead(id, currentState){
     })
     .eq('id', id);
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
@@ -1159,7 +1218,7 @@ async function addStar(id, currentStars){
     })
     .eq('id', id);
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
@@ -1187,7 +1246,7 @@ async function changeRating(id, currentRating, delta){
     return;
   }
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
@@ -1200,7 +1259,7 @@ async function deleteArticle(id){
     })
     .eq('id', id);
 
-  loadTabs();
+  reloadTabsKeepingScroll();
 
 }
 
