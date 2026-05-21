@@ -189,6 +189,13 @@
       gap:12px;
       break-inside:avoid;
       margin:0 0 20px;
+      transition:opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .card.removing{
+      opacity:0;
+      transform:scale(0.98);
+      pointer-events:none;
     }
 
     .card-header{
@@ -745,19 +752,204 @@ const supabaseClient =
 
 let currentTab = null;
 
-async function reloadTabsKeepingScroll(){
+function articleRating(article){
+  return Number.isFinite(Number(article.rating))
+    ? Number(article.rating)
+    : 5;
+}
 
-  const scrollX =
-    window.scrollX;
+function getArticleCard(articleId){
+  return document.querySelector(
+    `[data-article-id="${articleId}"]`
+  );
+}
 
-  const scrollY =
-    window.scrollY;
+function bindReadButton(button, articleId, isNew){
+  button.title =
+    isNew
+      ? 'Marquer comme lu'
+      : 'Déjà lu';
+  button.textContent =
+    isNew
+      ? '🆕'
+      : '✅';
+  button.onclick =
+    () => toggleRead(articleId, isNew);
+}
 
-  await loadTabs();
+function bindRatingButtons(card, articleId, rating){
+  const buttons =
+    card.querySelectorAll('.rating-btn');
 
-  requestAnimationFrame(() => {
-    window.scrollTo(scrollX, scrollY);
-  });
+  const valueEl =
+    card.querySelector('.rating-value');
+
+  if(valueEl){
+    valueEl.textContent =
+      `⭐ ${rating}/10`;
+  }
+
+  if(buttons.length >= 2){
+    buttons[0].onclick =
+      () => changeRating(articleId, rating, -1);
+    buttons[1].onclick =
+      () => changeRating(articleId, rating, 1);
+  }
+}
+
+function buildArticleCard(article){
+
+  const rating =
+    articleRating(article);
+
+  const card =
+    document.createElement('div');
+
+  card.className = 'card';
+  card.dataset.articleId = article.id;
+
+  card.innerHTML = `
+
+      <div>
+        <span class="badge ${article.type}">
+          ${article.type === 'science'
+            ? 'Article scientifique'
+            : 'Article presse'}
+        </span>
+      </div>
+
+      <div class="card-header">
+
+        <h3 class="card-title">
+          ${article.title}
+        </h3>
+
+        <button
+          class="read-btn"
+          type="button">
+        </button>
+
+      </div>
+
+      <p class="article-meta">
+        📅 ${
+          article.published_at
+            ? new Date(article.published_at)
+                .toLocaleDateString('fr-FR')
+            : 'Date inconnue'
+        }
+      </p>
+
+      <p class="article-description">
+        ${article.description || ''}
+      </p>
+
+      <a class="article-link"
+         href="${article.link}"
+         target="_blank"
+         rel="noopener noreferrer">
+        Lire l'article →
+      </a>
+
+      <div class="actions">
+
+        <div class="rating-control"
+             title="Note utilisee par l'agent pour orienter la veille">
+
+          <button type="button"
+                  class="rating-btn">
+            -
+          </button>
+
+          <span class="rating-value">
+            ⭐ ${rating}/10
+          </span>
+
+          <button type="button"
+                  class="rating-btn">
+            +
+          </button>
+
+        </div>
+
+        <button type="button"
+                class="star-btn">
+          ⭐ ${article.stars}
+        </button>
+
+        <button type="button"
+                class="delete-btn">
+          Supprimer
+        </button>
+
+      </div>
+    `;
+
+  bindReadButton(
+    card.querySelector('.read-btn'),
+    article.id,
+    article.is_new
+  );
+
+  bindRatingButtons(
+    card,
+    article.id,
+    rating
+  );
+
+  const starBtn =
+    card.querySelector('.star-btn');
+
+  starBtn.onclick =
+    () => addStar(article.id, article.stars);
+
+  card.querySelector('.delete-btn').onclick =
+    () => deleteArticle(article.id);
+
+  return card;
+
+}
+
+function removeArticleCard(articleId){
+
+  const card =
+    getArticleCard(articleId);
+
+  if(!card) return;
+
+  card.classList.add('removing');
+
+  setTimeout(() => {
+    card.remove();
+  }, 200);
+
+}
+
+function buildResearchInputTag(input){
+
+  const tag =
+    document.createElement('div');
+
+  tag.className = 'input-tag';
+  tag.dataset.inputId = input.id;
+  tag.textContent = input.input + ' ';
+
+  const removeBtn =
+    document.createElement('button');
+
+  removeBtn.type = 'button';
+  removeBtn.textContent = '✖';
+  removeBtn.style.marginLeft = '8px';
+  removeBtn.style.border = 'none';
+  removeBtn.style.background = 'none';
+  removeBtn.style.color = 'red';
+  removeBtn.style.cursor = 'pointer';
+  removeBtn.onclick =
+    () => deleteResearchInput(input.id);
+
+  tag.appendChild(removeBtn);
+
+  return tag;
 
 }
 
@@ -1161,28 +1353,9 @@ async function loadResearchInputs(){
 
     if(!container) return;
 
-    const tag =
-      document.createElement('div');
-
-    tag.className =
-      'input-tag';
-
-    tag.innerHTML = `
-      ${input.input}
-
-      <button onclick="deleteResearchInput(${input.id})"
-              style="
-                margin-left:8px;
-                border:none;
-                background:none;
-                color:red;
-                cursor:pointer;
-              ">
-        ✖
-      </button>
-    `;
-
-    container.appendChild(tag);
+    container.appendChild(
+      buildResearchInputTag(input)
+    );
 
   });
 
@@ -1200,31 +1373,65 @@ async function addResearchInput(tabSlug){
 
   if(!value) return;
 
-  await supabaseClient
-    .from('research_inputs')
-    .insert([{
-      tab_slug: tabSlug,
-      input: value
-    }]);
+  const { data, error } =
+    await supabaseClient
+      .from('research_inputs')
+      .insert([{
+        tab_slug: tabSlug,
+        input: value
+      }])
+      .select()
+      .single();
+
+  if(error){
+    console.error(error);
+    return;
+  }
 
   inputField.value = '';
 
-  reloadTabsKeepingScroll();
+  const container =
+    document.getElementById(
+      `${tabSlug}-inputs`
+    );
+
+  if(container && data){
+    container.appendChild(
+      buildResearchInputTag(data)
+    );
+  }
 
 }
 
 async function deleteResearchInput(id){
 
-  await supabaseClient
-    .from('research_inputs')
-    .delete()
-    .eq('id', id);
+  const tag =
+    document.querySelector(
+      `[data-input-id="${id}"]`
+    );
 
-  reloadTabsKeepingScroll();
+  const { error } =
+    await supabaseClient
+      .from('research_inputs')
+      .delete()
+      .eq('id', id);
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  tag?.remove();
 
 }
 
 async function loadArticles(){
+
+  document
+    .querySelectorAll('.articles')
+    .forEach(list => {
+      list.innerHTML = '';
+    });
 
   const { data } =
     await supabaseClient
@@ -1236,11 +1443,6 @@ async function loadArticles(){
 
   data.forEach(article => {
 
-    const rating =
-      Number.isFinite(Number(article.rating))
-        ? Number(article.rating)
-        : 5;
-
     const container =
       document.getElementById(
         `${article.category}-list`
@@ -1248,102 +1450,9 @@ async function loadArticles(){
 
     if(!container) return;
 
-    const card =
-      document.createElement('div');
-
-    card.className = 'card';
-
-    card.innerHTML = `
-
-      <div>
-        <span class="badge ${article.type}">
-          ${article.type === 'science'
-            ? 'Article scientifique'
-            : 'Article presse'}
-        </span>
-      </div>
-
-      <div class="card-header">
-
-        <h3 class="card-title">
-          ${article.title}
-        </h3>
-
-        <button
-          class="read-btn"
-          onclick="toggleRead(${article.id}, ${article.is_new})"
-
-          title="${
-            article.is_new
-              ? 'Marquer comme lu'
-              : 'Déjà lu'
-          }"
-        >
-
-          ${
-            article.is_new
-              ? '🆕'
-              : '✅'
-          }
-
-        </button>
-
-      </div>
-
-      <p class="article-meta">
-        📅 ${
-          article.published_at
-            ? new Date(article.published_at)
-                .toLocaleDateString('fr-FR')
-            : 'Date inconnue'
-        }
-      </p>
-
-      <p class="article-description">
-        ${article.description || ''}
-      </p>
-
-      <a class="article-link"
-         href="${article.link}"
-         target="_blank">
-        Lire l'article →
-      </a>
-
-      <div class="actions">
-
-        <div class="rating-control"
-             title="Note utilisee par l'agent pour orienter la veille">
-
-          <button class="rating-btn"
-                  onclick="changeRating(${article.id}, ${rating}, -1)">
-            -
-          </button>
-
-          <span class="rating-value">
-            ⭐ ${rating}/10
-          </span>
-
-          <button class="rating-btn"
-                  onclick="changeRating(${article.id}, ${rating}, 1)">
-            +
-          </button>
-
-        </div>
-
-        <button class="star-btn"
-                onclick="addStar(${article.id}, ${article.stars})">
-          ⭐ ${article.stars}
-        </button>
-
-        <button class="delete-btn"
-                onclick="deleteArticle(${article.id})">
-          Supprimer
-        </button>
-
-      </div>
-    `;
-
-    container.appendChild(card);
+    container.appendChild(
+      buildArticleCard(article)
+    );
 
   });
 
@@ -1351,27 +1460,57 @@ async function loadArticles(){
 
 async function toggleRead(id, currentState){
 
-  await supabaseClient
-    .from('articles')
-    .update({
-      is_new: !currentState
-    })
-    .eq('id', id);
+  const nextState = !currentState;
+  const card = getArticleCard(id);
+  const readBtn = card?.querySelector('.read-btn');
 
-  reloadTabsKeepingScroll();
+  if(readBtn){
+    bindReadButton(readBtn, id, nextState);
+  }
+
+  const { error } =
+    await supabaseClient
+      .from('articles')
+      .update({
+        is_new: nextState
+      })
+      .eq('id', id);
+
+  if(error){
+    console.error(error);
+    if(readBtn){
+      bindReadButton(readBtn, id, currentState);
+    }
+  }
 
 }
 
 async function addStar(id, currentStars){
 
-  await supabaseClient
-    .from('articles')
-    .update({
-      stars: currentStars + 1
-    })
-    .eq('id', id);
+  const nextStars = currentStars + 1;
+  const card = getArticleCard(id);
+  const starBtn = card?.querySelector('.star-btn');
 
-  reloadTabsKeepingScroll();
+  if(starBtn){
+    starBtn.textContent = `⭐ ${nextStars}`;
+    starBtn.onclick = () => addStar(id, nextStars);
+  }
+
+  const { error } =
+    await supabaseClient
+      .from('articles')
+      .update({
+        stars: nextStars
+      })
+      .eq('id', id);
+
+  if(error){
+    console.error(error);
+    if(starBtn){
+      starBtn.textContent = `⭐ ${currentStars}`;
+      starBtn.onclick = () => addStar(id, currentStars);
+    }
+  }
 
 }
 
@@ -1383,6 +1522,12 @@ async function changeRating(id, currentRating, delta){
       Math.min(10, currentRating + delta)
     );
 
+  const card = getArticleCard(id);
+
+  if(card){
+    bindRatingButtons(card, id, nextRating);
+  }
+
   const { error } =
     await supabaseClient
       .from('articles')
@@ -1393,26 +1538,32 @@ async function changeRating(id, currentRating, delta){
 
   if(error){
     console.error(error);
+    if(card){
+      bindRatingButtons(card, id, currentRating);
+    }
     alert(
       "Impossible de sauvegarder la note. La colonne rating doit exister dans Supabase."
     );
-    return;
   }
-
-  reloadTabsKeepingScroll();
 
 }
 
 async function deleteArticle(id){
 
-  await supabaseClient
-    .from('articles')
-    .update({
-      hidden:true
-    })
-    .eq('id', id);
+  removeArticleCard(id);
 
-  reloadTabsKeepingScroll();
+  const { error } =
+    await supabaseClient
+      .from('articles')
+      .update({
+        hidden:true
+      })
+      .eq('id', id);
+
+  if(error){
+    console.error(error);
+    await loadArticles();
+  }
 
 }
 
