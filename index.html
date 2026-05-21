@@ -384,22 +384,40 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-05-19T19:57:04+02:00",
+  "last_watch": "2026-05-21T07:19:28+02:00",
   "next_watch": "2026-05-25T08:00:00+02:00",
-  "status": "success",
-  "articles_added": 6,
+  "status": "partial_supabase_unreachable",
+  "articles_added": 0,
   "tabs_processed": 3,
-  "summary": "Veille executee (fenetre glissante 6 mois, 2025-11-19 -> 2026-05-19) : 6 nouveaux resultats ajoutes. Focus sur (1) robotique de decommissioning en environnement radiologique (Fukushima/TEPCO) (2) detecteurs beta et spectrometrie in situ (Sr-90, contamination de surface) (3) inference bayesienne + incertitudes pour spectrometrie gamma mobile et unfolding de spectres.",
+  "summary": "Veille executee partiellement (fenetre glissante 6 mois, 2025-11-21 -> 2026-05-21) : sources scannees et candidats identifies, mais 0 article insere car Supabase etait inaccessible depuis l'environnement Codex (TCP 443 bloque vers uozgbhitaiewuqgibssf.supabase.co, aucun MCP Supabase disponible). Le JSON a ete mis a jour sans changer l'interface; les candidats sont documentes dans le rapport email/final et doivent etre repris pour insertion avec rating=5 des que la base est accessible.",
   "runs": [
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
       "watch_title": "Robotique nucleaire",
-      "articles_added": 2,
-      "summary": "Deux ajouts centres sur le decommissioning Fukushima: (1) papier JRM 2026 sur un robot teleopere parent/enfant pour inspection en espace confine, (2) note TEPCO 2026 documentant l'operation d'un bras robotise (X-6, VR/digital twin, radiotolerance).",
-      "refined_context": "J'ai recentre la veille sur les systemes robotises (UGV, bras, teleoperation, inspection) effectivement deployables en environnement radiologique, en privilegiant les retours terrain/industriels (Fukushima, contraintes radiotolerance, procedures) plutot que les papiers de navigation generiques.",
+      "articles_added": 0,
+      "science_added": 0,
+      "press_added": 0,
+      "summary": "Run partiel : aucun ajout effectif en base. Trois candidats pertinents ont ete reperes pour reprise : un article ScienceDirect sur CLEANDEM/XS-ABILITY, une actualite Nuclear Engineering International sur l'outil de swabbing robotise Sellafield/RAICo, et une mise a jour IRID/TEPCO sur le bras robotise Fukushima. Equilibre vise : 1 science, 2 presse/industrie/institutionnel.",
+      "refined_context": "Le contexte a ete recentre sur les robots nucleaires deployables ou proches du terrain : decommissioning, cartographie radiologique, contamination sampling, teleoperation, bras robotises et quadrupedes equipes de capteurs. Les papiers purement algorithmiques ont ete gardes seulement s'ils mentionnent explicitement une contrainte radiologique ou de decommissioning.",
       "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"systemes robotises d'investigation nucleaire\" -> \"nuclear inspection robotics\" ; \"radiation mapping\"/\"SLAM radiologique\" -> \"radiological SLAM / radiation mapping\" ; \"remote handling\"/\"decommissioning\" conserves. Les inputs (IEEE, arXiv, ScienceDirect, Wiley/Elsevier, SPIE, HAL, Scholar) ont ete traites comme indices: cette run a surtout privilegie les sources primaires et institutionnelles (J-STAGE, TEPCO) pour capter des signaux terrain recents; j'ai volontairement ecarté les resultats purement \"quadruped mapping\" sans lien clair avec radiologie/decommissioning.",
+      "rating_guidance": "Les notes public.articles.rating n'ont pas pu etre lues faute d'acces Supabase. A defaut, l'orientation reprend les signaux positifs implicites du run precedent : Fukushima, TEPCO, Sellafield/RAICo, radiotolerance et retours terrain; les candidats a inserer devront recevoir rating=5 par defaut.",
       "scanned_sources": [
+        {
+          "name": "Nuclear Engineering International",
+          "url": "https://www.neimagazine.com/news/sellafield-trials-robot-swabbing-tech/",
+          "reason": "Presse technique : essai Sellafield/RAICo d'un outil de swabbing monte sur quadrupede en zone radioactive."
+        },
+        {
+          "name": "IRID",
+          "url": "https://irid.or.jp/wp-content/uploads/2026/04/20260407en1fhansou.pdf",
+          "reason": "Source institutionnelle japonaise sur l'avancement du bras robotise Fukushima et les essais JAEA Naraha."
+        },
+        {
+          "name": "TEPCO",
+          "url": "https://www.tepco.co.jp/en/hd/decommission/information/newsrelease/reference/pdf/2026/reference_20260423_02-e.pdf",
+          "reason": "Verification des jalons operationnels X-6/bras robotise; pas d'insertion sans acces base."
+        },
         {
           "name": "J-STAGE (Journal of Robotics and Mechatronics)",
           "url": "https://www.jstage.jst.go.jp/browse/jrobomech/38/1/_contents/-char/en",
@@ -463,18 +481,61 @@
         "2026 Fukushima decommissioning robot inspection paper",
         "2026 radiological inspection robot autonomous nuclear facility",
         "nuclear inspection robot edge AI SLAM",
-        "site:ieeexplore.ieee.org radiation mapping robot 2025 2026"
+        "site:ieeexplore.ieee.org radiation mapping robot 2025 2026",
+        "radiation mapping robot nuclear facility decommissioning 2026 press industry",
+        "site:tepco.co.jp decommissioning robot 2026 Fukushima robot arm"
+      ],
+      "candidate_articles": [
+        {
+          "title": "From robots to drones, the future of decommissioning operations - The CLEANDEM and XS-ABILITY projects",
+          "type": "science",
+          "link": "https://www.sciencedirect.com/org/science/article/pii/S2491929225000159",
+          "published_at": "2025-12-01",
+          "description": "Synthese recente sur projets europeens de robotique/drones pour decommissioning; utile pour relier recherche, demonstrations et appels Horizon Europe."
+        },
+        {
+          "title": "Sellafield trials robot swabbing tech",
+          "type": "presse",
+          "link": "https://www.neimagazine.com/news/sellafield-trials-robot-swabbing-tech/",
+          "published_at": "2026-02-13",
+          "description": "Essai terrain d'un outil de prelevement de contamination monte sur quadrupede; signal fort sur l'industrialisation RAICo/Sellafield."
+        },
+        {
+          "title": "IRID project progress on Fukushima robotic arm technology",
+          "type": "presse",
+          "link": "https://irid.or.jp/wp-content/uploads/2026/04/20260407en1fhansou.pdf",
+          "published_at": "2026-04-07",
+          "description": "Point institutionnel sur les essais et la maintenance du bras robotise Fukushima; source primaire complementaire a TEPCO."
+        }
       ]
     },
     {
       "tab_slug": "nathan",
       "tab_name": "Nathan",
       "watch_title": "Imagerie et spectrometrie de contamination beta surfacique",
-      "articles_added": 2,
-      "summary": "Deux ajouts: (1) Physics Open (2026) sur l'optimisation du guide de lumiere d'un detecteur beta a scintillateur plastique pour monitor de contamination de surface, (2) Sensors (2026) sur beta-spectrometrie Sr-90/Y-90 in situ avec scintillateurs couples a des SiPM (contexte decommissioning).",
-      "refined_context": "J'ai garde l'objectif \"etat de l'art instruments\" mais en l'elargissant aux briques qui conditionnent la performance terrain: optique/collection de lumiere, limites electroniques, et cas d'usage decommissioning (Sr-90, controle contamination).",
-      "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"imagerie/spectrometrie de contamination beta surfacique\" -> \"beta surface contamination imaging / beta spectrometry\" ; \"scintillateurs plastiques + SiPM\" -> \"plastic scintillator + SiPM array\" ; \"chambres a gaz scintillantes (beta imager)\" -> \"gaseous scintillation / gas-based autoradiography\" ; \"Timepix/Medipix\" conserve. J'ai privilegie les papiers recents et actionnables (design de detecteur, mesures, limites) plutot que des pages produit; les sources industrielles ont ete vues comme indices, mais seuls les articles scientifiques ont ete retenus cette run.",
+      "articles_added": 0,
+      "science_added": 0,
+      "press_added": 0,
+      "summary": "Run partiel : aucun ajout effectif en base. Deux candidats principaux ont ete reperes : un article Radiation Measurements 2026 sur analyse spectroscopique beta par deep learning avec scintillateur plastique, et le moniteur industriel ERG 102F pour cartographie alpha/beta de surface. Equilibre vise : 1 science, 1 presse/industrie; les pages produit moins documentees ont ete de-priorisees.",
+      "refined_context": "La veille a ete focalisee sur les instruments utiles en contamination beta surfacique : scintillateurs plastiques, SiPM, separation Sr-90/Y-90, cartographie position-correllee, scan a hauteur/vitesse controlees et workflows de decommissioning. Les capteurs gamma/medical imaging sans lien beta surfacique ont ete exclus.",
+      "prompt_interpretation": "Traduction/reformulation FR->EN avant recherche : \"contamination beta surfacique\" -> \"beta surface contamination\" ; \"imagerie beta\" -> \"beta surface contamination imaging\" ; \"spectrometrie beta\" -> \"beta spectrometry\" ; \"scintillateur plastique + SiPM\" -> \"plastic scintillation detector SiPM\" ; \"Sr-90/Y-90\" conserve. Les recherches ont combine articles scientifiques et catalogues industriels recents pour couvrir l'etat de l'art methodologique et les solutions deployables.",
+      "rating_guidance": "Les notes public.articles.rating n'ont pas pu etre lues faute d'acces Supabase. Par continuite avec le run precedent, les signaux proches scintillateur plastique, SiPM, Sr-90/Y-90 et contamination de surface ont ete favorises; les candidats a inserer devront recevoir rating=5 par defaut.",
       "scanned_sources": [
+        {
+          "name": "Radiation Measurements / ScienceDirect",
+          "url": "https://www.sciencedirect.com/science/article/pii/S1350448726000697",
+          "reason": "Article 2026 sur spectrometrie beta par deep learning avec scintillateur plastique."
+        },
+        {
+          "name": "ERG Office",
+          "url": "https://ergoffice.com/technology-and-products/102f",
+          "reason": "Source industrielle recente sur moniteur alpha/beta de surface avec cartographie temps reel."
+        },
+        {
+          "name": "Mirion",
+          "url": "https://www.mirion.com/products/technologies/health-physics-radiation-safety-instruments/contamination-clearance/whole-body-monitors/argos-pbg-whole-body-contamination-monitors",
+          "reason": "Scan industrie sur detecteurs TPS beta/gamma; pas retenu en priorite car moins centre imagerie/spectrometrie de surface."
+        },
         {
           "name": "Physics Open (Elsevier)",
           "url": "https://www.sciencedirect.com/journal/physics-open",
@@ -516,18 +577,59 @@
       "search_terms": [
         "beta surface contamination imaging SiPM scintillator 2026 paper",
         "beta-ray detector surface contamination monitor light guide optimization 2026",
-        "in situ Sr-90 beta spectrometry SiPM scintillator 2026"
+        "in situ Sr-90 beta spectrometry SiPM scintillator 2026",
+        "beta contamination monitor surface scintillator 2026 industry",
+        "Timepix beta contamination imaging 2025 2026"
+      ],
+      "candidate_articles": [
+        {
+          "title": "Feasibility study of deep learning-based beta spectroscopic analysis using a plastic scintillation detector",
+          "type": "science",
+          "link": "https://www.sciencedirect.com/science/article/pii/S1350448726000697",
+          "published_at": "2026-05-01",
+          "description": "Article directement utile pour identifier et quantifier des radionucleides beta sur site avec scintillateur plastique, simulation MCNP6 et reseau CNN-BiLSTM."
+        },
+        {
+          "title": "ERG 102F Alpha/Beta Surface Contamination Monitor",
+          "type": "presse",
+          "link": "https://ergoffice.com/technology-and-products/102f",
+          "published_at": "2026-05-14",
+          "description": "Solution industrielle de scan alpha/beta position-correle; interessante comme reference terrain pour imagerie/cartographie de contamination de surface."
+        }
       ]
     },
     {
       "tab_slug": "pierre-louis",
       "tab_name": "Pierre-Louis",
       "watch_title": "Traitement de donnees de mesure nucleaire",
-      "articles_added": 2,
-      "summary": "Deux ajouts tres alignes UQ/problemes inverses: (1) preprint arXiv (Dec 2025/Jan 2026) sur inference bayesienne + Monte Carlo pour spectrometrie gamma mobile quantitative, (2) article NIM A (Feb 2026) sur unfolding bayesien haute dimension et quantification d'incertitude (MCMC + initialisation GRAVEL).",
-      "refined_context": "La veille a ete recadree vers des contributions directement transposables aux pipelines spectrometrie/detection: modeles probabilistes (Poisson/overdispersion), simulations physiques, UQ/MCMC, et methodes d'inversion (unfolding, source quantification).",
-      "prompt_interpretation": "Traduction/reformulation (FR->EN) : \"traitement de donnees de mesure nucleaire\" -> \"nuclear measurement data processing\" ; \"AI denoising\" -> \"deep learning denoising / probabilistic denoising\" ; \"Bayesian optimization\" -> \"Bayesian optimization\" ; \"inverse problems\" -> \"inverse problems\" ; \"plug-and-play\" -> \"plug-and-play priors\" ; \"spectral unmixing\" -> \"spectral unmixing\" ; \"contamination detection\" -> \"radiological contamination detection\". J'ai volontairement evite les papiers IA generiques (sans donnees nucleaires) au profit de contributions en spectrometrie gamma/neutron avec dates claires dans la fenetre 6 mois.",
+      "articles_added": 0,
+      "science_added": 0,
+      "press_added": 0,
+      "summary": "Run partiel : aucun ajout effectif en base. Quatre candidats solides ont ete reperes : autoencodeurs pour anomalies dans spectres gamma CZT, denoising Self2Self pour spectrometrie gamma aero, UQ bayesienne pour unmixing gamma, et atelier InTraNS sur ML pour grands spectrometres gamma. Equilibre vise : 3 science, 1 institutionnel/presse.",
+      "refined_context": "La veille a ete recentree sur les methodes directement transposables aux pipelines de mesure nucleaire : denoising, detection d'anomalies, unmixing spectral, inversion bayesienne, quantification d'incertitude et analyse automatisee de spectres gamma/neutron. Les papiers de physique nucleaire sans donnees instrumentales exploitables ont ete de-priorises.",
+      "prompt_interpretation": "Traduction/reformulation FR->EN avant recherche : \"traitement de donnees de mesure nucleaire\" -> \"nuclear measurement data processing\" ; \"problemes inverses\" -> \"inverse problems\" ; \"denoising IA\" -> \"deep learning denoising\" ; \"quantification d'incertitude\" -> \"uncertainty quantification\" ; \"demelange spectral\" -> \"spectral unmixing\" ; \"spectrometrie gamma mobile\" -> \"mobile gamma-ray spectrometry\". J'ai ajoute Applied Radiation and Isotopes, Radiation Measurements, Journal of Environmental Radioactivity, arXiv et ateliers EURO-LABS/Indico car ils donnent de meilleurs signaux recents que la presse generaliste.",
+      "rating_guidance": "Les notes public.articles.rating n'ont pas pu etre lues faute d'acces Supabase. Les choix suivent donc les signaux positifs du run precedent (Bayesian inference, UQ, gamma spectrometry, inverse problems) et evitent les papiers IA generiques sans donnees radiologiques; les candidats a inserer devront recevoir rating=5 par defaut.",
       "scanned_sources": [
+        {
+          "name": "PubMed / Applied Radiation and Isotopes",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41478139/",
+          "reason": "Article 2026 sur autoencodeurs pour detection d'anomalies dans spectres gamma CZT."
+        },
+        {
+          "name": "ScienceDirect / Applied Radiation and Isotopes",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0969804326000527",
+          "reason": "Article 2026 sur denoising Self2Self pour spectrometrie gamma aero."
+        },
+        {
+          "name": "Journal of Environmental Radioactivity / ScienceDirect",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0265931X26000755",
+          "reason": "Article 2026 sur localisation/activite de sources gamma par Bayes et lissage."
+        },
+        {
+          "name": "EURO-LABS / INFN Indico",
+          "url": "https://agenda.infn.it/event/46675/contributions/281681/",
+          "reason": "Signal institutionnel : ML pour analyse automatisee de spectrometres gamma grande echelle."
+        },
         {
           "name": "arXiv",
           "url": "https://arxiv.org/",
@@ -569,7 +671,39 @@
       "search_terms": [
         "mobile gamma-ray spectrometry Bayesian inference uncertainty quantification 2025 2026",
         "high-dimensional Bayesian spectrum unfolding MCMC 2026",
-        "gamma spectrometry inverse problems uncertainty quantification 2025 2026"
+        "gamma spectrometry inverse problems uncertainty quantification 2025 2026",
+        "gamma spectrometry inverse problems uncertainty quantification 2026 deep learning denoising",
+        "radiological contamination detection machine learning gamma spectrometry 2025 2026"
+      ],
+      "candidate_articles": [
+        {
+          "title": "Anomaly detection in gamma-ray spectra using autoencoders with small form factor CZT detectors",
+          "type": "science",
+          "link": "https://pubmed.ncbi.nlm.nih.gov/41478139/",
+          "published_at": "2025-12-31",
+          "description": "Autoencodeurs appliques a des spectres gamma CZT compacts; pertinent pour surveillance mobile et detection d'ecarts en conditions reelles."
+        },
+        {
+          "title": "Application of Self2Self self-supervised denoising framework to airborne gamma-ray spectrometry data",
+          "type": "science",
+          "link": "https://www.sciencedirect.com/science/article/pii/S0969804326000527",
+          "published_at": "2026-04-01",
+          "description": "Denoising auto-supervise pour donnees gamma aero, avec masquage aleatoire et ensemble prediction; tres proche des pipelines de mesure bruites."
+        },
+        {
+          "title": "Bayesian approach for uncertainty quantification of hybrid spectral unmixing in gamma-ray spectrometry",
+          "type": "science",
+          "link": "https://arxiv.org/abs/2604.20691",
+          "published_at": "2026-04-22",
+          "description": "Preprint cible sur demelange spectral gamma et incertitudes bayesiennes; complete les signaux deja positifs sur UQ/inverse problems."
+        },
+        {
+          "title": "Machine Learning for the Automated Analysis of Data from Large-Scale Gamma-Ray Spectrometers",
+          "type": "presse",
+          "link": "https://agenda.infn.it/event/46675/contributions/281681/",
+          "published_at": "2026-02-02",
+          "description": "Signal institutionnel EURO-LABS/InTraNS sur analyse automatisee de spectrometres gamma; utile pour suivre logiciels et methodes de communaute."
+        }
       ]
     }
   ]
