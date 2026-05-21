@@ -35,4 +35,4 @@ Le site (GitHub Pages + Supabase) affiche vos onglets et se met à jour après c
 
 ## Déploiement
 
-Site : [https://rastafouille.github.io/](https://rastafouille.github.io/)
+Site : [https://rastafouille.github.io/veille-agent/](https://rastafouille.github.io/veille-agent/)
