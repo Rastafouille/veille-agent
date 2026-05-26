@@ -420,348 +420,239 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-    "last_watch":  "2026-05-21T07:55:00+02:00",
-    "next_watch":  "2026-05-28T08:00:00+02:00",
-    "status":  "success",
-    "articles_added":  19,
-    "tabs_processed":  4,
-    "summary":  "Veille reprise avec acces REST Supabase (fenetre glissante 6 mois, 2025-11-21 -\u003e 2026-05-21) : 19 nouveaux resultats inseres avec rating=5 par defaut et dedoublonnage par URL/titre dans chaque onglet. Les quatre watch_configs actives ont ete traitees: robotique nucleaire, contamination beta surfacique, traitement de donnees nucleaires et veille Unity/Unreal/XR/digital twins/Gaussian splatting. Les notes existantes etaient majoritairement neutres autour de 5, avec quelques signaux legerement positifs sur Jerem; elles ont confirme les axes deja privilegies sans imposer de correction forte.",
-    "runs":  [
-                 {
-                     "tab_slug":  "jerem",
-                     "tab_name":  "Jerem",
-                     "watch_title":  "Robotique nucleaire",
-                     "articles_added":  3,
-                     "science_added":  1,
-                     "press_added":  2,
-                     "summary":  "3 ajouts: 1 article scientifique sur les projets CLEANDEM/XS-ABILITY robotique+drones pour decommissioning, et 2 sources terrain/presse sur Sellafield RAICo et le bras robotise Fukushima IRID/TEPCO. Equilibre volontairement oriente terrain: ce tab produit beaucoup de valeur dans les demonstrations industrielles, pas seulement dans les papiers.",
-                     "refined_context":  "Contexte recentre sur robots deployables en environnement nucleaire: decommissioning, radiation/contamination mapping, teleoperation, quadrupedes instrumentes, bras robotises, UGV/UAV et retours d experience Fukushima/Sellafield. Les resultats SLAM ou IA robotique generiques sans contexte radiologique ont ete ecartes.",
-                     "prompt_interpretation":  "Traduction/reformulation FR-\u003eEN: systemes robotises d investigation nucleaire -\u003e nuclear inspection robotics; cartographie radiologique -\u003e radiation mapping / radiological SLAM; robotique teleoperee -\u003e teleoperated robotics; intervention et demantelement -\u003e nuclear decommissioning / remote handling; retours terrain -\u003e field deployment / operational update. Les inputs IEEE, arXiv, ScienceDirect, Wiley/Elsevier, SPIE, HAL, ResearchGate et Frontiers ont servi de pistes, completees par TEPCO, IRID, ANS, UKAEA, Nuclear Engineering International et World Nuclear News pour capter l industrie.",
-                     "rating_guidance":  "Les 15 articles existants Jerem avaient une moyenne proche de 5.13, avec des notes legerement positives sur robotique/demantelement et cartographie. J ai donc conserve le coeur Fukushima, Sellafield, RAICo, radiotolerance et decommissioning, tout en limitant les papiers de robotique generale. Les nouveaux articles ont ete inseres avec rating=5 par defaut.",
-                     "scanned_sources":  [
-                                             {
-                                                 "url":  "https://www.sciencedirect.com/",
-                                                 "name":  "ScienceDirect",
-                                                 "reason":  "Article CLEANDEM/XS-ABILITY sur robotique et drones pour decommissioning."
-                                             },
-                                             {
-                                                 "url":  "https://www.neimagazine.com/news/sellafield-trials-robot-swabbing-tech/",
-                                                 "name":  "Nuclear Engineering International",
-                                                 "reason":  "Signal presse terrain sur swabbing robotise Sellafield/RAICo."
-                                             },
-                                             {
-                                                 "url":  "https://irid.or.jp/wp-content/uploads/2026/04/20260407en1fhansou.pdf",
-                                                 "name":  "IRID",
-                                                 "reason":  "Source institutionnelle sur bras robotise Fukushima et essais JAEA Naraha."
-                                             },
-                                             {
-                                                 "url":  "https://www.tepco.co.jp/en/hd/decommission/information/newsrelease/",
-                                                 "name":  "TEPCO",
-                                                 "reason":  "Verification des jalons operationnels Fukushima PCV/bras robotise."
-                                             },
-                                             {
-                                                 "url":  "https://www.jstage.jst.go.jp/",
-                                                 "name":  "J-STAGE",
-                                                 "reason":  "Papiers japonais proches des contraintes Fukushima/decommissioning."
-                                             },
-                                             {
-                                                 "url":  "https://ieeexplore.ieee.org/",
-                                                 "name":  "IEEE Xplore",
-                                                 "reason":  "Scan robotique, SLAM, radiation mapping et autonomie."
-                                             },
-                                             {
-                                                 "url":  "https://arxiv.org/",
-                                                 "name":  "arXiv",
-                                                 "reason":  "Preprints robotique et cartographie radiologique."
-                                             },
-                                             {
-                                                 "url":  "https://www.ans.org/news/",
-                                                 "name":  "World Nuclear News / ANS",
-                                                 "reason":  "Presse nucleaire pour demonstrations et transferts industriels."
-                                             },
-                                             {
-                                                 "url":  "https://race.ukaea.uk/",
-                                                 "name":  "UKAEA / RACE",
-                                                 "reason":  "Remote handling et robotique en environnements hostiles."
-                                             }
-                                         ],
-                     "suggested_sources":  [
-                                               {
-                                                   "url":  "https://www.tepco.co.jp/en/hd/decommission/information/newsrelease/",
-                                                   "name":  "TEPCO / IRID",
-                                                   "reason":  "A garder pour signaux Fukushima terrain."
-                                               },
-                                               {
-                                                   "url":  "https://www.neimagazine.com/",
-                                                   "name":  "Nuclear Engineering International",
-                                                   "reason":  "Bonne veille presse technique de decommissioning."
-                                               },
-                                               {
-                                                   "url":  "https://ieeexplore.ieee.org/",
-                                                   "name":  "IEEE Xplore",
-                                                   "reason":  "Source principale pour robotique instrumentee et SLAM."
-                                               },
-                                               {
-                                                   "url":  "https://race.ukaea.uk/",
-                                                   "name":  "UKAEA / RACE",
-                                                   "reason":  "Suivi remote handling et robotique industrielle nucleaire."
-                                               }
-                                           ],
-                     "search_terms":  [
-                                          "nuclear decommissioning robot remote inspection Fukushima 2026",
-                                          "radiological inspection robot radiation mapping nuclear facility 2026 decommissioning",
-                                          "Sellafield robot swabbing RAICo nuclear 2026",
-                                          "Fukushima robotic arm IRID TEPCO 2026",
-                                          "CLEANDEM XS-ABILITY robots drones decommissioning"
-                                      ]
-                 },
-                 {
-                     "tab_slug":  "nathan",
-                     "tab_name":  "Nathan",
-                     "watch_title":  "Imagerie et spectrometrie de contamination beta surfacique",
-                     "articles_added":  2,
-                     "science_added":  1,
-                     "press_added":  1,
-                     "summary":  "2 ajouts: 1 article scientifique 2026 sur analyse spectroscopique beta par deep learning avec scintillateur plastique, et 1 source industrielle ERG 102F sur cartographie alpha/beta de surface. Le mix science/presse reste volontairement compact car les sources industrielles datables et vraiment centrees beta surfacique sont rares.",
-                     "refined_context":  "Veille focalisee sur imagerie/spectrometrie beta surfacique: scintillateurs plastiques + SiPM/PMT, beta spectrometry Sr-90/Y-90, Timepix/Medipix, autoradiographie, detection in situ, cartographie position-correllee et robustesse terrain pour demantelement.",
-                     "prompt_interpretation":  "Traduction/reformulation FR-\u003eEN: contamination beta surfacique -\u003e beta surface contamination; imagerie beta -\u003e beta surface contamination imaging; spectrometrie beta -\u003e beta spectrometry; scintillateur plastique + SiPM -\u003e plastic scintillator SiPM detector; chambres a gaz scintillantes -\u003e gaseous scintillation beta imaging; TimePix/Medipix conserve. Les pages produit non datees ont ete de-priorisees au profit d articles mesures et de fiches industrielles recentes.",
-                     "rating_guidance":  "Les 4 articles existants Nathan etaient tous notes 5: signal neutre. J ai donc suivi la coherence thematique plutot qu une preference utilisateur forte, en privilegiant les performances instrumentales mesurables, Sr-90/Y-90, scintillateurs et cartographie de surface. Les nouveaux articles ont rating=5 par defaut.",
-                     "scanned_sources":  [
-                                             {
-                                                 "url":  "https://www.sciencedirect.com/science/article/pii/S1350448726000697",
-                                                 "name":  "Radiation Measurements / ScienceDirect",
-                                                 "reason":  "Article beta spectroscopy deep learning avec scintillateur plastique."
-                                             },
-                                             {
-                                                 "url":  "https://ergoffice.com/technology-and-products/102f",
-                                                 "name":  "ERG Office",
-                                                 "reason":  "Source industrielle alpha/beta surface contamination monitor."
-                                             },
-                                             {
-                                                 "url":  "https://www.sciencedirect.com/journal/physics-open",
-                                                 "name":  "Physics Open",
-                                                 "reason":  "Instrumentation beta surface monitor et optique scintillateur."
-                                             },
-                                             {
-                                                 "url":  "https://www.mdpi.com/journal/sensors",
-                                                 "name":  "MDPI Sensors",
-                                                 "reason":  "Capteurs SiPM/scintillateurs et Sr-90/Y-90."
-                                             },
-                                             {
-                                                 "url":  "https://pubmed.ncbi.nlm.nih.gov/",
-                                                 "name":  "PubMed / PMC",
-                                                 "reason":  "Autoradiographie beta et calibration detecteurs."
-                                             },
-                                             {
-                                                 "url":  "https://home.cern/science/accelerators/medipix",
-                                                 "name":  "CERN Medipix / Timepix",
-                                                 "reason":  "Ecosysteme pixel hybride pour imagerie de particules."
-                                             },
-                                             {
-                                                 "url":  "https://www.mirion.com/",
-                                                 "name":  "Mirion",
-                                                 "reason":  "Scan produits contamination; pas retenu sans alignement fort imagerie/spectrometrie."
-                                             }
-                                         ],
-                     "suggested_sources":  [
-                                               {
-                                                   "url":  "https://www.mdpi.com/journal/sensors",
-                                                   "name":  "MDPI Sensors",
-                                                   "reason":  "Flux utile sur capteurs, SiPM et detection beta."
-                                               },
-                                               {
-                                                   "url":  "https://www.sciencedirect.com/journal/radiation-measurements",
-                                                   "name":  "ScienceDirect / Radiation Measurements",
-                                                   "reason":  "Articles instrumentation et spectrometrie appliquee."
-                                               },
-                                               {
-                                                   "url":  "https://home.cern/science/accelerators/medipix",
-                                                   "name":  "CERN / Medipix-Timepix",
-                                                   "reason":  "A suivre pour imagerie pixel et applications beta."
-                                               }
-                                           ],
-                     "search_terms":  [
-                                          "beta surface contamination imaging SiPM scintillator 2026 paper",
-                                          "beta-ray detector surface contamination monitor light guide optimization 2026",
-                                          "in situ Sr-90 beta spectrometry SiPM scintillator 2026",
-                                          "beta contamination monitor surface scintillator 2026 industry",
-                                          "Timepix beta contamination imaging 2025 2026"
-                                      ]
-                 },
-                 {
-                     "tab_slug":  "pierre-louis",
-                     "tab_name":  "Pierre-Louis",
-                     "watch_title":  "Traitement de donnees de mesure nucleaire",
-                     "articles_added":  2,
-                     "science_added":  1,
-                     "press_added":  1,
-                     "summary":  "2 ajouts nets apres dedoublonnage: un article scientifique sur detection d anomalies dans spectres gamma CZT par autoencodeurs, et un signal institutionnel EURO-LABS/InTraNS sur machine learning pour grands spectrometres gamma. Deux candidats deja presents (Self2Self denoising et UQ bayesienne/unmixing) ont ete evites comme doublons.",
-                     "refined_context":  "Cadrage sur pipelines de mesure nucleaire: denoising, detection d anomalies, inverse problems, spectrum unfolding, spectral unmixing, uncertainty quantification et validation sur spectres gamma/neutron. Les papiers IA generiques sans donnees radiologiques sont ecartes.",
-                     "prompt_interpretation":  "Traduction/reformulation FR-\u003eEN: traitement de donnees de mesure nucleaire -\u003e nuclear measurement data processing; AI denoising -\u003e deep learning / self-supervised denoising; inverse problems -\u003e inverse problems / spectrum unfolding; spectral unmixing conserve; radiation contamination detection -\u003e radiological contamination detection; spectromers analysis corrige en gamma-ray spectrometry analysis. J ai ajoute Applied Radiation and Isotopes, PubMed, arXiv et EURO-LABS car plus proches du signal utile que la presse generaliste.",
-                     "rating_guidance":  "Les 7 articles existants Pierre-Louis avaient une moyenne neutre a 5, sans signaux hauts/bas. J ai garde la ligne editoriale positive implicite des runs precedents: UQ, problemes inverses, spectrometrie gamma mobile, denoising et donnees nucleaires reelles. Nouveaux articles en rating=5.",
-                     "scanned_sources":  [
-                                             {
-                                                 "url":  "https://pubmed.ncbi.nlm.nih.gov/41478139/",
-                                                 "name":  "PubMed / Applied Radiation and Isotopes",
-                                                 "reason":  "Autoencodeurs pour anomalies dans spectres gamma CZT."
-                                             },
-                                             {
-                                                 "url":  "https://www.sciencedirect.com/",
-                                                 "name":  "ScienceDirect / Applied Radiation and Isotopes",
-                                                 "reason":  "Denoising Self2Self deja present, evite comme doublon."
-                                             },
-                                             {
-                                                 "url":  "https://arxiv.org/",
-                                                 "name":  "arXiv",
-                                                 "reason":  "Preprints UQ, unmixing spectral et inference bayesienne."
-                                             },
-                                             {
-                                                 "url":  "https://agenda.infn.it/event/46675/contributions/281681/",
-                                                 "name":  "EURO-LABS / INFN Indico",
-                                                 "reason":  "Signal institutionnel ML pour grands spectrometres gamma."
-                                             },
-                                             {
-                                                 "url":  "https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a",
-                                                 "name":  "NIM A / ScienceDirect",
-                                                 "reason":  "Unfolding, detecteurs et traitement de spectres."
-                                             },
-                                             {
-                                                 "url":  "https://hal.science/",
-                                                 "name":  "HAL",
-                                                 "reason":  "Preprints FR/Europe sur spectrometrie et modeles statistiques."
-                                             },
-                                             {
-                                                 "url":  "https://www.osti.gov/",
-                                                 "name":  "OSTI / DOE",
-                                                 "reason":  "Rapports applicatifs pour safeguards et gamma spectroscopy."
-                                             }
-                                         ],
-                     "suggested_sources":  [
-                                               {
-                                                   "url":  "https://arxiv.org/",
-                                                   "name":  "arXiv physics.ins-det / physics.data-an",
-                                                   "reason":  "Detection rapide des methodes UQ/IA."
-                                               },
-                                               {
-                                                   "url":  "https://www.sciencedirect.com/journal/applied-radiation-and-isotopes",
-                                                   "name":  "Applied Radiation and Isotopes",
-                                                   "reason":  "Bon flux traitement gamma applique."
-                                               },
-                                               {
-                                                   "url":  "https://www.sciencedirect.com/journal/nuclear-instruments-and-methods-in-physics-research-section-a",
-                                                   "name":  "NIM A",
-                                                   "reason":  "Articles de reference instrumentation + analyse."
-                                               },
-                                               {
-                                                   "url":  "https://hal.science/",
-                                                   "name":  "HAL / OSTI",
-                                                   "reason":  "Complements preprints et rapports applicatifs."
-                                               }
-                                           ],
-                     "search_terms":  [
-                                          "mobile gamma-ray spectrometry Bayesian inference uncertainty quantification 2025 2026",
-                                          "high-dimensional Bayesian spectrum unfolding MCMC 2026",
-                                          "gamma spectrometry inverse problems uncertainty quantification 2025 2026",
-                                          "gamma spectrometry inverse problems uncertainty quantification 2026 deep learning denoising",
-                                          "radiological contamination detection machine learning gamma spectrometry 2025 2026"
-                                      ]
-                 },
-                 {
-                     "tab_slug":  "lucas",
-                     "tab_name":  "Lucas",
-                     "watch_title":  "Unity / Unreal / XR / simulation temps reel",
-                     "articles_added":  12,
-                     "science_added":  5,
-                     "press_added":  7,
-                     "summary":  "12 ajouts pour une vraie veille complete: Unity/Unreal pour visualisation scientifique, Android XR/OpenXR, Omniverse/OpenUSD/digital twins, Apple Vision Pro/CloudXR, Gaussian Splatting et XR+IA generative. Mix volontaire: 5 scientifiques/preprints pour les briques techniques, 7 presse/industrie/institutionnel pour les roadmaps moteurs, standards et plateformes.",
-                     "refined_context":  "Le prompt a ete recentre sur developpement moteur non-jeu: Unity/Unreal comme plateformes de simulation scientifique et visualisation industrielle, XR/OpenXR/spatial computing, rendu temps reel, GPU/Omniverse/OpenUSD, Gaussian splatting/NeRF et IA appliquee aux workflows 3D. Les contenus gaming purs, assets marketing et rumeurs hardware non techniques ont ete ecartes.",
-                     "prompt_interpretation":  "Traduction/reformulation FR-\u003eEN: simulations scientifiques -\u003e scientific simulation / scientific visualization; VR/AR/XR -\u003e XR / OpenXR / spatial computing; rendu temps reel -\u003e real-time rendering; outils immersifs industriels -\u003e industrial immersive tools; digital twins -\u003e industrial digital twins / OpenUSD / Omniverse; Gaussian splatting / NeRF -\u003e 3D Gaussian Splatting / neural rendering. Les inputs SIGGRAPH, IEEE, CVPR, NVIDIA Research, Unity R\u0026D, Elsevier, HAL et Google Scholar ont ete completes par Khronos, Android Developers, Unity Discussions/Learn, NVIDIA Developer Blog, Autodesk News et Apple/visionOS ecosysteme.",
-                     "rating_guidance":  "Lucas n avait pas encore d historique rating avant insertion; absence de signal utilisateur specifique. J ai donc applique rating=5 par defaut et choisi un bouquet equilibre entre recherche reproductible (arXiv) et signaux industriels fiables (Khronos, Android Developers, NVIDIA, Autodesk, Unity). Les futures notes pourront separer les pistes Unity pratiques, Unreal visualisation scientifique et Omniverse/OpenUSD.",
-                     "scanned_sources":  [
-                                             {
-                                                 "url":  "https://arxiv.org/",
-                                                 "name":  "arXiv",
-                                                 "reason":  "Preprints Unity/Unreal, 3DGS, XR-DT et SpatialPrompt."
-                                             },
-                                             {
-                                                 "url":  "https://unity.com/releases/release-overview",
-                                                 "name":  "Unity releases / Unity Learn / Unity Discussions",
-                                                 "reason":  "Unity 6.3 LTS, Android XR, OpenXR et roadmap XR."
-                                             },
-                                             {
-                                                 "url":  "https://www.unrealengine.com/",
-                                                 "name":  "Unreal Engine / Epic",
-                                                 "reason":  "UE 5.6, rendu temps reel et visualisation scientifique."
-                                             },
-                                             {
-                                                 "url":  "https://www.khronos.org/",
-                                                 "name":  "Khronos OpenXR / glTF",
-                                                 "reason":  "Standards OpenXR middleware matrix et glTF Gaussian Splatting."
-                                             },
-                                             {
-                                                 "url":  "https://android-developers.googleblog.com/2026/05/android-xr-updates-unity-unreal-godot.html",
-                                                 "name":  "Android Developers Blog",
-                                                 "reason":  "Support Android XR Unity/Unreal/Godot."
-                                             },
-                                             {
-                                                 "url":  "https://developer.nvidia.com/blog/",
-                                                 "name":  "NVIDIA Developer Blog / NVIDIA Blog",
-                                                 "reason":  "Omniverse libraries, physical AI, OpenUSD, digital twins."
-                                             },
-                                             {
-                                                 "url":  "https://adsknews.autodesk.com/en/news/vred-on-apple-vision-pro/",
-                                                 "name":  "Autodesk News",
-                                                 "reason":  "Cas industriel Vision Pro + CloudXR + VRED."
-                                             },
-                                             {
-                                                 "url":  "https://blog.siggraph.org/",
-                                                 "name":  "SIGGRAPH Blog",
-                                                 "reason":  "3D Gaussian Splatting et real-time rendering."
-                                             },
-                                             {
-                                                 "url":  "https://scholar.google.com/",
-                                                 "name":  "Google Scholar / IEEE / CVPR pistes",
-                                                 "reason":  "Requetes de controle pour neural rendering, XR et simulation."
-                                             }
-                                         ],
-                     "suggested_sources":  [
-                                               {
-                                                   "url":  "https://unity.com/releases/release-overview",
-                                                   "name":  "Unity Release Notes / Discussions XR",
-                                                   "reason":  "A suivre pour Unity 6.x, XR et Android XR."
-                                               },
-                                               {
-                                                   "url":  "https://www.khronos.org/",
-                                                   "name":  "Khronos OpenXR and glTF",
-                                                   "reason":  "Standards critiques pour portabilite XR/3DGS."
-                                               },
-                                               {
-                                                   "url":  "https://developer.nvidia.com/blog/",
-                                                   "name":  "NVIDIA Developer Blog",
-                                                   "reason":  "Omniverse, OpenUSD, GPU simulation, physical AI."
-                                               },
-                                               {
-                                                   "url":  "https://arxiv.org/",
-                                                   "name":  "arXiv graphics / HCI / robotics",
-                                                   "reason":  "Preprints rapides sur 3DGS, XR, scientific visualization."
-                                               },
-                                               {
-                                                   "url":  "https://blog.siggraph.org/",
-                                                   "name":  "SIGGRAPH / ACM",
-                                                   "reason":  "Recherche et tendances rendering temps reel."
-                                               }
-                                           ],
-                     "search_terms":  [
-                                          "Unity 6.3 LTS XR Android XR OpenXR 2026 official",
-                                          "Unreal Engine scientific visualization real-time rendering 2026",
-                                          "Gaussian splatting Unity Unreal real-time rendering XR 2026",
-                                          "NVIDIA Omniverse OpenUSD digital twin physical AI 2026",
-                                          "Khronos OpenXR extension matrix Unity Unreal 2026",
-                                          "Apple Vision Pro CloudXR industrial design review 2026",
-                                          "XR digital twin Unity agentic mobile robots 2026"
-                                      ]
-                 }
-             ]
+  "last_watch": "2026-05-26T07:30:00+02:00",
+  "next_watch": "2026-06-01T08:00:00+02:00",
+  "status": "success",
+  "articles_added": 4,
+  "tabs_processed": 5,
+  "summary": "Run complet manuel du 2026-05-26 sur fenetre glissante 2025-11-26 -> 2026-05-26. Le MCP Supabase etait absent dans cette session, mais le fallback REST Supabase hors sandbox a fonctionne. 4 nouveaux articles ont ete inseres avec rating=5: Jerem 1 presse, Pierre-Louis 1 science, Lucas 1 science et 1 presse. Nathan et Thibaud D ont ete scannes sans nouvel ajout non-duplique pertinent.",
+  "runs": [
+    {
+      "tab_slug": "jerem",
+      "tab_name": "Jerem",
+      "watch_title": "Robotique en environnement nucleaire et demantelement",
+      "articles_added": 1,
+      "science_added": 0,
+      "press_added": 1,
+      "summary": "1 article presse ajoute: DTRA advancements in nuclear and radiological detection (ANS Nuclear News), centre sur LAMP, une plateforme combinant LiDAR et detecteurs radiologiques pour cartographie temps reel des hotspots.",
+      "refined_context": "Robotique d investigation nucleaire, cartographie radiologique LiDAR + capteurs, decommissioning, operations CBRN et aides operateur en environnement radiologique.",
+      "prompt_interpretation": "Requetes anglaises orientees nuclear robotics, radiation mapping, LAMP radiological detection, nuclear decommissioning robots et autonomous radiation mapping. Les resultats deja bien notes RAICo/Sellafield/Fukushima ont servi de references positives.",
+      "rating_guidance": "Les notes 8-10 favorisent les retours terrain et solutions de cartographie radiologique operationnelle. DTRA/LAMP est retenu car proche des usages LiDAR + radiological hotspots, sans dupliquer RAICo/NEI/WNN deja presents.",
+      "scanned_sources": [
+        {
+          "name": "ANS Nuclear News",
+          "reason": "Article DTRA/LAMP retenu."
+        },
+        {
+          "name": "Nuclear Engineering International",
+          "reason": "Controle doublons RAICo deja presents."
+        },
+        {
+          "name": "World Nuclear News",
+          "reason": "Controle doublons Ignalina deja present."
+        },
+        {
+          "name": "MDPI Applied Sciences",
+          "reason": "Quadrupede radiation mapping deja present et note 10."
+        },
+        {
+          "name": "RAICo/Sellafield",
+          "reason": "Suivi terrain, pas de nouvel ajout non-duplique."
+        }
+      ],
+      "suggested_sources": [
+        "ANS Nuclear News",
+        "DTRA/Gamma Reality",
+        "RAICo",
+        "World Nuclear News",
+        "Nuclear Engineering International"
+      ],
+      "search_terms": [
+        "DTRA LAMP radiological detection LiDAR radiation mapping 2026",
+        "nuclear decommissioning robot radiation mapping May 2026",
+        "autonomous radiation mapping quadruped nuclear robotics 2026"
+      ]
+    },
+    {
+      "tab_slug": "nathan",
+      "tab_name": "Nathan",
+      "watch_title": "Detection beta et contamination surfacique",
+      "articles_added": 0,
+      "science_added": 0,
+      "press_added": 0,
+      "summary": "Aucun nouvel article ajoute. Les signaux pertinents recents etaient deja en base: iQID beta-emitter imaging, Timepix3 charged-particle imaging, beta spectrometry deep learning, CaF2/ZnSe Sr-90 monitoring et ERG 102F.",
+      "refined_context": "Imagerie et spectrometrie beta surfacique, scintillateurs plastique/SiPM/PMT, Timepix/Medipix, autoradiographie numerique, instruments portables de contamination.",
+      "prompt_interpretation": "Requetes anglaises centrees beta surface contamination imaging, beta spectrometry SiPM, Timepix contamination detector, digital autoradiography beta emitters. Les pages produit sans nouveaute recente claire n ont pas ete dupliquees.",
+      "rating_guidance": "Les notes Nathan sont neutres a 5: maintien d une selection stricte sur instruments vraiment applicables a la contamination beta surfacique.",
+      "scanned_sources": [
+        {
+          "name": "ScienceDirect / Physics Open",
+          "reason": "Resultats beta detector deja presents."
+        },
+        {
+          "name": "PMC / iQID",
+          "reason": "Article d imagerie beta deja present."
+        },
+        {
+          "name": "ResearchGate / Timepix3",
+          "reason": "Workflow Timepix3 deja present."
+        },
+        {
+          "name": "ERG Office",
+          "reason": "Produit deja present."
+        },
+        {
+          "name": "Mirion/Berthold/Thermo Fisher",
+          "reason": "Veille produit sans nouvel ajout."
+        }
+      ],
+      "suggested_sources": [
+        "Physics Open",
+        "Radiation Measurements",
+        "CERN Medipix",
+        "Mirion",
+        "Berthold",
+        "Thermo Fisher"
+      ],
+      "search_terms": [
+        "beta surface contamination imaging spectrometry Timepix SiPM 2026",
+        "portable beta contamination detector radiation protection 2026",
+        "digital autoradiography beta emitters iQID 2026"
+      ]
+    },
+    {
+      "tab_slug": "pierre-louis",
+      "tab_name": "Pierre-Louis",
+      "watch_title": "Traitement de donnees nucleaires et spectrometrie",
+      "articles_added": 1,
+      "science_added": 1,
+      "press_added": 0,
+      "summary": "1 prepublication arXiv ajoutee: Unsupervised domain adaptation for radioisotope identification in gamma spectroscopy. Elle cible l ecart simulation/mesure reelle pour classifier des radio-isotopes en spectrometrie gamma.",
+      "refined_context": "Traitement de spectres gamma, identification radio-isotopique, apprentissage avec donnees synthetiques, adaptation de domaine, denoising, unmixing, Bayesian inference.",
+      "prompt_interpretation": "Requetes anglaises orientees gamma spectroscopy machine learning, radioisotope identification, unsupervised domain adaptation, denoising and Bayesian source localization. Les resultats deja presents SINAPSE/Self2Self/Bayesian ont ete dedupliques.",
+      "rating_guidance": "Les notes sont surtout neutres a 5; le nouveau papier est retenu car directement connecte au probleme simulation-vers-reel, complementaire de SINAPSE et des methodes bayesiennes deja en base.",
+      "scanned_sources": [
+        {
+          "name": "arXiv",
+          "reason": "UDA radioisotope identification retenu; SINAPSE deja present."
+        },
+        {
+          "name": "ScienceDirect",
+          "reason": "Self2Self et Bayesian localization deja presents."
+        },
+        {
+          "name": "HAL",
+          "reason": "Spectral unmixing deja present."
+        },
+        {
+          "name": "PubMed",
+          "reason": "Autoencoder CZT deja present."
+        }
+      ],
+      "suggested_sources": [
+        "arXiv physics.ins-det/cs.LG",
+        "Nuclear Instruments and Methods A",
+        "Applied Radiation and Isotopes",
+        "Signal Processing",
+        "HAL"
+      ],
+      "search_terms": [
+        "gamma spectroscopy unsupervised domain adaptation radioisotope identification 2026",
+        "machine learning gamma spectroscopy radioisotope identification arXiv 2026",
+        "gamma spectroscopy denoising Bayesian source localization 2026"
+      ]
+    },
+    {
+      "tab_slug": "lucas",
+      "tab_name": "Lucas",
+      "watch_title": "Unity, Unreal, XR, digital twins et simulation temps reel",
+      "articles_added": 2,
+      "science_added": 1,
+      "press_added": 1,
+      "summary": "2 ajouts: SimNav-XR (Frontiers Robotics and AI) pour l integration ROS2 + Unity3D + XR, et le workshop CVPR 2026 4D Digital Twins pour le signal real-to-sim-to-real, neural rendering et Physical AI.",
+      "refined_context": "Unity/Unreal, XR/OpenXR, simulation scientifique temps reel, ROS2-Unity, digital twins, Gaussian Splatting/NeRF, Physical AI et pipelines industriels.",
+      "prompt_interpretation": "Requetes anglaises centrees Unity ROS2 XR simulation, Gaussian Splatting digital twins, 4D digital twins real-to-sim-to-real, OpenXR middleware. Les resultats deja presents Android XR/Khronos/GaussTwin ont ete dedupliques.",
+      "rating_guidance": "Notes Lucas neutres a 5: selection de signaux tres techniques et actionnables, avec preference pour pipelines concrets ou evenements structurants de communaute.",
+      "scanned_sources": [
+        {
+          "name": "Frontiers Robotics and AI",
+          "reason": "SimNav-XR retenu."
+        },
+        {
+          "name": "NVIDIA Research / CVPR 4DDT",
+          "reason": "Workshop 4D Digital Twins retenu."
+        },
+        {
+          "name": "Khronos",
+          "reason": "OpenXR/glTF deja presents."
+        },
+        {
+          "name": "arXiv",
+          "reason": "GaussTwin, XR-DT, SplatBus et UnrealVis deja presents."
+        },
+        {
+          "name": "Unity Discussions",
+          "reason": "Unity XR February deja present."
+        }
+      ],
+      "suggested_sources": [
+        "Frontiers Robotics and AI",
+        "NVIDIA Research",
+        "CVPR workshops",
+        "Khronos",
+        "Unity R&D",
+        "Unreal Engine"
+      ],
+      "search_terms": [
+        "Unity ROS2 XR simulation Frontiers Robotics AI 2026",
+        "4D Digital Twins real-to-sim-to-real Physical AI CVPR 2026",
+        "Gaussian Splatting digital twin robotics simulation Unity Unreal 2026"
+      ]
+    },
+    {
+      "tab_slug": "thibaud-d",
+      "tab_name": "Thibaud D",
+      "watch_title": "Representation polygonale de l espace pour robots autonomes",
+      "articles_added": 0,
+      "science_added": 0,
+      "press_added": 0,
+      "summary": "Aucun nouvel ajout. Les meilleurs signaux restent deja en base: PolyMap note 9, Line-of-Sight polygonal visible regions note 6, et Near-Optimal Min-Sum Multi-Robot Motion Planning in a Planar Polygonal Environment note 7.",
+      "refined_context": "Representation polygonale/polyedrique de l espace, visibility polygons, polygonal visible regions, polyhedral maps, navigation meshes, convex decomposition et planification multi-robot.",
+      "prompt_interpretation": "Requetes anglaises elargies a polygonal spatial representation, polyhedral map, navigation mesh, convex decomposition, polygonal visible regions and robot motion planning. Les resultats generiques occupancy maps ont ete ecartes si le lien polygonal etait faible.",
+      "rating_guidance": "PolyMap note 9 reste l exemple positif principal; les travaux mesh/NeRF moins centres sont depriorises. Aucun nouveau signal plus pertinent n a depasse les doublons existants.",
+      "scanned_sources": [
+        {
+          "name": "arXiv cs.RO",
+          "reason": "LoS polygonal visible regions deja present."
+        },
+        {
+          "name": "IEEE RA-L",
+          "reason": "PolyMap deja present et bien note."
+        },
+        {
+          "name": "SIAM SODA",
+          "reason": "Planar polygonal environment deja present."
+        },
+        {
+          "name": "Springer Autonomous Robots",
+          "reason": "Quelques representations de carte, pas assez polygonales pour ajout."
+        }
+      ],
+      "suggested_sources": [
+        "arXiv cs.RO",
+        "IEEE RA-L",
+        "SIAM SODA",
+        "Autonomous Robots",
+        "ICRA",
+        "IROS"
+      ],
+      "search_terms": [
+        "polygonal visible regions robot navigation 2026",
+        "polyhedral map autonomous robot motion planning 2026",
+        "robot autonomous polygonal representation space navigation mesh 2026"
+      ]
+    }
+  ]
 }
 </script>
 
