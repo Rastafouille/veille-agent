@@ -1404,6 +1404,25 @@ async function savePrompt(tabSlug){
 
 }
 
+function formatTabEmailError(error){
+
+  const message =
+    error?.message || '';
+
+  if(
+    message.includes('notification_email') ||
+    error?.code === 'PGRST204'
+  ){
+    return "Colonne notification_email absente : executez la migration SQL dans Supabase (voir supabase/migrations/).";
+  }
+
+  if(error?.code === '42501'){
+    return "Droits insuffisants (RLS) : autorisez la mise a jour de la table tabs pour le role anon.";
+  }
+
+  return message || "Erreur inconnue lors de l'enregistrement.";
+}
+
 async function saveTabEmail(tabSlug){
 
   const input =
@@ -1426,26 +1445,48 @@ async function saveTabEmail(tabSlug){
   const email =
     input.value.trim();
 
-  const { error } =
+  const originalText =
+    button.innerHTML;
+
+  button.disabled = true;
+  button.innerHTML = '⏳ Enregistrement...';
+
+  if(status){
+    status.style.color = '#666';
+    status.innerText = '';
+  }
+
+  const { data, error } =
     await supabaseClient
       .from('tabs')
       .update({
         notification_email: email || null
       })
-      .eq('slug', tabSlug);
+      .eq('slug', tabSlug)
+      .select('slug, notification_email');
+
+  button.disabled = false;
 
   if(error){
     console.error(error);
+    button.innerHTML = originalText;
     if(status){
       status.style.color = '#c20000';
       status.innerText =
-        "Impossible d'enregistrer. Ajoutez la colonne notification_email a la table tabs dans Supabase.";
+        formatTabEmailError(error);
     }
     return;
   }
 
-  const originalText =
-    button.innerHTML;
+  if(!data || data.length === 0){
+    button.innerHTML = originalText;
+    if(status){
+      status.style.color = '#c20000';
+      status.innerText =
+        "Aucune ligne mise a jour. Verifiez le slug de l'onglet et les politiques RLS (UPDATE) sur tabs.";
+    }
+    return;
+  }
 
   button.innerHTML =
     '✅ Enregistre';
@@ -1457,7 +1498,7 @@ async function saveTabEmail(tabSlug){
     status.style.color = '#1f9d55';
     status.innerText =
       email
-        ? 'Email enregistre.'
+        ? `Email enregistre : ${data[0].notification_email}`
         : 'Email supprime.';
   }
 
