@@ -23,10 +23,11 @@ Le site (GitHub Pages + Supabase) affiche vos onglets et se met à jour après c
 
 1. **Configurer votre onglet** — Rédiger le prompt de veille et ajouter vos pistes de sources, puis sauvegarder.
 2. **Parcourir les nouveaux articles** — Les entrées non lues sont marquées **new**.
-3. **Marquer comme lu** — Cliquer sur l’icône **new** une fois l’article lu, pour repérer facilement les suivants.
+3. **Marquer comme lu** — Automatique en cliquant sur **Lire l’article** ou en modifiant la note ; sinon, cliquer sur l’icône **new**. Le compteur sur l’onglet (ex. `Jerem (2)`) indique les non lus.
 4. **Noter la pertinence** — Ajuster la note (0–10) : cela guide les prochains résultats.
 5. **Archiver hors page** — Si un article est pertinent, l’enregistrer dans **Zotero**, puis le **supprimer** de votre page. Même supprimé, il reste en base (note + anti-doublon).
-6. **Donner vos retours** — Vos remarques améliorent le système (prompt, sources, qualité des runs).
+6. **Email de notification** — En bas de votre onglet, renseigner votre adresse pour être prévenu des nouveaux résultats.
+7. **Donner vos retours** — Vos remarques améliorent le système (prompt, sources, qualité des runs).
 
 ## Stack (résumé)
 

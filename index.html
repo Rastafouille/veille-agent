@@ -333,6 +333,35 @@
   background:#444;
 }
 
+    .email-hint{
+      color:#666;
+      margin-top:10px;
+      line-height:1.45;
+    }
+
+    .email-row{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .email-row input{
+      flex:1;
+      min-width:220px;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+    }
+
+    .email-status{
+      margin-top:8px;
+      font-size:0.85rem;
+      color:#1f9d55;
+      min-height:1.2em;
+    }
+
   </style>
 </head>
 
@@ -751,6 +780,7 @@ const supabaseClient =
   );
 
 let currentTab = null;
+let unreadByTab = {};
 
 function articleRating(article){
   return Number.isFinite(Number(article.rating))
@@ -786,6 +816,76 @@ function getArticleCard(articleId){
   return document.querySelector(
     `[data-article-id="${articleId}"]`
   );
+}
+
+function computeUnreadCounts(articles){
+
+  const counts = {};
+
+  articles.forEach(article => {
+
+    if(!article.is_new) return;
+
+    const slug =
+      article.category;
+
+    if(!slug) return;
+
+    counts[slug] =
+      (counts[slug] || 0) + 1;
+
+  });
+
+  return counts;
+
+}
+
+function updateTabButtonLabel(tabSlug){
+
+  const button =
+    document.querySelector(
+      `.tab-button[data-tab-slug="${tabSlug}"]`
+    );
+
+  if(!button) return;
+
+  const name =
+    button.dataset.tabName || tabSlug;
+
+  const count =
+    unreadByTab[tabSlug] || 0;
+
+  button.innerText =
+    count > 0
+      ? `👤 ${name} (${count})`
+      : `👤 ${name}`;
+
+}
+
+function updateAllTabBadges(){
+
+  document
+    .querySelectorAll('.tab-button[data-tab-slug]')
+    .forEach(button => {
+      updateTabButtonLabel(
+        button.dataset.tabSlug
+      );
+    });
+
+}
+
+function adjustUnreadCount(tabSlug, delta){
+
+  if(!tabSlug || !delta) return;
+
+  unreadByTab[tabSlug] =
+    Math.max(
+      0,
+      (unreadByTab[tabSlug] || 0) + delta
+    );
+
+  updateTabButtonLabel(tabSlug);
+
 }
 
 function bindReadButton(button, articleId, isNew){
@@ -831,6 +931,11 @@ function buildArticleCard(article){
 
   card.className = 'card';
   card.dataset.articleId = article.id;
+  card.dataset.tabSlug = article.category || '';
+  card.dataset.isNew =
+    article.is_new
+      ? 'true'
+      : 'false';
 
   card.innerHTML = `
 
@@ -919,6 +1024,11 @@ function buildArticleCard(article){
     card,
     article.id,
     rating
+  );
+
+  card.querySelector('.article-link').addEventListener(
+    'click',
+    () => markArticleAsRead(article.id)
   );
 
   const starBtn =
@@ -1052,6 +1162,9 @@ async function loadTabs(){
       button.classList.add('active');
     }
 
+    button.dataset.tabSlug = tab.slug;
+    button.dataset.tabName = tab.name;
+
     button.innerText =
       `👤 ${tab.name}`;
 
@@ -1153,9 +1266,49 @@ async function loadTabs(){
 
       </div>
 
+      <div class="watch-section">
+
+        <h3>📧 Notifications</h3>
+
+        <p class="email-hint">
+          Pour etre tenu au courant des nouveaux resultats,
+          renseignez votre email :
+        </p>
+
+        <div class="email-row">
+
+          <input type="email"
+                 id="${tab.slug}-email"
+                 placeholder="vous@exemple.fr"
+                 autocomplete="email">
+
+          <button type="button"
+                  id="${tab.slug}-email-save"
+                  onclick="saveTabEmail('${tab.slug}')"
+                  class="main-btn">
+            💾 Enregistrer
+          </button>
+
+        </div>
+
+        <p id="${tab.slug}-email-status"
+           class="email-status"></p>
+
+      </div>
+
     `;
 
     contentContainer.appendChild(content);
+
+    const emailInput =
+      document.getElementById(
+        `${tab.slug}-email`
+      );
+
+    if(emailInput && tab.notification_email){
+      emailInput.value =
+        tab.notification_email;
+    }
 
   }
 
@@ -1360,6 +1513,75 @@ async function savePrompt(tabSlug){
 
 }
 
+async function saveTabEmail(tabSlug){
+
+  const input =
+    document.getElementById(
+      `${tabSlug}-email`
+    );
+
+  const button =
+    document.getElementById(
+      `${tabSlug}-email-save`
+    );
+
+  const status =
+    document.getElementById(
+      `${tabSlug}-email-status`
+    );
+
+  if(!input || !button) return;
+
+  const email =
+    input.value.trim();
+
+  const { error } =
+    await supabaseClient
+      .from('tabs')
+      .update({
+        notification_email: email || null
+      })
+      .eq('slug', tabSlug);
+
+  if(error){
+    console.error(error);
+    if(status){
+      status.style.color = '#c20000';
+      status.innerText =
+        "Impossible d'enregistrer. Ajoutez la colonne notification_email a la table tabs dans Supabase.";
+    }
+    return;
+  }
+
+  const originalText =
+    button.innerHTML;
+
+  button.innerHTML =
+    '✅ Enregistre';
+
+  button.style.background =
+    '#1f9d55';
+
+  if(status){
+    status.style.color = '#1f9d55';
+    status.innerText =
+      email
+        ? 'Email enregistre.'
+        : 'Email supprime.';
+  }
+
+  setTimeout(() => {
+
+    button.innerHTML =
+      originalText;
+
+    button.style.background =
+      '#666';
+
+  }, 1800);
+
+}
+
 async function loadResearchInputs(){
 
   const { data } =
@@ -1470,7 +1692,13 @@ async function loadArticles(){
         ascending: false
       });
 
-  sortArticlesByDate(data || []).forEach(article => {
+  const articles =
+    sortArticlesByDate(data || []);
+
+  unreadByTab =
+    computeUnreadCounts(articles);
+
+  articles.forEach(article => {
 
     const container =
       document.getElementById(
@@ -1485,33 +1713,75 @@ async function loadArticles(){
 
   });
 
+  updateAllTabBadges();
+
 }
 
-async function toggleRead(id, currentState){
+async function setArticleReadState(id, isNew){
 
-  const nextState = !currentState;
-  const card = getArticleCard(id);
-  const readBtn = card?.querySelector('.read-btn');
+  const card =
+    getArticleCard(id);
+
+  if(!card) return;
+
+  const tabSlug =
+    card.dataset.tabSlug;
+
+  const wasNew =
+    card.dataset.isNew === 'true';
+
+  if(wasNew === isNew) return;
+
+  const readBtn =
+    card.querySelector('.read-btn');
+
+  card.dataset.isNew =
+    isNew
+      ? 'true'
+      : 'false';
 
   if(readBtn){
-    bindReadButton(readBtn, id, nextState);
+    bindReadButton(readBtn, id, isNew);
   }
 
   const { error } =
     await supabaseClient
       .from('articles')
       .update({
-        is_new: nextState
+        is_new: isNew
       })
       .eq('id', id);
 
   if(error){
     console.error(error);
+    card.dataset.isNew =
+      wasNew
+        ? 'true'
+        : 'false';
     if(readBtn){
-      bindReadButton(readBtn, id, currentState);
+      bindReadButton(readBtn, id, wasNew);
     }
+    return;
   }
 
+  if(!tabSlug) return;
+
+  if(!isNew && wasNew){
+    adjustUnreadCount(tabSlug, -1);
+  }
+
+  if(isNew && !wasNew){
+    adjustUnreadCount(tabSlug, 1);
+  }
+
+}
+
+async function markArticleAsRead(id){
+  await setArticleReadState(id, false);
+}
+
+async function toggleRead(id, currentState){
+  await setArticleReadState(id, !currentState);
 }
 
 async function addStar(id, currentStars){
@@ -1544,6 +1814,8 @@ async function addStar(id, currentStars){
 }
 
 async function changeRating(id, currentRating, delta){
+
+  await markArticleAsRead(id);
 
   const nextRating =
     Math.max(
@@ -1579,7 +1851,20 @@ async function changeRating(id, currentRating, delta){
 
 async function deleteArticle(id){
 
+  const card =
+    getArticleCard(id);
+
+  const tabSlug =
+    card?.dataset.tabSlug;
+
+  const wasNew =
+    card?.dataset.isNew === 'true';
+
   removeArticleCard(id);
+
+  if(wasNew && tabSlug){
+    adjustUnreadCount(tabSlug, -1);
+  }
 
   const { error } =
     await supabaseClient
@@ -1649,6 +1934,7 @@ function openTab(tabName, button){
 
 window.addTab = addTab;
 window.savePrompt = savePrompt;
+window.saveTabEmail = saveTabEmail;
 window.addResearchInput = addResearchInput;
 window.deleteResearchInput = deleteResearchInput;
 window.addStar = addStar;
