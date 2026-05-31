@@ -420,15 +420,242 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-    "last_watch":  "2026-05-31T19:03:05+02:00",
-    "next_watch":  "2026-06-07T08:00:00+02:00",
-    "status":  "partial_error",
-    "articles_added":  0,
-    "tabs_processed":  0,
-    "summary":  "Run hebdomadaire du 2026-05-31 sur fenetre glissante 2025-11-30 -\u003e 2026-05-31. Depot sur main et origin/main apres git fetch; git pull --ff-only a d\u0027abord echoue sur .git/FETCH_HEAD Permission denied, puis git fetch origin a reussi. Aucun outil MCP Supabase n\u0027etait expose dans la session. Le fallback REST Supabase a echoue: Invoke-RestMethod indique Impossible de se connecter au serveur distant et curl.exe echoue sur la connexion TCP 443 vers uozgbhitaiewuqgibssf.supabase.co. Aucun article n\u0027a ete cherche ni insere pour eviter d\u0027inventer des resultats sans lecture des tables public.tabs, public.watch_configs, public.research_inputs et public.articles. Aucune notification individuelle par tab n\u0027a ete envoyee car public.tabs.notification_email n\u0027a pas pu etre lu.",
-    "runs":  [
-
-             ]
+  "last_watch": "2026-06-01T00:01:00+02:00",
+  "next_watch": "2026-06-01T08:00:00+02:00",
+  "status": "success",
+  "articles_added": 6,
+  "tabs_processed": 5,
+  "summary": "Run complet manuel lance le 31/05 et termine le 01/06/2026, sur fenetre glissante 2025-12-01 -> 2026-06-01. Le MCP Supabase n'etait pas expose dans cette session, mais le fallback REST Supabase hors sandbox a fonctionne. 6 nouveaux articles ont ete inseres avec rating=5 et sans utiliser la colonne stars: Jerem 1 presse, Nathan 1 science, Pierre-Louis 1 science, Lucas 1 science et 1 presse, Thibaud D 1 science. Julien V et Val n'ont pas de watch_config et ont ete ignores.",
+  "runs": [
+    {
+      "tab_slug": "jerem",
+      "tab_name": "Jerem",
+      "watch_title": "Robotique en environnement nucleaire et demantelement",
+      "articles_added": 1,
+      "science_added": 0,
+      "press_added": 1,
+      "summary": "1 article presse ajoute: Tomsk Scientists Develop Robot for Inspecting Hazardous Nuclear Industry Facilities. Il documente un robot d inspection pour infrastructures radiologiquement dangereuses, avec essais prevus sur reacteur de recherche en ete 2026.",
+      "refined_context": "Robotique d inspection et intervention en environnement nucleaire, demantelement, radiological mapping, LiDAR/capteurs et retours terrain industriels.",
+      "prompt_interpretation": "Requetes anglaises orientees nuclear decommissioning robot, hazardous nuclear facilities inspection, radiation mapping robot, LiDAR gamma mapping et decommissioning robotics. Les resultats RAICo/Sellafield/Fukushima bien notes ont guide la selection vers des cas d usage terrain.",
+      "rating_guidance": "Les notes elevees sur quadrupede radiation mapping, RAICo et Sellafield favorisent les demonstrations operationnelles et robots d inspection concrets. Le signal Tomsk est retenu dans cette logique, sans dupliquer les articles RAICo/NEI/WNN deja presents.",
+      "scanned_sources": [
+        {
+          "name": "IT Russia",
+          "reason": "Signal Tomsk retenu."
+        },
+        {
+          "name": "Nuclear Engineering International",
+          "reason": "Controle de doublons RAICo/Sellafield deja presents."
+        },
+        {
+          "name": "World Nuclear News",
+          "reason": "Controle de doublon Ignalina deja present."
+        },
+        {
+          "name": "ANS Nuclear News",
+          "reason": "DTRA/LAMP deja present."
+        },
+        {
+          "name": "ScienceDirect",
+          "reason": "LIBS/Raman robot et path planning radioactif deja presents."
+        }
+      ],
+      "suggested_sources": [
+        "IT Russia",
+        "RAICo",
+        "World Nuclear News",
+        "Nuclear Engineering International",
+        "ANS Nuclear News"
+      ],
+      "search_terms": [
+        "May 2026 nuclear robotics radiation mapping decommissioning robot",
+        "robot nuclear decommissioning radiation mapping LiDAR gamma May 2026",
+        "hazardous nuclear facilities inspection robot decommissioning 2026"
+      ]
+    },
+    {
+      "tab_slug": "nathan",
+      "tab_name": "Nathan",
+      "watch_title": "Detection beta et contamination surfacique",
+      "articles_added": 1,
+      "science_added": 1,
+      "press_added": 0,
+      "summary": "1 article science ajoute: Alpha/beta discrimination in a position-sensitive fiber detector based on a pulse height method. Il est pertinent pour la contamination surfacique, le demantelement et la localisation le long d un detecteur fibre.",
+      "refined_context": "Imagerie et spectrometrie beta surfacique, discrimination alpha/beta, detecteurs fibres/scintillateurs, SiPM/PMT, Timepix et instruments portables de controle contamination.",
+      "prompt_interpretation": "Requetes anglaises centrees beta surface contamination detector, alpha beta discrimination, position-sensitive fiber detector, Timepix/SiPM beta imaging. Les resultats deja presents iQID, Timepix3 et ERG ont ete dedupliques.",
+      "rating_guidance": "Les meilleures notes Nathan favorisent les instruments directement applicables au controle beta surfacique. Le detecteur fibre alpha/beta est retenu car il ajoute une dimension position-sensitive utile, sans refaire les signaux Timepix/iQID deja suivis.",
+      "scanned_sources": [
+        {
+          "name": "LifeScience / PubMed mirror",
+          "reason": "Article alpha/beta fiber detector retenu."
+        },
+        {
+          "name": "ScienceDirect",
+          "reason": "Optimizing light guide et beta spectrometry deja presents."
+        },
+        {
+          "name": "PMC",
+          "reason": "iQID deja present."
+        },
+        {
+          "name": "ResearchGate",
+          "reason": "Timepix3 deja present."
+        },
+        {
+          "name": "ERG Office",
+          "reason": "Produit deja present."
+        }
+      ],
+      "suggested_sources": [
+        "Radiation Measurements",
+        "Physics Open",
+        "PubMed",
+        "CERN Medipix",
+        "Mirion"
+      ],
+      "search_terms": [
+        "May 2026 beta surface contamination detector imaging spectrometry Timepix SiPM",
+        "alpha beta discrimination position-sensitive fiber detector 2026",
+        "surface contamination monitoring beta scintillator detector decommissioning 2026"
+      ]
+    },
+    {
+      "tab_slug": "pierre-louis",
+      "tab_name": "Pierre-Louis",
+      "watch_title": "Traitement de donnees nucleaires et spectrometrie",
+      "articles_added": 1,
+      "science_added": 1,
+      "press_added": 0,
+      "summary": "1 article science ajoute: Development of an automated isotope identification algorithm based on second derivative and Bayesian statistics methods. Il complete les approches ML/deep learning par une methode statistique interpretable pour scintillateurs a resolution moyenne.",
+      "refined_context": "Spectrometrie gamma, identification radioisotopique automatique, statistiques bayesiennes, denoising, unmixing, autoencodeurs et adaptation simulation-vers-reel.",
+      "prompt_interpretation": "Requetes anglaises orientees gamma spectroscopy machine learning radioisotope identification, Bayesian statistics isotope ID, automated isotope identification scintillation detectors. Les resultats UDA, autoencoder et SINAPSE etaient deja en base.",
+      "rating_guidance": "Les notes Pierre-Louis etant majoritairement neutres, la veille garde les methodes directement reliees aux mesures nucleaires. Le nouvel article est retenu car il est bayesien/statistique et complete les signaux UDA/SINAPSE deja suivis.",
+      "scanned_sources": [
+        {
+          "name": "ScienceDirect",
+          "reason": "Article Bayesian isotope identification retenu; autres doublons controles."
+        },
+        {
+          "name": "arXiv",
+          "reason": "UDA et SINAPSE deja presents."
+        },
+        {
+          "name": "HAL",
+          "reason": "Spectral unmixing deja present."
+        },
+        {
+          "name": "PubMed",
+          "reason": "Autoencoder CZT deja present."
+        }
+      ],
+      "suggested_sources": [
+        "ScienceDirect",
+        "arXiv physics.ins-det",
+        "Nuclear Instruments and Methods A",
+        "Applied Radiation and Isotopes",
+        "HAL"
+      ],
+      "search_terms": [
+        "May 2026 gamma spectroscopy machine learning radioisotope identification denoising",
+        "automated isotope identification Bayesian statistics scintillation detectors 2026",
+        "gamma spectroscopy radioisotope identification Bayesian second derivative 2026"
+      ]
+    },
+    {
+      "tab_slug": "lucas",
+      "tab_name": "Lucas",
+      "watch_title": "Unity, Unreal, XR, digital twins et simulation temps reel",
+      "articles_added": 2,
+      "science_added": 1,
+      "press_added": 1,
+      "summary": "2 ajouts: un article Springer sur un framework XR de jumeau numerique robotique avec Unity, et MR-SLAM sur Open Robotics Discourse pour supervision mixed-reality ROS 2 + Quest 3 + Unity.",
+      "refined_context": "Unity/Unreal, XR/OpenXR, jumeaux numeriques robotiques, Gaussian Splatting/NeRF, ROS2-Unity, simulation temps reel et supervision operateur.",
+      "prompt_interpretation": "Requetes anglaises centrees Unity OpenXR XR digital twin, robotic digital twin extended reality, mixed-reality supervision ROS2 Unity, Gaussian Splatting digital twin robotics. Les articles SimNav-XR, Android XR, GaussTwin et 4DDT etaient deja presents.",
+      "rating_guidance": "Les notes elevees sur Unity XR et Android XR orientent la veille vers pipelines XR/Unity concrets. Les deux ajouts sont retenus car ils apportent un angle implementation: physique Unity pour jumeaux robotiques et supervision MR/ROS2.",
+      "scanned_sources": [
+        {
+          "name": "Springer Nature",
+          "reason": "Article XR robotic digital twin retenu."
+        },
+        {
+          "name": "Open Robotics Discourse",
+          "reason": "MR-SLAM retenu comme signal technique presse/communaute."
+        },
+        {
+          "name": "Frontiers Robotics and AI",
+          "reason": "SimNav-XR deja present."
+        },
+        {
+          "name": "Khronos",
+          "reason": "OpenXR/glTF deja presents."
+        },
+        {
+          "name": "arXiv",
+          "reason": "GaussTwin/Real2Sim et signaux 3DGS controles."
+        }
+      ],
+      "suggested_sources": [
+        "Springer XR/robotics",
+        "Open Robotics Discourse",
+        "Unity Discussions",
+        "Khronos",
+        "NVIDIA Research",
+        "arXiv graphics/robotics"
+      ],
+      "search_terms": [
+        "May 2026 Unity OpenXR XR digital twin Gaussian Splatting robotics simulation",
+        "May 2026 real-time simulation digital twin Unity ROS2 XR robotics",
+        "MR-SLAM mixed reality supervision ROS2 Quest 3 Unity"
+      ]
+    },
+    {
+      "tab_slug": "thibaud-d",
+      "tab_name": "Thibaud D",
+      "watch_title": "Representation polygonale de l espace pour robots autonomes",
+      "articles_added": 1,
+      "science_added": 1,
+      "press_added": 0,
+      "summary": "1 article science ajoute: Efficient graph-based area partitioning for balanced multi-robot coverage path planning. Il est pertinent par son usage d un graphe issu de la triangulation de la zone, avec meilleure fidelite geometrique que les grilles.",
+      "refined_context": "Representations polygonales/polyedriques, triangulation, graphes de couverture, convex decomposition, SLAM et path planning multi-robot.",
+      "prompt_interpretation": "Requetes anglaises elargies a polygonal map robot navigation, polyhedral map SLAM path planning, graph-based area partitioning and triangulation. Les resultats trop generiques en learned heuristics ont ete depriorises.",
+      "rating_guidance": "PolyMap note 9 reste le signal positif principal. Le nouvel article est retenu car il parle explicitement de triangulation/geometric fidelity pour couverture multi-robot, donc plus proche du besoin polygonal que les approches purement grid/learning.",
+      "scanned_sources": [
+        {
+          "name": "Robotics and Autonomous Systems",
+          "reason": "Article graph-based area partitioning retenu."
+        },
+        {
+          "name": "arXiv cs.RO",
+          "reason": "LoS polygonal visible regions et STL graphs deja presents."
+        },
+        {
+          "name": "IEEE RA-L",
+          "reason": "PolyMap deja present et bien note."
+        },
+        {
+          "name": "ScienceDirect / Information Sciences",
+          "reason": "Path planning transformer juge moins polygonal."
+        },
+        {
+          "name": "MIT News",
+          "reason": "MIGHTY signale mais moins centre representation polygonale."
+        }
+      ],
+      "suggested_sources": [
+        "Robotics and Autonomous Systems",
+        "IEEE RA-L",
+        "arXiv cs.RO",
+        "SIAM SODA",
+        "ICRA",
+        "IROS"
+      ],
+      "search_terms": [
+        "May 2026 polygonal map robot navigation convex decomposition SLAM path planning",
+        "May 2026 polyhedral map robot SLAM path planning arXiv",
+        "graph-based area partitioning multi-robot coverage path planning triangulation 2026"
+      ]
+    }
+  ]
 }
 </script>
 
