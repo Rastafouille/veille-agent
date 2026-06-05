@@ -420,119 +420,186 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-06-01T22:07:00+02:00",
+  "last_watch": "2026-06-05T09:25:22.3032011+02:00",
   "next_watch": "2026-06-08T08:00:00+02:00",
   "status": "success",
-  "articles_added": 3,
+  "articles_added": 4,
   "tabs_processed": 6,
-  "summary": "Run complet manuel du 2026-06-01 apres ajout du nouveau prompt Val. Le MCP Supabase n'etait pas expose dans cette session, mais le fallback REST Supabase hors sandbox a fonctionne. Les 5 onglets deja suivis ont ete controles sans nouvel ajout non-duplique; le nouvel onglet Val a ete traite et 3 articles science ont ete inseres avec rating=5 et sans champ stars.",
+  "summary": "Run complet execute le 05/06/2026. git pull --ff-only: depot deja a jour. Le MCP Supabase n etait pas expose dans cette session Codex; le fallback REST Supabase a fonctionne pour lire les donnees et inserer 4 nouveaux articles, sans utiliser la colonne stars. Notifications preparees via tabs.notification_email avec titres seulement, compteur de non lus et lien de la page web.",
   "runs": [
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
-      "watch_title": "Robotique en environnement nucleaire et demantelement",
+      "watch_title": "Robotique nucleaire",
       "articles_added": 0,
       "science_added": 0,
       "press_added": 0,
-      "summary": "Aucun nouvel ajout depuis le run precedent du 01/06. Les signaux recents Tomsk, RAICo, Sellafield, DTRA/LAMP, LIBS/Raman et radiation mapping sont deja presents.",
-      "refined_context": "Aucun nouvel ajout depuis le run precedent du 01/06. Les signaux recents Tomsk, RAICo, Sellafield, DTRA/LAMP, LIBS/Raman et radiation mapping sont deja presents.",
-      "prompt_interpretation": "Controle de rattrapage apres ajout du prompt Val; les resultats deja presents ont ete dedupliques.",
-      "rating_guidance": "Les notes elevees continuent d orienter vers les retours terrain et demonstrations operationnelles.",
+      "unread_count": 0,
+      "summary": "Aucun nouvel article ajoute. Les resultats recents etaient deja couverts ou moins specifiques que les references existantes.",
+      "refined_context": "Robotique d inspection, intervention et decontamination en environnement nucleaire, avec priorite aux systemes deployables, cartographie radiologique/LiDAR, remote handling, capteurs embarques et retours terrain de demantelement.",
+      "prompt_interpretation": "Requetes ciblees autour de nuclear robotics, decommissioning robot, radiation mapping, remote handling, robotic decontamination et field deployment.",
+      "rating_guidance": "Les articles deja notes haut sur RAICo, Sellafield, quadrupedes de radiation mapping et plateformes terrain ont conserve la priorite aux signaux operationnels et deployables.",
       "scanned_sources": [
         {
-          "name": "Base Supabase existante",
-          "reason": "Deduplonnage par URL/titre avant insertion."
+          "name": "RAICo / Sellafield / NDA",
+          "reason": "Scannes pour retours terrain et robotique de demantelement; pas de signal non duplique plus fort."
         },
         {
-          "name": "Recherches web recentes",
-          "reason": "Pas de nouvel ajout plus pertinent que les elements deja presents."
+          "name": "World Nuclear News / Nuclear Engineering International",
+          "reason": "Scannes pour annonces nucleaires terrain; aucune insertion pertinente."
+        },
+        {
+          "name": "ScienceDirect / IEEE / MDPI",
+          "reason": "Scannes pour robotique de cartographie radiologique et SLAM nucleaire; doublons ou hors priorite."
         }
       ],
-      "suggested_sources": [],
+      "suggested_sources": [
+        "RAICo",
+        "Sellafield Ltd",
+        "NDA",
+        "UKAEA",
+        "World Nuclear News",
+        "Nuclear Engineering International",
+        "ScienceDirect",
+        "IEEE Xplore"
+      ],
       "search_terms": [
-        "nuclear decommissioning robot radiation mapping 2026",
-        "hazardous nuclear facilities inspection robot"
+        "nuclear decommissioning robotics radiation mapping 2026",
+        "radiation mapping robot nuclear LiDAR 2026",
+        "robotic nuclear decontamination 2026"
       ]
     },
     {
       "tab_slug": "nathan",
       "tab_name": "Nathan",
       "watch_title": "Detection beta et contamination surfacique",
-      "articles_added": 0,
-      "science_added": 0,
+      "articles_added": 1,
+      "science_added": 1,
       "press_added": 0,
-      "summary": "Aucun nouvel ajout depuis le run precedent. Les signaux Timepix3, iQID, ERG 102F, beta spectrometry deep learning et alpha/beta fiber detector sont deja en base.",
-      "refined_context": "Aucun nouvel ajout depuis le run precedent. Les signaux Timepix3, iQID, ERG 102F, beta spectrometry deep learning et alpha/beta fiber detector sont deja en base.",
-      "prompt_interpretation": "Controle de rattrapage apres ajout du prompt Val; les resultats deja presents ont ete dedupliques.",
-      "rating_guidance": "Les notes favorisent les instruments directement utiles a la contamination beta surfacique.",
+      "unread_count": 4,
+      "new_titles": [
+        "Feasibility study of fast nuclide identification for beta-emitting sources using learning-based models"
+      ],
+      "summary": "1 article scientifique ajoute sur l identification rapide de radionucleides emetteurs beta par modeles d apprentissage.",
+      "refined_context": "Imagerie, spectrometrie et mesure de contamination beta surfacique, en distinguant prototypes de laboratoire, detecteurs position-sensibles et instruments deployables.",
+      "prompt_interpretation": "Le nouveau signal a ete retenu pour son lien direct avec beta-emitting sources, identification de radionucleides et modeles learning-based.",
+      "rating_guidance": "Les notes hautes sur Timepix/Medipix et detecteurs beta imageurs poussent la veille vers identification, discrimination et instrumentation beta exploitable.",
       "scanned_sources": [
         {
-          "name": "Base Supabase existante",
-          "reason": "Deduplonnage par URL/titre avant insertion."
+          "name": "Applied Radiation and Isotopes / ScienceDirect",
+          "reason": "Article 2026 retenu sur beta-emitting sources et learning-based nuclide identification."
         },
         {
-          "name": "Recherches web recentes",
-          "reason": "Pas de nouvel ajout plus pertinent que les elements deja presents."
+          "name": "Radiation Measurements / NIM A",
+          "reason": "Scannes pour beta spectroscopy et contamination surfacique; pas de meilleur signal non duplique."
+        },
+        {
+          "name": "IEEE Xplore / PubMed",
+          "reason": "Scannes pour SiPM, Timepix et beta imaging; signaux moins proches ou deja couverts."
         }
       ],
-      "suggested_sources": [],
+      "suggested_sources": [
+        "ScienceDirect",
+        "Applied Radiation and Isotopes",
+        "Radiation Measurements",
+        "NIM A",
+        "IEEE Xplore",
+        "Advacam/Timepix"
+      ],
       "search_terms": [
-        "beta surface contamination detector Timepix SiPM 2026",
-        "alpha beta discrimination fiber detector"
+        "beta-emitting sources nuclide identification learning model 2026",
+        "beta surface contamination detector 2026",
+        "beta spectroscopy contamination monitor 2026"
       ]
     },
     {
       "tab_slug": "pierre-louis",
       "tab_name": "Pierre-Louis",
       "watch_title": "Traitement de donnees nucleaires et spectrometrie",
-      "articles_added": 0,
-      "science_added": 0,
+      "articles_added": 1,
+      "science_added": 1,
       "press_added": 0,
-      "summary": "Aucun nouvel ajout depuis le run precedent. Les signaux UDA, SINAPSE, Bayesian isotope identification, autoencoders, unmixing et Self2Self sont deja presents.",
-      "refined_context": "Aucun nouvel ajout depuis le run precedent. Les signaux UDA, SINAPSE, Bayesian isotope identification, autoencoders, unmixing et Self2Self sont deja presents.",
-      "prompt_interpretation": "Controle de rattrapage apres ajout du prompt Val; les resultats deja presents ont ete dedupliques.",
-      "rating_guidance": "Guidance neutre: conserver les methodes directement connectees aux donnees de mesure nucleaire.",
+      "unread_count": 15,
+      "new_titles": [
+        "Deep Learning-Based Multi-Isotope Identification for Portable Low-Resolution Gamma-Ray Detectors Using 1D Convolutional Neural Networks"
+      ],
+      "summary": "1 article scientifique ajoute sur l identification multi-isotope par CNN 1D avec detecteurs gamma portables basse resolution.",
+      "refined_context": "Traitement de spectres gamma et mesures nucleaires: denoising, unmixing, identification radioisotopique, modeles bayesiens, inverse problems et transfert simulation-vers-reel.",
+      "prompt_interpretation": "La recherche a cible gamma spectroscopy, isotope identification, low-resolution detectors, 1D CNN, spectral unmixing et AI for nuclear measurements.",
+      "rating_guidance": "Les ratings existants favorisent les travaux directement relies a l identification radioisotopique, au denoising et aux donnees terrain plutot qu aux modeles purement generiques.",
       "scanned_sources": [
         {
-          "name": "Base Supabase existante",
-          "reason": "Deduplonnage par URL/titre avant insertion."
+          "name": "IWoRID 2026 / CERN Indico",
+          "reason": "Contribution retenue sur multi-isotope identification avec detecteurs gamma portables."
         },
         {
-          "name": "Recherches web recentes",
-          "reason": "Pas de nouvel ajout plus pertinent que les elements deja presents."
+          "name": "ScienceDirect / NIM A / Applied Radiation and Isotopes",
+          "reason": "Scannes pour spectrometrie gamma et deep learning; doublons ou signaux moins recents."
+        },
+        {
+          "name": "arXiv / HAL / IEEE",
+          "reason": "Scannes pour unmixing, denoising et domain adaptation."
         }
       ],
-      "suggested_sources": [],
+      "suggested_sources": [
+        "ScienceDirect",
+        "NIM A",
+        "Applied Radiation and Isotopes",
+        "IWoRID",
+        "IEEE Xplore",
+        "arXiv",
+        "HAL"
+      ],
       "search_terms": [
-        "gamma spectroscopy Bayesian isotope identification 2026",
-        "radioisotope identification machine learning"
+        "gamma spectroscopy isotope identification 1D CNN 2026",
+        "low resolution gamma detector multi isotope identification 2026",
+        "radioisotope identification deep learning gamma 2026"
       ]
     },
     {
       "tab_slug": "lucas",
       "tab_name": "Lucas",
       "watch_title": "Unity, Unreal, XR, digital twins et simulation temps reel",
-      "articles_added": 0,
+      "articles_added": 1,
       "science_added": 0,
-      "press_added": 0,
-      "summary": "Aucun nouvel ajout depuis le run precedent. Les signaux Unity/XR, MR-SLAM, SimNav-XR, Android XR, 4D Digital Twins, Omniverse et GaussTwin sont deja presents.",
-      "refined_context": "Aucun nouvel ajout depuis le run precedent. Les signaux Unity/XR, MR-SLAM, SimNav-XR, Android XR, 4D Digital Twins, Omniverse et GaussTwin sont deja presents.",
-      "prompt_interpretation": "Controle de rattrapage apres ajout du prompt Val; les resultats deja presents ont ete dedupliques.",
-      "rating_guidance": "Les notes elevees sur Unity XR, Android XR et MR-SLAM favorisent les pipelines concrets Unity/ROS2/XR.",
+      "press_added": 1,
+      "unread_count": 3,
+      "new_titles": [
+        "I, Spatial: Gaussian Splatting production workflows at AWE USA 2026"
+      ],
+      "summary": "1 article presse/evenement ajoute sur les workflows de production Gaussian Splatting pour XR a AWE USA 2026.",
+      "refined_context": "Moteurs temps reel et XR pour outils industriels/scientifiques: Unity/Unreal, OpenXR, jumeaux numeriques, rendering GPU, Gaussian Splatting/NeRF et pipelines exploitables hors jeu video.",
+      "prompt_interpretation": "Le signal a ete retenu car il relie Gaussian Splatting, XR et workflow de production concret.",
+      "rating_guidance": "Les notes hautes sur Unity XR, Android XR et GaussTwin orientent vers des pipelines 3DGS/XR concrets, integrables et utiles en production.",
       "scanned_sources": [
         {
-          "name": "Base Supabase existante",
-          "reason": "Deduplonnage par URL/titre avant insertion."
+          "name": "AWE USA 2026",
+          "reason": "Session retenue sur Gaussian Splatting production workflows."
         },
         {
-          "name": "Recherches web recentes",
-          "reason": "Pas de nouvel ajout plus pertinent que les elements deja presents."
+          "name": "Unity / Unreal / Khronos",
+          "reason": "Scannes pour OpenXR, XR industriel et moteurs temps reel; pas d ajout plus cible."
+        },
+        {
+          "name": "arXiv / NVIDIA / Cesium",
+          "reason": "Scannes pour 3DGS, jumeaux numeriques et streaming 3D."
         }
       ],
-      "suggested_sources": [],
+      "suggested_sources": [
+        "AWE",
+        "Unity Blog",
+        "Unreal Engine",
+        "Khronos/OpenXR",
+        "NVIDIA Research",
+        "Cesium",
+        "SIGGRAPH",
+        "CVPR",
+        "arXiv"
+      ],
       "search_terms": [
-        "Unity ROS2 XR digital twin 2026",
-        "OpenXR Gaussian Splatting robotics simulation"
+        "Gaussian Splatting XR production workflow 2026",
+        "Unity Unreal XR digital twin Gaussian Splatting 2026",
+        "OpenXR industrial digital twin 2026"
       ]
     },
     {
@@ -542,72 +609,84 @@
       "articles_added": 0,
       "science_added": 0,
       "press_added": 0,
-      "summary": "Aucun nouvel ajout depuis le run precedent. PolyMap, polygonal visible regions, graph-based area partitioning et STL via graphs of convex sets sont deja presents.",
-      "refined_context": "Aucun nouvel ajout depuis le run precedent. PolyMap, polygonal visible regions, graph-based area partitioning et STL via graphs of convex sets sont deja presents.",
-      "prompt_interpretation": "Controle de rattrapage apres ajout du prompt Val; les resultats deja presents ont ete dedupliques.",
-      "rating_guidance": "PolyMap note 9 reste le signal positif principal; les travaux non polygonaux sont depriorises.",
+      "unread_count": 0,
+      "summary": "Aucun nouvel article ajoute. Les resultats proches etaient deja presents, trop semantiques, ou moins directement lies aux representations polygonales pour planning.",
+      "refined_context": "Representations polygonales/polyedriques pour robotique autonome: decompositions convexes, graphes de regions, environnements polygonaux 2D, cartes polyhedriques 3D et planification avec garanties.",
+      "prompt_interpretation": "Requetes ciblees sur polygonal SLAM, polyhedral maps, convex decomposition, graph of convex sets et motion planning en environnements polygonaux.",
+      "rating_guidance": "La note haute sur PolyMap maintient la priorite aux representations polyedriques exploitables par planificateurs, avec garanties geometriques.",
       "scanned_sources": [
         {
-          "name": "Base Supabase existante",
-          "reason": "Deduplonnage par URL/titre avant insertion."
+          "name": "SoCG / SODA / Dagstuhl",
+          "reason": "Scannes pour planning geometrique; pas de meilleur signal non duplique."
         },
         {
-          "name": "Recherches web recentes",
-          "reason": "Pas de nouvel ajout plus pertinent que les elements deja presents."
+          "name": "IEEE RA-L / ICRA / IROS",
+          "reason": "Scannes pour cartes polyedriques et decomposition convexe."
+        },
+        {
+          "name": "ScienceDirect Robotics and Autonomous Systems",
+          "reason": "Scanne pour planning et coverage path planning; aucun ajout."
         }
       ],
-      "suggested_sources": [],
+      "suggested_sources": [
+        "IEEE RA-L",
+        "ICRA",
+        "IROS",
+        "RSS",
+        "SoCG",
+        "SODA",
+        "arXiv cs.RO",
+        "ScienceDirect Robotics"
+      ],
       "search_terms": [
-        "polygonal map robot navigation 2026",
-        "polyhedral map SLAM path planning"
+        "polygonal SLAM path planning robots 2026",
+        "polyhedral map robot motion planning 2026",
+        "convex decomposition robot planning 2026"
       ]
     },
     {
       "tab_slug": "val",
       "tab_name": "Val",
-      "watch_title": "Benchmark SLAM LiDAR 2D/3D avec verite terrain motion capture",
-      "articles_added": 3,
-      "science_added": 3,
+      "watch_title": "SLAM, navigation robotique et datasets",
+      "articles_added": 1,
+      "science_added": 1,
       "press_added": 0,
-      "summary": "3 articles science ajoutes pour initialiser la veille Val: SMapper pour plateforme/dataset de benchmarking SLAM, un benchmark LiDAR SLAM en tunnels pauvres en geometrie, et MoCap2GT comme reference methodologique motion-capture/IMU pour verite terrain.",
-      "refined_context": "Comparaison experimentale de SLAM LiDAR 2D/3D sur robot mobile, ATE/RPE, robustesse, trajectoires reproductibles, motion capture comme ground truth, synchronisation/calibration et datasets/bags rejouables.",
-      "prompt_interpretation": "Le prompt a ete traduit en LiDAR SLAM benchmark, motion capture ground truth, 2D/3D LiDAR SLAM comparison, FAST-LIO LIO-SAM Cartographer SLAM Toolbox benchmark, Vicon OptiTrack Qualisys trajectory evaluation. Visual/RGB-D/Visual-Inertial SLAM ont ete exclus sauf quand utiles comme contrepoint non retenu.",
-      "rating_guidance": "Aucune note historique pour Val; rating=5 par defaut. La selection privilegie les protocoles reproductibles, la verite terrain et les comparaisons d algorithmes LiDAR plutot que les revues generales.",
+      "unread_count": 6,
+      "new_titles": [
+        "A ground robot dataset for multi-sensor navigation in diverse environments"
+      ],
+      "summary": "1 article scientifique ajoute sur un dataset robot terrestre multi-capteurs pour navigation dans des environnements varies.",
+      "refined_context": "SLAM, navigation et evaluation robotique: datasets multi-capteurs, benchmarks, lidar/camera/IMU, ground truth, robustness et protocoles reproductibles.",
+      "prompt_interpretation": "Le nouveau prompt de Val a ete traite en priorite avec des requetes sur ground robot dataset, multi-sensor navigation, SLAM benchmark et diverse environments.",
+      "rating_guidance": "Les ratings existants favorisent les datasets et benchmarks exploitables, avec capteurs multiples et ground truth clair, plutot que les annonces sans protocole reproductible.",
       "scanned_sources": [
         {
-          "name": "Springer JINT",
-          "reason": "SMapper retenu pour plateforme de benchmark SLAM 2026."
+          "name": "The International Journal of Robotics Research / SAGE",
+          "reason": "Article retenu sur dataset multi-capteurs pour navigation robot terrestre."
         },
         {
-          "name": "TUGraz / IEEE IV",
-          "reason": "Benchmark LiDAR SLAM en tunnels retenu pour stress-test KISS-ICP/LIO-SAM/FAST-LIO2."
+          "name": "IEEE RA-L / ICRA / IROS",
+          "reason": "Scannes pour SLAM, navigation et benchmarks recents."
         },
         {
-          "name": "arXiv",
-          "reason": "MoCap2GT retenu comme reference methodologique motion capture ground truth."
-        },
-        {
-          "name": "MDPI / Remote Sensing",
-          "reason": "Benchmark LiDAR plus ancien repere mais non ajoute."
-        },
-        {
-          "name": "Hilti SLAM Challenge",
-          "reason": "Surveille mais oriente visual-inertial/floor plan, donc non retenu."
+          "name": "arXiv / ScienceDirect",
+          "reason": "Scannes pour datasets de navigation et SLAM multi-capteurs."
         }
       ],
       "suggested_sources": [
-        "Springer Journal of Intelligent & Robotic Systems",
-        "IEEE IV / ICRA / IROS",
-        "arXiv robotics",
-        "Hilti SLAM Challenge",
-        "SLAMBench",
-        "evo / rpg_trajectory_evaluation"
+        "IJRR",
+        "SAGE",
+        "IEEE RA-L",
+        "ICRA",
+        "IROS",
+        "RSS",
+        "arXiv cs.RO",
+        "KITTI / OpenReview datasets"
       ],
       "search_terms": [
-        "LiDAR SLAM benchmark motion capture ground truth mobile robot 2026",
-        "2D 3D LiDAR SLAM comparison benchmark motion capture robot mobile ATE RPE 2026",
-        "FAST-LIO LIO-SAM Cartographer SLAM Toolbox benchmark motion capture ground truth",
-        "SLAM LiDAR evaluation protocol Vicon OptiTrack robot mobile 2026"
+        "ground robot dataset multi-sensor navigation diverse environments 2026",
+        "SLAM benchmark multi sensor robot navigation 2026",
+        "robot dataset indoor outdoor navigation ground truth 2026"
       ]
     }
   ]
