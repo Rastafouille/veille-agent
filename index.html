@@ -420,13 +420,70 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-06-05T09:25:22.3032011+02:00",
-  "next_watch": "2026-06-08T08:00:00+02:00",
+  "last_watch": "2026-06-11T07:09:43.6151079+02:00",
+  "next_watch": "2026-06-15T08:00:00+02:00",
   "status": "success",
-  "articles_added": 4,
-  "tabs_processed": 6,
-  "summary": "Run complet execute le 05/06/2026. git pull --ff-only: depot deja a jour. Le MCP Supabase n etait pas expose dans cette session Codex; le fallback REST Supabase a fonctionne pour lire les donnees et inserer 4 nouveaux articles, sans utiliser la colonne stars. Notifications preparees via tabs.notification_email avec titres seulement, compteur de non lus et lien de la page web.",
+  "articles_added": 5,
+  "tabs_processed": 7,
+  "summary": "Run complet execute le 11/06/2026. git pull --ff-only: depot deja a jour. Le MCP Supabase a ete utilise directement pour lire les tables et inserer les articles. Focus renforce sur le nouvel onglet Humanoide: 5 articles ajoutes, dont 3 articles scientifiques et 2 signaux presse/industrie. Les autres onglets ont ete controles; aucun nouveau signal non-duplique plus pertinent n a ete ajoute.",
   "runs": [
+    {
+      "tab_slug": "humanoide",
+      "tab_name": "Humanoide",
+      "watch_title": "Robotique humanoide: mobilite, perception, manipulation",
+      "articles_added": 5,
+      "science_added": 3,
+      "press_added": 2,
+      "unread_count": 5,
+      "new_titles": [
+        "Humanoid Whole-Body Manipulation via Active Spatial Brain and Generalizable Action Cerebellum",
+        "Learning Whole-Body Humanoid Locomotion via Motion Generation and Motion Tracking",
+        "A Rapid Deployment Pipeline for Autonomous Humanoid Grasping Based on Foundation Models",
+        "German start-up Neura raises $1.4bn in humanoid robot push",
+        "Figure AI streamed humanoid robots sorting packages for 8 hours straight"
+      ],
+      "summary": "5 ajouts pour initialiser et renforcer le nouvel onglet Humanoide: whole-body manipulation, locomotion terrain-aware sur Unitree G1, pipeline de grasping par foundation models, industrialisation Neura Robotics et demonstration longue duree Figure AI.",
+      "refined_context": "Veille technologique et scientifique sur les robots humanoides, avec priorite a la mobilite, la perception active, la manipulation whole-body, la locomotion robuste, les pipelines foundation models et les signaux industriels credibles.",
+      "prompt_interpretation": "Le prompt a ete etendu en anglais autour de humanoid robotics, whole-body locomotion, loco-manipulation, active spatial perception, grasping, Unitree G1, Figure AI, Neura Robotics, Atlas, Digit, foundation models et physical AI.",
+      "rating_guidance": "Aucun historique de rating pour cet onglet: rating=5 par defaut. La selection privilegie les resultats deployes ou proches robot reel, les demonstrations sur humanoide physique, et les signaux industriels lies au passage a l echelle.",
+      "scanned_sources": [
+        {
+          "name": "arXiv robotics",
+          "reason": "3 prepublications retenues sur manipulation whole-body, locomotion terrain-aware et grasping humanoide."
+        },
+        {
+          "name": "Financial Times / Business Insider / TechRadar / Axios",
+          "reason": "Scannes pour signaux industrie recents: Neura, Figure, NVIDIA/Hyundai et marche humanoide."
+        },
+        {
+          "name": "Unitree / Figure / Agility / Boston Dynamics ecosystem",
+          "reason": "Scanne pour mobilite, manipulation, autonomie et limites de demonstrations."
+        }
+      ],
+      "suggested_sources": [
+        "arXiv cs.RO",
+        "IEEE RA-L",
+        "ICRA",
+        "IROS",
+        "RSS",
+        "The Robot Report",
+        "TechCrunch robotics",
+        "Financial Times",
+        "Business Insider",
+        "NVIDIA Robotics",
+        "Unitree",
+        "Figure AI",
+        "Agility",
+        "Boston Dynamics"
+      ],
+      "search_terms": [
+        "humanoid robot mobility manipulation perception 2026",
+        "whole-body humanoid locomotion manipulation arXiv 2026",
+        "Unitree G1 humanoid grasping foundation models 2026",
+        "Figure AI humanoid package sorting 2026",
+        "Neura Robotics humanoid funding 2026"
+      ]
+    },
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
@@ -435,22 +492,22 @@
       "science_added": 0,
       "press_added": 0,
       "unread_count": 0,
-      "summary": "Aucun nouvel article ajoute. Les resultats recents etaient deja couverts ou moins specifiques que les references existantes.",
-      "refined_context": "Robotique d inspection, intervention et decontamination en environnement nucleaire, avec priorite aux systemes deployables, cartographie radiologique/LiDAR, remote handling, capteurs embarques et retours terrain de demantelement.",
-      "prompt_interpretation": "Requetes ciblees autour de nuclear robotics, decommissioning robot, radiation mapping, remote handling, robotic decontamination et field deployment.",
-      "rating_guidance": "Les articles deja notes haut sur RAICo, Sellafield, quadrupedes de radiation mapping et plateformes terrain ont conserve la priorite aux signaux operationnels et deployables.",
+      "summary": "Aucun nouvel article ajoute. Les resultats recents etaient deja couverts par Tomsk, HazardBot, RAICo, Sellafield, Fukushima, radiation mapping et LIBS/Raman.",
+      "refined_context": "Robotique d inspection, intervention et decontamination en environnement nucleaire, avec priorite aux systemes deployables et retours terrain.",
+      "prompt_interpretation": "Requetes ciblees sur nuclear decommissioning robotics, radiation mapping, remote handling, robotic decontamination et SLAM radiologique.",
+      "rating_guidance": "Les notes hautes continuent de favoriser les signaux operationnels et deployables en environnement nucleaire.",
       "scanned_sources": [
         {
           "name": "RAICo / Sellafield / NDA",
-          "reason": "Scannes pour retours terrain et robotique de demantelement; pas de signal non duplique plus fort."
+          "reason": "Scannes pour demonstrations terrain; aucun nouveau signal non duplique plus fort."
         },
         {
           "name": "World Nuclear News / Nuclear Engineering International",
-          "reason": "Scannes pour annonces nucleaires terrain; aucune insertion pertinente."
+          "reason": "Scannes pour robotique nucleaire et decommissioning."
         },
         {
           "name": "ScienceDirect / IEEE / MDPI",
-          "reason": "Scannes pour robotique de cartographie radiologique et SLAM nucleaire; doublons ou hors priorite."
+          "reason": "Scannes pour radiation mapping et robotique mobile nucleaire."
         }
       ],
       "suggested_sources": [
@@ -458,101 +515,102 @@
         "Sellafield Ltd",
         "NDA",
         "UKAEA",
+        "IAEA",
         "World Nuclear News",
         "Nuclear Engineering International",
         "ScienceDirect",
         "IEEE Xplore"
       ],
       "search_terms": [
-        "nuclear decommissioning robotics radiation mapping 2026",
-        "radiation mapping robot nuclear LiDAR 2026",
-        "robotic nuclear decontamination 2026"
+        "June 2026 nuclear decommissioning robotics radiation mapping robot",
+        "robotic nuclear decontamination 2026",
+        "radiation mapping robot nuclear LiDAR 2026"
       ]
     },
     {
       "tab_slug": "nathan",
       "tab_name": "Nathan",
-      "watch_title": "Detection beta et contamination surfacique",
-      "articles_added": 1,
-      "science_added": 1,
+      "watch_title": "ASIC et electronique de lecture SiPM",
+      "articles_added": 0,
+      "science_added": 0,
       "press_added": 0,
-      "unread_count": 4,
-      "new_titles": [
-        "Feasibility study of fast nuclide identification for beta-emitting sources using learning-based models"
-      ],
-      "summary": "1 article scientifique ajoute sur l identification rapide de radionucleides emetteurs beta par modeles d apprentissage.",
-      "refined_context": "Imagerie, spectrometrie et mesure de contamination beta surfacique, en distinguant prototypes de laboratoire, detecteurs position-sensibles et instruments deployables.",
-      "prompt_interpretation": "Le nouveau signal a ete retenu pour son lien direct avec beta-emitting sources, identification de radionucleides et modeles learning-based.",
-      "rating_guidance": "Les notes hautes sur Timepix/Medipix et detecteurs beta imageurs poussent la veille vers identification, discrimination et instrumentation beta exploitable.",
+      "unread_count": 0,
+      "summary": "Aucun nouvel article ajoute. Le prompt actuel vise les ASIC et front-end SiPM; les recherches recentes ont surtout remonte des references anciennes ou moins specifiques que Citiroc/TOFPET/SPIROC et les fabricants cibles.",
+      "refined_context": "Veille sur ASIC, front-end electronics et systemes plug-and-play de lecture SiPM pour instrumentation nucleaire.",
+      "prompt_interpretation": "Requetes ciblees sur SiPM readout ASIC, Citiroc, TOFPET2, SPIROC, configurable threshold, temperature compensation, Hamamatsu MPPC readout, CAEN et Weeroc.",
+      "rating_guidance": "Les futurs ajouts doivent etre plus proches du nouveau prompt SiPM/ASIC que des anciens signaux beta; les produits ou papiers sans specifications canal/seuil/gain/temperature sont depriorises.",
       "scanned_sources": [
         {
-          "name": "Applied Radiation and Isotopes / ScienceDirect",
-          "reason": "Article 2026 retenu sur beta-emitting sources et learning-based nuclide identification."
+          "name": "arXiv / IEEE / indico CERN",
+          "reason": "Scannes pour SiPM readout ASIC 2026; resultats principaux trop anciens ou deja connus."
         },
         {
-          "name": "Radiation Measurements / NIM A",
-          "reason": "Scannes pour beta spectroscopy et contamination surfacique; pas de meilleur signal non duplique."
+          "name": "Weeroc / CAEN / PETsys / Hamamatsu",
+          "reason": "Scannes pour annonces plug-and-play et front-end SiPM; aucun ajout exploitable date 2026."
         },
         {
-          "name": "IEEE Xplore / PubMed",
-          "reason": "Scannes pour SiPM, Timepix et beta imaging; signaux moins proches ou deja couverts."
+          "name": "IEEE NSS/MIC / ANIMMA",
+          "reason": "Surveille pour communications ASIC SiPM."
         }
       ],
       "suggested_sources": [
-        "ScienceDirect",
-        "Applied Radiation and Isotopes",
-        "Radiation Measurements",
+        "IEEE NSS/MIC",
+        "ANIMMA",
+        "JINST",
         "NIM A",
-        "IEEE Xplore",
-        "Advacam/Timepix"
+        "Weeroc",
+        "PETsys",
+        "CAEN",
+        "Hamamatsu",
+        "onsemi",
+        "Broadcom",
+        "KETEK"
       ],
       "search_terms": [
-        "beta-emitting sources nuclide identification learning model 2026",
-        "beta surface contamination detector 2026",
-        "beta spectroscopy contamination monitor 2026"
+        "2026 SiPM readout ASIC Citiroc TOFPET2 SPIROC configurable threshold temperature compensation",
+        "SiPM front-end electronics ASIC 2026 nuclear instrumentation",
+        "IEEE NSS MIC 2026 SiPM readout ASIC"
       ]
     },
     {
       "tab_slug": "pierre-louis",
       "tab_name": "Pierre-Louis",
       "watch_title": "Traitement de donnees nucleaires et spectrometrie",
-      "articles_added": 1,
-      "science_added": 1,
+      "articles_added": 0,
+      "science_added": 0,
       "press_added": 0,
-      "unread_count": 15,
-      "new_titles": [
-        "Deep Learning-Based Multi-Isotope Identification for Portable Low-Resolution Gamma-Ray Detectors Using 1D Convolutional Neural Networks"
-      ],
-      "summary": "1 article scientifique ajoute sur l identification multi-isotope par CNN 1D avec detecteurs gamma portables basse resolution.",
-      "refined_context": "Traitement de spectres gamma et mesures nucleaires: denoising, unmixing, identification radioisotopique, modeles bayesiens, inverse problems et transfert simulation-vers-reel.",
-      "prompt_interpretation": "La recherche a cible gamma spectroscopy, isotope identification, low-resolution detectors, 1D CNN, spectral unmixing et AI for nuclear measurements.",
-      "rating_guidance": "Les ratings existants favorisent les travaux directement relies a l identification radioisotopique, au denoising et aux donnees terrain plutot qu aux modeles purement generiques.",
+      "unread_count": 10,
+      "summary": "Aucun nouvel article ajoute. Les recherches recentes recroisent surtout les articles deja presents sur UDA, domain adaptation, denoising, Bayesian inference, autoencoders et unmixing.",
+      "refined_context": "Traitement de spectres gamma et mesures nucleaires: denoising, unmixing, identification radioisotopique, modeles bayesiens, inverse problems et sim-to-real.",
+      "prompt_interpretation": "Requetes ciblees sur gamma spectroscopy, radioisotope identification, denoising, spectral unmixing, Bayesian methods et AI for nuclear measurements.",
+      "rating_guidance": "Les ratings existants restent neutres; priorite aux methodes directement applicables aux donnees de mesure nucleaire et au passage simulation-vers-reel.",
       "scanned_sources": [
         {
-          "name": "IWoRID 2026 / CERN Indico",
-          "reason": "Contribution retenue sur multi-isotope identification avec detecteurs gamma portables."
+          "name": "arXiv",
+          "reason": "UDA deja present; pas de nouveau signal plus pertinent."
         },
         {
           "name": "ScienceDirect / NIM A / Applied Radiation and Isotopes",
-          "reason": "Scannes pour spectrometrie gamma et deep learning; doublons ou signaux moins recents."
+          "reason": "Scannes pour radioisotope identification et denoising."
         },
         {
-          "name": "arXiv / HAL / IEEE",
-          "reason": "Scannes pour unmixing, denoising et domain adaptation."
+          "name": "HAL / PubMed / IEEE",
+          "reason": "Scannes pour unmixing, Bayesian et autoencoders."
         }
       ],
       "suggested_sources": [
         "ScienceDirect",
         "NIM A",
         "Applied Radiation and Isotopes",
-        "IWoRID",
-        "IEEE Xplore",
+        "Radiation Physics and Chemistry",
         "arXiv",
-        "HAL"
+        "HAL",
+        "PubMed",
+        "IEEE Xplore"
       ],
       "search_terms": [
-        "gamma spectroscopy isotope identification 1D CNN 2026",
-        "low resolution gamma detector multi isotope identification 2026",
+        "June 2026 gamma spectroscopy radioisotope identification deep learning denoising spectral unmixing",
+        "gamma spectroscopy spectral unmixing 2026 machine learning",
         "radioisotope identification deep learning gamma 2026"
       ]
     },
@@ -560,33 +618,29 @@
       "tab_slug": "lucas",
       "tab_name": "Lucas",
       "watch_title": "Unity, Unreal, XR, digital twins et simulation temps reel",
-      "articles_added": 1,
+      "articles_added": 0,
       "science_added": 0,
-      "press_added": 1,
-      "unread_count": 3,
-      "new_titles": [
-        "I, Spatial: Gaussian Splatting production workflows at AWE USA 2026"
-      ],
-      "summary": "1 article presse/evenement ajoute sur les workflows de production Gaussian Splatting pour XR a AWE USA 2026.",
-      "refined_context": "Moteurs temps reel et XR pour outils industriels/scientifiques: Unity/Unreal, OpenXR, jumeaux numeriques, rendering GPU, Gaussian Splatting/NeRF et pipelines exploitables hors jeu video.",
-      "prompt_interpretation": "Le signal a ete retenu car il relie Gaussian Splatting, XR et workflow de production concret.",
-      "rating_guidance": "Les notes hautes sur Unity XR, Android XR et GaussTwin orientent vers des pipelines 3DGS/XR concrets, integrables et utiles en production.",
+      "press_added": 0,
+      "unread_count": 0,
+      "summary": "Aucun nouvel article ajoute. Les meilleurs resultats recents sur GaussTwin, Unity/3DGS et digital twins etaient deja couverts ou moins nouveaux que les entrees existantes.",
+      "refined_context": "Moteurs temps reel et XR pour outils industriels/scientifiques: Unity/Unreal, OpenXR, jumeaux numeriques, rendering GPU, Gaussian Splatting/NeRF et pipelines exploitables.",
+      "prompt_interpretation": "Requetes ciblees sur Unity XR, Unreal, OpenXR, Gaussian Splatting, digital twin, simulation robotique temps reel et NVIDIA/graphics.",
+      "rating_guidance": "Les notes hautes sur Unity XR et GaussTwin maintiennent la priorite aux pipelines concrets et integrables.",
       "scanned_sources": [
         {
-          "name": "AWE USA 2026",
-          "reason": "Session retenue sur Gaussian Splatting production workflows."
+          "name": "arXiv",
+          "reason": "GaussTwin et 3DGS deja presents ou signaux proches."
         },
         {
           "name": "Unity / Unreal / Khronos",
-          "reason": "Scannes pour OpenXR, XR industriel et moteurs temps reel; pas d ajout plus cible."
+          "reason": "Scannes pour mises a jour XR/OpenXR."
         },
         {
-          "name": "arXiv / NVIDIA / Cesium",
-          "reason": "Scannes pour 3DGS, jumeaux numeriques et streaming 3D."
+          "name": "NVIDIA / Cesium / SIGGRAPH-CVPR ecosystem",
+          "reason": "Scannes pour digital twins et rendering temps reel."
         }
       ],
       "suggested_sources": [
-        "AWE",
         "Unity Blog",
         "Unreal Engine",
         "Khronos/OpenXR",
@@ -597,9 +651,8 @@
         "arXiv"
       ],
       "search_terms": [
-        "Gaussian Splatting XR production workflow 2026",
-        "Unity Unreal XR digital twin Gaussian Splatting 2026",
-        "OpenXR industrial digital twin 2026"
+        "June 2026 Unity XR OpenXR digital twin Gaussian splatting Unreal real-time simulation",
+        "June 2026 Gaussian splatting digital twin Unity Unreal XR"
       ]
     },
     {
@@ -610,10 +663,10 @@
       "science_added": 0,
       "press_added": 0,
       "unread_count": 0,
-      "summary": "Aucun nouvel article ajoute. Les resultats proches etaient deja presents, trop semantiques, ou moins directement lies aux representations polygonales pour planning.",
+      "summary": "Aucun nouvel article ajoute. Les recherches recentes renvoient surtout vers PolyMap, graphes convexes, SoCG/SODA et planning polygonal deja presents.",
       "refined_context": "Representations polygonales/polyedriques pour robotique autonome: decompositions convexes, graphes de regions, environnements polygonaux 2D, cartes polyhedriques 3D et planification avec garanties.",
       "prompt_interpretation": "Requetes ciblees sur polygonal SLAM, polyhedral maps, convex decomposition, graph of convex sets et motion planning en environnements polygonaux.",
-      "rating_guidance": "La note haute sur PolyMap maintient la priorite aux representations polyedriques exploitables par planificateurs, avec garanties geometriques.",
+      "rating_guidance": "PolyMap note 9 reste le signal principal; les travaux non polygonaux ou trop semantiques restent depriorises.",
       "scanned_sources": [
         {
           "name": "SoCG / SODA / Dagstuhl",
@@ -625,7 +678,7 @@
         },
         {
           "name": "ScienceDirect Robotics and Autonomous Systems",
-          "reason": "Scanne pour planning et coverage path planning; aucun ajout."
+          "reason": "Scanne pour coverage/path planning polygonal."
         }
       ],
       "suggested_sources": [
@@ -639,38 +692,34 @@
         "ScienceDirect Robotics"
       ],
       "search_terms": [
-        "polygonal SLAM path planning robots 2026",
-        "polyhedral map robot motion planning 2026",
-        "convex decomposition robot planning 2026"
+        "June 2026 polygonal map robot path planning SLAM polyhedral map",
+        "June 2026 robot polygonal environment path planning SLAM convex decomposition"
       ]
     },
     {
       "tab_slug": "val",
       "tab_name": "Val",
-      "watch_title": "SLAM, navigation robotique et datasets",
-      "articles_added": 1,
-      "science_added": 1,
+      "watch_title": "SLAM LiDAR, benchmark et motion capture",
+      "articles_added": 0,
+      "science_added": 0,
       "press_added": 0,
-      "unread_count": 6,
-      "new_titles": [
-        "A ground robot dataset for multi-sensor navigation in diverse environments"
-      ],
-      "summary": "1 article scientifique ajoute sur un dataset robot terrestre multi-capteurs pour navigation dans des environnements varies.",
-      "refined_context": "SLAM, navigation et evaluation robotique: datasets multi-capteurs, benchmarks, lidar/camera/IMU, ground truth, robustness et protocoles reproductibles.",
-      "prompt_interpretation": "Le nouveau prompt de Val a ete traite en priorite avec des requetes sur ground robot dataset, multi-sensor navigation, SLAM benchmark et diverse environments.",
-      "rating_guidance": "Les ratings existants favorisent les datasets et benchmarks exploitables, avec capteurs multiples et ground truth clair, plutot que les annonces sans protocole reproductible.",
+      "unread_count": 4,
+      "summary": "Aucun nouvel article ajoute. Les recherches recentes recroisent surtout CAVERS, SMapper, MoCap2GT et benchmarks LiDAR deja presents; les resultats visual-SLAM ont ete exclus.",
+      "refined_context": "SLAM LiDAR 2D/3D, evaluation robot mobile, ATE/RPE, protocoles physiques et verite terrain motion capture.",
+      "prompt_interpretation": "Requetes ciblees sur LiDAR SLAM benchmark, motion capture ground truth, mobile robot physical comparison, FAST-LIO, LIO-SAM, Cartographer et SLAM Toolbox.",
+      "rating_guidance": "Les ajouts doivent rester LiDAR-only ou tres exploitables en benchmark SLAM LiDAR; Visual/VIO/RGB-D sont exclus sauf reference methodologique.",
       "scanned_sources": [
         {
-          "name": "The International Journal of Robotics Research / SAGE",
-          "reason": "Article retenu sur dataset multi-capteurs pour navigation robot terrestre."
+          "name": "arXiv",
+          "reason": "CAVERS/MoCap2GT deja presents; resultats visual-SLAM exclus."
         },
         {
-          "name": "IEEE RA-L / ICRA / IROS",
-          "reason": "Scannes pour SLAM, navigation et benchmarks recents."
+          "name": "ScienceDirect / Springer / IEEE",
+          "reason": "Scannes pour benchmarks LiDAR et datasets."
         },
         {
-          "name": "arXiv / ScienceDirect",
-          "reason": "Scannes pour datasets de navigation et SLAM multi-capteurs."
+          "name": "TUGraz / datasets SLAM",
+          "reason": "Scannes pour protocoles avec ground truth."
         }
       ],
       "suggested_sources": [
@@ -681,12 +730,13 @@
         "IROS",
         "RSS",
         "arXiv cs.RO",
-        "KITTI / OpenReview datasets"
+        "ScienceDirect",
+        "SpringerLink"
       ],
       "search_terms": [
-        "ground robot dataset multi-sensor navigation diverse environments 2026",
-        "SLAM benchmark multi sensor robot navigation 2026",
-        "robot dataset indoor outdoor navigation ground truth 2026"
+        "June 2026 LiDAR SLAM benchmark motion capture ground truth robot",
+        "LiDAR SLAM benchmark motion capture ground truth mobile robot 2026",
+        "FAST-LIO LIO-SAM benchmark motion capture 2026"
       ]
     }
   ]
