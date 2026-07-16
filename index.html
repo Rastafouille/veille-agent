@@ -420,12 +420,12 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-07-16T19:06:59.6743326+02:00",
+  "last_watch": "2026-07-16T19:46:45.6079134+02:00",
   "next_watch": "2026-07-20T08:00:00+02:00",
   "status": "success",
-  "articles_added": 6,
+  "articles_added": 8,
   "tabs_processed": 7,
-  "summary": "Run complet execute le 16/07/2026. git pull --ff-only: depot deja a jour. Le MCP Supabase a ete utilise directement. Recherche large sur tous les onglets avec sources explicites, sources historiques, sources primaires, industriels, requetes web larges et requetes ciblees par site. 6 nouveaux articles ajoutes: 4 pour Humanoide, 1 pour Val et 1 pour Thibaud D.",
+  "summary": "Run complet execute le 16/07/2026, complete par une recherche approfondie Jerem le meme jour. Le MCP Supabase a ete utilise directement. 8 nouveaux articles ajoutes au total: 4 pour Humanoide, 2 pour Jerem, 1 pour Val et 1 pour Thibaud D. Pour Jerem, la recherche approfondie a cible les signaux bien notes: robotique de terrain nucleaire, radiation mapping, localisation de source gamma, LiDAR/SLAM et validation experimentale.",
   "runs": [
     {
       "tab_slug": "humanoide",
@@ -582,26 +582,30 @@
       "tab_slug": "jerem",
       "tab_name": "Jerem",
       "watch_title": "Robotique nucleaire",
-      "articles_added": 0,
-      "science_added": 0,
+      "articles_added": 2,
+      "science_added": 2,
       "press_added": 0,
-      "unread_count": 0,
-      "summary": "Aucun nouvel article ajoute. Les recherches nucleaire/robotique/radiation mapping ont surtout remonte des doublons, references anciennes ou signaux trop generiques.",
-      "refined_context": "Robotique d inspection, intervention et decontamination en environnement nucleaire, avec priorite aux systemes deployables, radiation mapping, remote handling et retours terrain.",
-      "prompt_interpretation": "Requetes larges et ciblees sur nuclear decommissioning robotics, radiation mapping robot, Fukushima, Sellafield, RAICo, NDA, TEPCO, remote handling et SLAM radiologique.",
-      "rating_guidance": "Les notes hautes continuent de favoriser RAICo/Sellafield, HazardBot, radiation mapping, robotique deployable et retours terrain.",
+      "unread_count": 2,
+      "summary": "2 articles scientifiques ajoutes apres recherche approfondie: un arXiv sur la localisation robotisee de source radioactive en environnement inconnu/non structure, et un preprint sur la cartographie robot mobile de champs gamma a fort gradient par Gaussian Process physics-guided.",
+      "refined_context": "Robotique d inspection, intervention et decontamination en environnement nucleaire, avec priorite aux systemes deployables, radiation mapping, source localization, LiDAR/SLAM, gamma dose-rate, remote handling et retours terrain.",
+      "prompt_interpretation": "Recherche approfondie guidee par les ratings hauts: radiation mapping concret, robot mobile ou quadrupede, localisation de source radioactive, environnements inconnus/non structures, validation physique, LiDAR-SLAM et reduction de dose ALARA.",
+      "rating_guidance": "Les notes hautes sur radiation mapping, RAICo/Sellafield, quadrupedes et UAV gamma mapping ont tire la recherche vers les methodes robotisees deployables et validees. Les signaux purement simulation, SLAM generique ou communiques vagues ont ete ecartes.",
       "scanned_sources": [
         {
-          "name": "RAICo / Sellafield / NDA / UKAEA / IAEA",
-          "reason": "Scannes pour demonstrations terrain et projets decommissioning."
+          "name": "arXiv robotics / machine learning",
+          "reason": "Article physics-guided robotic radiation source localization retenu."
         },
         {
-          "name": "World Nuclear News / Nuclear Engineering International / TEPCO-Fukushima",
-          "reason": "Scannes pour actualites nucleaires et robots de terrain."
+          "name": "Preprints.org / radiation mapping",
+          "reason": "Preprint physics-guided GP mapping retenu pour robot mobile LiDAR-SLAM + detecteur gamma."
         },
         {
-          "name": "ScienceDirect / IEEE / arXiv / MDPI / Frontiers",
-          "reason": "Scannes pour radiation mapping, SLAM radiologique et robotique nucleaire."
+          "name": "RAICo / Sellafield / NDA / UKAEA / IAEA / TEPCO",
+          "reason": "Scannes pour signaux terrain; aucun meilleur ajout non duplique que les deux travaux retenus."
+        },
+        {
+          "name": "World Nuclear News / Nuclear Engineering International / ScienceDirect / IEEE / MDPI",
+          "reason": "Scannes pour decommissioning, radiation mapping et robotique nucleaire."
         }
       ],
       "suggested_sources": [
@@ -615,13 +619,19 @@
         "Nuclear Engineering International",
         "ScienceDirect",
         "IEEE Xplore",
-        "Frontiers Robotics and AI",
-        "MDPI"
+        "arXiv cs.RO",
+        "MDPI",
+        "Preprints.org"
       ],
       "search_terms": [
-        "after:2026-06-23 nuclear decommissioning robot radiation mapping July 2026",
-        "after:2026-06-23 radiation mapping robot nuclear LiDAR gamma",
-        "site:raico.org robot nuclear decommissioning 2026 July"
+        "after:2026-05-27 nuclear decommissioning robot radiation mapping LiDAR gamma robot 2026",
+        "Physics-Guided Robotic Radiation Source Localization",
+        "Physics-Guided Gaussian Process Mapping radiation mobile robot surveys",
+        "robotic radiation source localization unknown unstructured environments 2026"
+      ],
+      "new_titles": [
+        "Physics-Guided Robotic Radiation Source Localization along Arbitrary Measurement Paths in Unstructured Environments",
+        "Physics-Guided Gaussian Process Mapping of Strong-Gradient Radiation Fields from Mobile Robot Surveys"
       ]
     },
     {
