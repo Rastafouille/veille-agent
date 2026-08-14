@@ -420,150 +420,156 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-08-06T00:00:00+02:00",
-  "next_watch": "2026-08-10T08:00:00+02:00",
-  "status": "success",
-  "articles_added": 16,
-  "tabs_processed": 8,
-  "summary": "Run complet approfondi execute le 06/08/2026 via MCP Supabase. Recherche large sur sources primaires et profondes: Elsevier/ScienceDirect, HAL, MDPI, Wiley, IEEE, Springer, SAGE, arXiv, Frontiers, Unity, NVIDIA, pages projets/labos et sources industrielles. 16 nouveaux articles ajoutes apres deduplication stricte titre/lien: 3 Humanoide, 1 Jerem, 2 Val, 2 Nathan, 3 Pierre-Louis, 3 Lucas, 2 Thibaud D. Julien V n a pas de prompt configure.",
+  "last_watch": "2026-08-14T00:00:00+02:00",
+  "next_watch": "2026-08-17T08:00:00+02:00",
+  "updated_at": "2026-08-14T00:00:00+02:00",
+  "agent": "Codex MCP Supabase",
+  "summary": "Run complet approfondi execute le 14/08/2026 via MCP Supabase reactif. Recherche large sur sources primaires et profondes: arXiv, Elsevier/ScienceDirect, HAL, MDPI, Wiley, IEEE, Springer, SAGE, conferences, sources industrielles et pages projet/labo. 9 nouveaux articles ajoutes apres deduplication stricte titre/lien: 3 Humanoide, 2 Nathan, 1 Pierre-Louis, 2 Lucas, 1 Thibaud D. Aucun ajout strictement pertinent pour Jerem, Val et Julien V sur ce run.",
   "runs": [
     {
       "tab_slug": "humanoide",
       "tab_name": "Humanoide",
-      "watch_title": "Robotique humanoide: mobilite, perception, manipulation",
+      "added_count": 3,
+      "visible_unread": 23,
+      "notes": "Humanoides: loco-manipulation concurrente, apprentissage SMPC/RL et planification whole-body en espaces confines.",
+      "added_titles": [
+        "$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation",
+        "Learning Loco-Manipulation From SMPC Demonstrations With Sparse Offline-to-Online RL",
+        "Whole-Body Planning for Humanoids Navigating Confined Spaces via Self-Collision Avoidance References"
+      ],
       "articles_added": 3,
+      "unread_count": 23,
       "science_added": 3,
       "press_added": 0,
-      "unread_count": 20,
-      "new_titles": ["SIMPLE: Simulation-Based Policy Learning and Evaluation for Humanoid Loco-manipulation", "ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation", "Pro-HOI: Perceptive Root-guided Humanoid-Object Interaction"],
-      "summary": "3 ajouts sur loco-manipulation humanoide: benchmark SIMPLE, controleur multimodal ULTRA pour Unitree G1 et framework Pro-HOI root-guided avec perception active.",
-      "refined_context": "Priorite aux humanoides physiques, loco-manipulation, perception active, teleoperation/VR, sim-to-real et benchmarks reproductibles.",
-      "prompt_interpretation": "Recherche humanoid robot, whole-body manipulation, loco-manipulation, Unitree G1/H1, active perception, foundation models, simulation benchmark et IROS/IEEE/arXiv.",
-      "rating_guidance": "Ratings encore neutres sur cet onglet; les ajouts privilegient robot reel ou transfert explicite simulation-vers-reel.",
-      "scanned_sources": [{"name":"arXiv / pages projet/labo","reason":"SIMPLE, ULTRA et Pro-HOI retenus."},{"name":"IEEE / ICRA / IROS / SII","reason":"Scannes pour teleoperation, whole-body manipulation et hardware humanoide."},{"name":"Unitree / NVIDIA / presse robotique","reason":"Scannes pour signaux industriels; pas de meilleur ajout non duplique."}],
-      "suggested_sources": ["arXiv cs.RO", "IEEE RA-L", "ICRA", "IROS", "SII", "Unitree", "NVIDIA Robotics", "The Robot Report"],
-      "search_terms": ["humanoid loco-manipulation August 2026", "Unitree G1 whole-body manipulation", "humanoid simulation benchmark loco-manipulation"]
+      "new_titles": [
+        "$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation",
+        "Learning Loco-Manipulation From SMPC Demonstrations With Sparse Offline-to-Online RL",
+        "Whole-Body Planning for Humanoids Navigating Confined Spaces via Self-Collision Avoidance References"
+      ],
+      "summary": "Humanoides: loco-manipulation concurrente, apprentissage SMPC/RL et planification whole-body en espaces confines."
     },
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
-      "watch_title": "Robotique nucleaire",
-      "articles_added": 1,
-      "science_added": 1,
-      "press_added": 0,
+      "added_count": 0,
+      "visible_unread": 3,
+      "notes": "Recherche profonde robotique nucleaire/radiological mapping: pas de nouveau resultat recent assez specifique apres deduplication.",
+      "added_titles": [],
+      "articles_added": 0,
       "unread_count": 3,
-      "new_titles": ["Enhanced radiation source localization method based on anisotropic adaptive Metropolis-Hastings particle filtering in nuclear and radiation emergency"],
-      "summary": "1 ajout scientifique sur localisation rapide de source radioactive par filtre particulaire AAMH-PF, pertinent pour robots de cartographie radiologique et intervention d urgence.",
-      "refined_context": "Robotique nucleaire terrain, cartographie gamma, localisation de source, LiDAR/SLAM radiologique, decommissioning, RAICo/NDA/IAEA et reduction ALARA.",
-      "prompt_interpretation": "Recherche nuclear robot, radiation mapping, gamma source localization, decommissioning robot, LiDAR, autonomous survey, Elsevier/IEEE/MDPI/HAL/Wiley.",
-      "rating_guidance": "Les notes hautes sur radiation mapping, quadrupedes, RAICo/Sellafield et source localization ont pousse vers les methodes deployables et experimentales. LIBS/Raman robotique et essais Oldbury etaient deja en base, donc non reinserees.",
-      "scanned_sources": [{"name":"ScienceDirect / Elsevier","reason":"AAMH-PF retenu; LIBS/Raman et path planning nuclear decommissioning deja presents."},{"name":"MDPI / IEEE / HAL / Wiley","reason":"Scannes pour radiation mapping robotise et nuclear decommissioning; plusieurs doublons ou articles trop generiques."},{"name":"RAICo / NDA / GOV.UK / IAEA / JAEA","reason":"Scannes pour retours terrain industriels et pages projet."}],
-      "suggested_sources": ["ScienceDirect", "IEEE Xplore", "MDPI", "HAL", "Wiley", "RAICo", "NDA", "IAEA", "JAEA", "World Nuclear News"],
-      "search_terms": ["nuclear decommissioning robot radiation mapping August 2026", "gamma source localization robot 2026", "radiological SLAM LiDAR robot"]
+      "science_added": 0,
+      "press_added": 0,
+      "new_titles": [],
+      "summary": "Recherche profonde robotique nucleaire/radiological mapping: pas de nouveau resultat recent assez specifique apres deduplication."
     },
     {
       "tab_slug": "val",
       "tab_name": "Val",
-      "watch_title": "SLAM LiDAR, benchmark et motion capture",
-      "articles_added": 2,
-      "science_added": 2,
-      "press_added": 0,
+      "added_count": 0,
+      "visible_unread": 9,
+      "notes": "Recherche LiDAR-only SLAM benchmark/mocap: faux positifs ecartes car visuels, multimodaux ou hors protocole.",
+      "added_titles": [],
+      "articles_added": 0,
       "unread_count": 9,
-      "new_titles": ["Distributed multi-robot LiDAR SLAM with ground-optimized preprocessing and slope-adaptive segmentation", "MapsHD: A benchmark suite for LiDAR odometry frameworks"],
-      "summary": "2 ajouts: SLAM LiDAR multi-robot distribue avec segmentation sol adaptative aux pentes, et MapsHD, suite open-source pour benchmark LO/LIO avec APE/RPE, ROS1/ROS2 et algorithmes dockerises.",
-      "refined_context": "Benchmark SLAM LiDAR 2D/3D, ground truth, motion capture ou reference externe, ATE/RPE, ROS bags, evaluation physique et robustesse terrain.",
-      "prompt_interpretation": "Recherche LiDAR SLAM benchmark, motion capture ground truth, LO/LIO frameworks, FAST-LIO/LIO-SAM/KISS-ICP, ScienceDirect, IEEE, Frontiers, MDPI et Springer.",
-      "rating_guidance": "Pas de rating haut structurant; les ajouts restent LiDAR ou benchmark direct. Les resultats camera/RGB-D ou tracking personnes sont ecartes sauf reference de protocole.",
-      "scanned_sources": [{"name":"Frontiers / IEEE / MDPI","reason":"SLAM LiDAR multi-robot avec ablations et GPS benchmark retenu."},{"name":"ScienceDirect / SoftwareX","reason":"MapsHD retenu pour suite benchmark LO/LIO."},{"name":"HAL / Springer / SAGE / datasets","reason":"Scannes pour protocoles motion capture et datasets, plusieurs doublons deja presents."}],
-      "suggested_sources": ["ScienceDirect", "IEEE RA-L", "Frontiers in Neurorobotics", "MDPI Sensors", "Springer", "SAGE IJRR", "HAL", "Newer College", "Hilti SLAM Challenge"],
-      "search_terms": ["LiDAR SLAM benchmark motion capture August 2026", "LiDAR odometry benchmark suite ROS2", "distributed multi robot LiDAR SLAM slope"]
-    },
-    {
-      "tab_slug": "thibaud-d",
-      "tab_name": "Thibaud D",
-      "watch_title": "Representation polygonale de l espace pour robots autonomes",
-      "articles_added": 2,
-      "science_added": 2,
+      "science_added": 0,
       "press_added": 0,
-      "unread_count": 2,
-      "new_titles": ["Path planning and task allocation based on community detection in Voronoi diagrams", "Morphology-aware decoupled hierarchical planning for multi-legged space robots navigation on discontinuous spacecraft surfaces"],
-      "summary": "2 ajouts: planification/allocation par communautes et diagrammes de Voronoi en environnements indoor, et planification hierarchique morphology-aware avec carte semantique de negociabilite pour robots multi-pattes.",
-      "refined_context": "Representations polygonales/polyedriques, Voronoi/navmesh, graphes de regions, convex decomposition, semantic maps et path planning exploitable par robots autonomes.",
-      "prompt_interpretation": "Recherche polygonal SLAM, polyhedral map, Voronoi path planning, graph partitioning, semantic map, multi-legged robots et ScienceDirect/IEEE/arXiv.",
-      "rating_guidance": "PolyMap note 9 reste le signal principal; les ajouts gardent un lien fort avec representation geometrique ou decomposition exploitable pour planification robotique.",
-      "scanned_sources": [{"name":"ScienceDirect / Robotics and Autonomous Systems / Information Sciences","reason":"Voronoi/community detection et morphology-aware planning retenus."},{"name":"IEEE / arXiv / SoCG / SODA","reason":"Scannes; PolyMap et SE(2) NavMesh deja presents."},{"name":"Springer / MDPI","reason":"Scannes pour cartes polyedriques et path planning."}],
-      "suggested_sources": ["ScienceDirect", "IEEE RA-L", "arXiv cs.RO", "arXiv cs.CG", "Springer", "SoCG", "SODA", "MDPI Robotics"],
-      "search_terms": ["polygonal SLAM path planning robot August 2026", "Voronoi diagram robot path planning 2026", "polyhedral map robot motion planning"]
+      "new_titles": [],
+      "summary": "Recherche LiDAR-only SLAM benchmark/mocap: faux positifs ecartes car visuels, multimodaux ou hors protocole."
     },
     {
       "tab_slug": "nathan",
       "tab_name": "Nathan",
-      "watch_title": "ASIC et electronique de lecture SiPM",
+      "added_count": 2,
+      "visible_unread": 7,
+      "notes": "SiPM/readout: electronique de lecture, timing et configuration dual-channel.",
+      "added_titles": [
+        "108 ps coincidence time resolution through optimized scintillators, photodetectors, readout electronics, and DOI-based timing correction in orthogonally stacked detector configurations",
+        "Temperature-Dependent Performance of NaI(Tl) Crystal with Dual-Channel SiPM Readout for Low-Mass Dark Matter Searches"
+      ],
       "articles_added": 2,
+      "unread_count": 7,
       "science_added": 2,
       "press_added": 0,
-      "unread_count": 5,
-      "new_titles": ["SiPM readout prototype design for Zero Degree Calorimeters", "The SiSMUV Project: Modular Front-End Readout and Control Electronics for Large SiPM-Based Telescope Focal Surfaces"],
-      "summary": "2 ajouts: front-end SiPM multi-gain pour calorimetres zero degree et architecture SiSMUV modulaire RADIOROC/FPGA pour grands plans focaux SiPM.",
-      "refined_context": "ASIC/front-end SiPM, seuils configurables, double gain, timing, compensation, DAQ haut debit, fabricants et conferences instrumentation.",
-      "prompt_interpretation": "Recherche SiPM readout ASIC, front-end electronics, RADIOROC, FERS, ALCOR, TOFPET, Citiroc, IEEE NSS/MIC, TIPP, NIM A, ScienceDirect et JINST.",
-      "rating_guidance": "Priorite aux systemes electroniques concrets avec architecture front-end, timing/energie, double gain ou integration fabricant/instrumentation.",
-      "scanned_sources": [{"name":"ScienceDirect / Elsevier","reason":"Prototype readout SiPM zero degree calorimeter retenu; ALCOR deja present."},{"name":"CERN Indico / TIPP 2026","reason":"SiSMUV retenu pour architecture modulaire RADIOROC/FPGA."},{"name":"IEEE / JINST / fabricants","reason":"Scannes pour ASICs et modules; plusieurs resultats hors cible directe ou deja presents."}],
-      "suggested_sources": ["NIM A", "JINST", "IEEE NSS/MIC", "TIPP", "ANIMMA", "CAEN", "Hamamatsu", "onsemi", "Weeroc", "PETsys"],
-      "search_terms": ["SiPM readout ASIC August 2026", "SiPM front-end electronics RADIOROC", "SiPM multi gain TDC ADC readout"]
+      "new_titles": [
+        "108 ps coincidence time resolution through optimized scintillators, photodetectors, readout electronics, and DOI-based timing correction in orthogonally stacked detector configurations",
+        "Temperature-Dependent Performance of NaI(Tl) Crystal with Dual-Channel SiPM Readout for Low-Mass Dark Matter Searches"
+      ],
+      "summary": "SiPM/readout: electronique de lecture, timing et configuration dual-channel."
     },
     {
       "tab_slug": "pierre-louis",
       "tab_name": "Pierre-Louis",
-      "watch_title": "Traitement de donnees nucleaires et spectrometrie",
-      "articles_added": 3,
-      "science_added": 3,
+      "added_count": 1,
+      "visible_unread": 5,
+      "notes": "Traitement de donnees nucleaires: identification gamma-neutron par statistiques et machine learning.",
+      "added_titles": [
+        "Gamma Neutron Radioactive Source Identification in Water Cherenkov Detectors"
+      ],
+      "articles_added": 1,
+      "unread_count": 5,
+      "science_added": 1,
       "press_added": 0,
-      "unread_count": 4,
-      "new_titles": ["Radioisotope Identification under Spectral Variability Using Convolutional Neural Network with Structured 2-D Transformed Gamma Spectra", "Dense autoencoders, clustering techniques, and semi-supervised learning for HPGe gamma-spectra", "Development of a deep learning-based gamma spectroscopic analysis system for high-radiation field applications"],
-      "summary": "3 ajouts sur spectrometrie gamma: RIID robuste par CNN 2D sous variabilite spectrale, autoencodeurs/semi-supervise pour HPGe, et systeme GSA haute radiation avec correction pile-up deep learning.",
-      "refined_context": "Traitement de spectres gamma, RIID, denoising, unmixing, incertitude, domain adaptation, autoencodeurs et methodes deployables en environnement reel.",
-      "prompt_interpretation": "Recherche gamma-ray spectrometry, radioisotope identification, spectral variability, autoencoder, Bayesian, HAL, ScienceDirect, IEEE, PubMed et Nature.",
-      "rating_guidance": "Priorite aux methodes robustes aux donnees terrain, derive energetique, faibles comptes, pile-up et sim-to-real. Les UDA/deep learning deja presents ont ete exclus en doublon.",
-      "scanned_sources": [{"name":"ScienceDirect / Elsevier","reason":"3 articles retenus; plusieurs references deja presentes en base."},{"name":"HAL / PubMed / Nature / IEEE","reason":"Scannes pour denoising, calibration et RIID; certains resultats moins centraux."},{"name":"NIM A / Applied Radiation and Isotopes / Radiation Physics and Chemistry","reason":"Scannes pour spectrometrie gamma et ML."}],
-      "suggested_sources": ["ScienceDirect", "NIM A", "Applied Radiation and Isotopes", "Radiation Physics and Chemistry", "HAL", "PubMed", "IEEE Xplore", "Nature Scientific Reports"],
-      "search_terms": ["gamma-ray spectrometry deep learning August 2026", "radioisotope identification spectral variability CNN", "HPGe spectra autoencoder semi supervised"]
+      "new_titles": [
+        "Gamma Neutron Radioactive Source Identification in Water Cherenkov Detectors"
+      ],
+      "summary": "Traitement de donnees nucleaires: identification gamma-neutron par statistiques et machine learning."
     },
     {
       "tab_slug": "lucas",
       "tab_name": "Lucas",
-      "watch_title": "Unity, Unreal, XR, digital twins et simulation temps reel",
-      "articles_added": 3,
+      "added_count": 2,
+      "visible_unread": 2,
+      "notes": "XR/Unity/simulation scientifique: Gaussian Splatting pour simulation physique et pipeline XR Unity.",
+      "added_titles": [
+        "WildFireGS: Physics-Based Wildfire Simulation in Large-Scale Semantics-Enriched Gaussian Splatting Forest Scenes",
+        "SpaceVLA: Spatially Grounded VLA for Robotic Manipulation with User-Authored Grasp and Place Anchors"
+      ],
+      "articles_added": 2,
+      "unread_count": 2,
+      "science_added": 2,
+      "press_added": 0,
+      "new_titles": [
+        "WildFireGS: Physics-Based Wildfire Simulation in Large-Scale Semantics-Enriched Gaussian Splatting Forest Scenes",
+        "SpaceVLA: Spatially Grounded VLA for Robotic Manipulation with User-Authored Grasp and Place Anchors"
+      ],
+      "summary": "XR/Unity/simulation scientifique: Gaussian Splatting pour simulation physique et pipeline XR Unity."
+    },
+    {
+      "tab_slug": "thibaud-d",
+      "tab_name": "Thibaud D",
+      "added_count": 1,
+      "visible_unread": 1,
+      "notes": "Representation polyedrique: decomposition convexe rapide sur nuages de points LiDAR pour trajectoires.",
+      "added_titles": [
+        "PathCover: A Fast Convex Decomposition along a Path via Randomized Iterative Space Partitioning (RISP) on Point Clouds"
+      ],
+      "articles_added": 1,
+      "unread_count": 1,
       "science_added": 1,
-      "press_added": 2,
-      "unread_count": 3,
-      "new_titles": ["Ditmara: A modular digital twin reference architecture", "The Future of XR Is Hands-First - And Unity's Tools Are Ready", "XRTwin4Industry: Empowering industrial digital twins with XR and instruction system - a framework for standardization and interoperability"],
-      "summary": "3 ajouts: architecture Unity Ditmara pour jumeaux numeriques production-grade, outils Unity XR Hands/Interaction Simulator, et framework XRTwin4Industry pour XR + digital twins industriels interoperables.",
-      "refined_context": "Unity/Unreal, XR/OpenXR, simulation scientifique, jumeaux numeriques industriels, Gaussian Splatting, rendu temps reel et pipelines exploitables.",
-      "prompt_interpretation": "Recherche Unity XR, OpenXR, Android XR, XR Hands, digital twin architecture, Gaussian Splatting, NVIDIA Omniverse, ScienceDirect et blogs editeurs.",
-      "rating_guidance": "Les notes hautes sur Unity XR et 3DGS favorisent les briques directement integrables dans un workflow Unity/XR ou digital twin industriel.",
-      "scanned_sources": [{"name":"Unity Blog / Learn Unity","reason":"Ditmara et XR Hands retenus."},{"name":"ScienceDirect / Future Generation Computer Systems","reason":"XRTwin4Industry retenu."},{"name":"NVIDIA / Khronos / arXiv / SIGGRAPH","reason":"Scannes pour Omniverse, OpenXR et 3DGS; plusieurs resultats deja presents."}],
-      "suggested_sources": ["Unity Blog", "Unity Learn", "Khronos OpenXR", "NVIDIA Developer", "ScienceDirect", "ACM TOG", "SIGGRAPH", "arXiv"],
-      "search_terms": ["Unity XR OpenXR digital twin August 2026", "Unity hands tracking XR 2026", "industrial digital twin XR framework 2026"]
+      "press_added": 0,
+      "new_titles": [
+        "PathCover: A Fast Convex Decomposition along a Path via Randomized Iterative Space Partitioning (RISP) on Point Clouds"
+      ],
+      "summary": "Representation polyedrique: decomposition convexe rapide sur nuages de points LiDAR pour trajectoires."
     },
     {
       "tab_slug": "julien-v",
       "tab_name": "Julien V",
-      "watch_title": "Onglet sans configuration",
+      "added_count": 0,
+      "visible_unread": 0,
+      "notes": "Aucun prompt configure et pas d email de notification.",
+      "added_titles": [],
       "articles_added": 0,
+      "unread_count": 0,
       "science_added": 0,
       "press_added": 0,
-      "unread_count": 0,
       "new_titles": [],
-      "summary": "Aucun run effectue: aucun prompt watch_configs n est configure pour cet onglet.",
-      "refined_context": "Configuration manquante.",
-      "prompt_interpretation": "Pas de prompt disponible dans watch_configs.",
-      "rating_guidance": "Aucun rating exploitable sans contexte de veille.",
-      "scanned_sources": [],
-      "suggested_sources": [],
-      "search_terms": []
+      "summary": "Aucun prompt configure et pas d email de notification."
     }
-  ]
+  ],
+  "status": "success",
+  "articles_added": 9,
+  "tabs_processed": 8
 }
 </script>
 
