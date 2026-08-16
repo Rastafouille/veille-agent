@@ -37,26 +37,3 @@ Le site (GitHub Pages + Supabase) affiche vos onglets et se met à jour après c
 ## Déploiement
 
 Site : [https://rastafouille.github.io/veille-agent/](https://rastafouille.github.io/veille-agent/)
-
-## Automatisation cloud
-
-Le run complet hebdomadaire est lancé par GitHub Actions via
-`.github/workflows/weekly-watch.yml`.
-
-- Déclenchement automatique : lundi matin, `06:00 UTC` (08:00 à Paris en heure d'été).
-- Déclenchement manuel : onglet GitHub **Actions** > **Weekly watch run** > **Run workflow**.
-- Script exécuté : `scripts/weekly-watch.mjs`.
-
-Le script lit Supabase depuis les constantes publiques de `index.html`, cherche sur
-une fenêtre glissante de 6 mois, déduplique par titre/lien, insère les nouveaux
-articles avec `rating=5`, met à jour `watch-agent-meta`, puis commit/push `main`.
-
-Les notifications Gmail depuis GitHub Actions nécessitent ces secrets de dépôt :
-
-- `GMAIL_CLIENT_ID`
-- `GMAIL_CLIENT_SECRET`
-- `GMAIL_REFRESH_TOKEN`
-- `GMAIL_FROM`
-
-Si ces secrets ne sont pas configurés, le run reste fonctionnel pour Supabase,
-`index.html` et GitHub Pages, mais les emails ne seront pas envoyés depuis le cloud.
