@@ -424,63 +424,114 @@
   "next_watch": "2026-08-31T08:00:00+02:00",
   "updated_at": "2026-08-28T00:00:00+02:00",
   "agent": "Codex MCP Supabase",
-  "summary": "Run complet approfondi execute le 28/08/2026 via MCP Supabase. Recherche elargie au-dela des sources configurees: sources primaires, arXiv, IEEE, ScienceDirect/Elsevier, Springer, HAL, PubMed, MDPI, Wiley, SAGE, conferences, industriels et pages projet/labo. 15 nouveaux articles ajoutes apres deduplication stricte titre/lien: 3 Humanoide, 2 Jerem, 2 Val, 2 Nathan, 2 Pierre-Louis, 3 Lucas, 1 Thibaud D. Aucun ajout pour Julien V faute de configuration exploitable.",
+  "summary": "Run complet approfondi execute le 28/08/2026 via MCP Supabase, complete par une passe directe API HAL apres verification utilisateur. Recherche elargie au-dela des sources configurees: sources primaires, HAL, arXiv, IEEE, ScienceDirect/Elsevier, Springer, PubMed, MDPI, Wiley, SAGE, conferences, industriels et pages projet/labo. 26 nouveaux articles ajoutes apres deduplication stricte titre/lien: 8 Humanoide, 4 Jerem, 2 Val, 2 Nathan, 3 Pierre-Louis, 4 Lucas, 3 Thibaud D. Aucun ajout pour Julien V faute de configuration exploitable.",
   "runs": [
     {
       "tab_slug": "humanoide",
       "tab_name": "Humanoide",
       "watch_title": "Robotique humanoide",
-      "added_count": 3,
-      "visible_unread": 26,
-      "notes": "Humanoides: loco-manipulation sim-to-real, adaptation VLA whole-body et controle latent long-horizon.",
+      "added_count": 8,
+      "visible_unread": 31,
+      "notes": "Humanoides: loco-manipulation sim-to-real, adaptation VLA whole-body, controle latent long-horizon, politiques HAL YAHMP/Unitree G1 et controle HYDROÏD.",
       "added_titles": [
         "FetchMan: Learning Visual Humanoid Loco-Manipulation Policies from Simulated Experiences",
         "HAF: Adapting Generalist VLAs to Humanoid Whole-Body Loco-manipulation via Hierarchical Action Flow and Spectral Latent RL",
-        "LUCID: Latent-Skill Unified Control via Imagined Dynamics for Long-Horizon Humanoid Loco-Manipulation"
+        "LUCID: Latent-Skill Unified Control via Imagined Dynamics for Long-Horizon Humanoid Loco-Manipulation",
+        "Learning Reusable Hybrid Motion Priors for Humanoid Locomotion from Motion Imitation",
+        "What Matters in Humanoid General Motion Tracking? An Empirical Study",
+        "Yet Another Humanoid Motion Tracking Policy",
+        "Whole-Body Contact-Rich Motion Planning and Control of Floating-Base Systems",
+        "Robust nonlinear control of the hydroïd humanoid robotic arm: a comparative study of sliding mode strategies for high-precision trajectory tracking"
       ],
-      "articles_added": 3,
-      "unread_count": 26,
-      "science_added": 3,
+      "articles_added": 8,
+      "unread_count": 31,
+      "science_added": 8,
       "press_added": 0,
       "new_titles": [
         "FetchMan: Learning Visual Humanoid Loco-Manipulation Policies from Simulated Experiences",
         "HAF: Adapting Generalist VLAs to Humanoid Whole-Body Loco-manipulation via Hierarchical Action Flow and Spectral Latent RL",
-        "LUCID: Latent-Skill Unified Control via Imagined Dynamics for Long-Horizon Humanoid Loco-Manipulation"
+        "LUCID: Latent-Skill Unified Control via Imagined Dynamics for Long-Horizon Humanoid Loco-Manipulation",
+        "Learning Reusable Hybrid Motion Priors for Humanoid Locomotion from Motion Imitation",
+        "What Matters in Humanoid General Motion Tracking? An Empirical Study",
+        "Yet Another Humanoid Motion Tracking Policy",
+        "Whole-Body Contact-Rich Motion Planning and Control of Floating-Base Systems",
+        "Robust nonlinear control of the hydroïd humanoid robotic arm: a comparative study of sliding mode strategies for high-precision trajectory tracking"
       ],
-      "summary": "Humanoides: loco-manipulation sim-to-real, adaptation VLA whole-body et controle latent long-horizon.",
+      "summary": "Humanoides: loco-manipulation sim-to-real, adaptation VLA whole-body, controle latent long-horizon, politiques HAL YAHMP/Unitree G1 et controle HYDROÏD.",
       "refined_context": "Priorite aux systemes humanoides physiques, whole-body loco-manipulation, manipulation mobile et perception/action transferables sim-to-real.",
       "prompt_interpretation": "J ai privilegie les publications recentes avec validation robot reel ou projet public, et ecarte les papiers trop generiques sur locomotion seule.",
       "rating_guidance": "Pas de ratings historiques forts; selection fondee sur recence, concret robotique et proximite avec manipulation humanoide.",
-      "scanned_sources": ["arXiv", "pages projet/labo", "GitHub robotique", "conferences robotique"],
-      "suggested_sources": ["arXiv humanoid loco-manipulation", "lab/project pages Unitree G1", "RSS robotics conferences"],
-      "search_terms": ["humanoid loco manipulation 2026", "Unitree G1 manipulation arXiv", "whole body humanoid VLA"]
+      "scanned_sources": [
+        "HAL API",
+        "arXiv",
+        "pages projet/labo",
+        "GitHub robotique",
+        "conferences robotique"
+      ],
+      "suggested_sources": [
+        "HAL humanoid robotics",
+        "arXiv humanoid loco-manipulation",
+        "lab/project pages Unitree G1",
+        "RSS/ICRA/IROS humanoid tracks"
+      ],
+      "search_terms": [
+        "humanoid loco manipulation 2026",
+        "Unitree G1 manipulation arXiv HAL",
+        "whole body humanoid VLA",
+        "site:hal.science humanoid motion tracking"
+      ]
     },
     {
       "tab_slug": "jerem",
       "tab_name": "Jerem",
       "watch_title": "Robotique nucleaire et cartographie radiologique",
-      "added_count": 2,
-      "visible_unread": 5,
-      "notes": "Robotique nucleaire: flotte autonome XS-ABILITY et fusion carte 3D LiDAR-SLAM avec imagerie gamma Compton.",
+      "added_count": 4,
+      "visible_unread": 6,
+      "notes": "Robotique nucleaire: flotte autonome XS-ABILITY, fusion carte 3D LiDAR-SLAM avec gamma Compton, et depots HAL CEA sur investigation radiologique terrain.",
       "added_titles": [
         "From Single Platforms to Coordinated Fleets: Safety- and Security-Bounded Autonomous Multi-Robot Systems for Nuclear Decommissioning in Europe",
-        "Improving the reliability of radiation source visualization via integration of multiple three-dimensional map datasets combined with Compton-camera gamma-ray images"
+        "Improving the reliability of radiation source visualization via integration of multiple three-dimensional map datasets combined with Compton-camera gamma-ray images",
+        "Progressive Field Deployment of Measurement-Constrained Robotic Systems for Radiological Investigation in Confined Nuclear Basins",
+        "Indoor UAV for Nuclear Investigation: Experimental Qualification and Field Feedback"
       ],
-      "articles_added": 2,
-      "unread_count": 5,
-      "science_added": 2,
+      "articles_added": 4,
+      "unread_count": 6,
+      "science_added": 4,
       "press_added": 0,
       "new_titles": [
         "From Single Platforms to Coordinated Fleets: Safety- and Security-Bounded Autonomous Multi-Robot Systems for Nuclear Decommissioning in Europe",
-        "Improving the reliability of radiation source visualization via integration of multiple three-dimensional map datasets combined with Compton-camera gamma-ray images"
+        "Improving the reliability of radiation source visualization via integration of multiple three-dimensional map datasets combined with Compton-camera gamma-ray images",
+        "Progressive Field Deployment of Measurement-Constrained Robotic Systems for Radiological Investigation in Confined Nuclear Basins",
+        "Indoor UAV for Nuclear Investigation: Experimental Qualification and Field Feedback"
       ],
-      "summary": "Robotique nucleaire: flotte autonome XS-ABILITY et fusion carte 3D LiDAR-SLAM avec imagerie gamma Compton.",
+      "summary": "Robotique nucleaire: flotte autonome XS-ABILITY, fusion carte 3D LiDAR-SLAM avec gamma Compton, et depots HAL CEA sur investigation radiologique terrain.",
       "refined_context": "Les ratings forts pointent vers cartographie radiologique autonome, essais terrain nucleaires, SLAM LiDAR, capteurs gamma/neutron et decommissioning.",
-      "prompt_interpretation": "J ai cherche au-dela des sources listees vers preprints europeens, CERN Indico, projets/labos et industriels nucleaires.",
+      "prompt_interpretation": "J ai cherche au-dela des sources listees vers preprints europeens, CERN Indico, projets/labos, industriels nucleaires et depots HAL pertinents.",
       "rating_guidance": "Renforce par les anciens articles notes 8-10 sur RAICo, Fukushima, UAV/UGV gamma mapping et Gaussian Process radiation mapping; sources industrielles trop marketing baissees.",
-      "scanned_sources": ["arXiv", "IEEE", "ScienceDirect", "Springer", "HAL", "CERN Indico", "Preprints.org", "IAEA", "JAEA", "UKAEA/Sellafield"],
-      "suggested_sources": ["CERN Indico nuclear instrumentation", "JAEA/Fukushima technical notes", "XS-ABILITY/RAICo project pages"],
-      "search_terms": ["radiation mapping robot LiDAR SLAM 2026", "nuclear decommissioning multi robot gamma neutron", "Compton camera 3D SLAM robot Fukushima"]
+      "scanned_sources": [
+        "HAL API",
+        "arXiv",
+        "IEEE",
+        "ScienceDirect",
+        "Springer",
+        "CERN Indico",
+        "Preprints.org",
+        "IAEA",
+        "JAEA",
+        "UKAEA/Sellafield"
+      ],
+      "suggested_sources": [
+        "HAL CEA/nuclear robotics",
+        "CERN Indico nuclear instrumentation",
+        "JAEA/Fukushima technical notes",
+        "XS-ABILITY/RAICo project pages"
+      ],
+      "search_terms": [
+        "radiation mapping robot LiDAR SLAM 2026",
+        "nuclear decommissioning multi robot gamma neutron",
+        "Compton camera 3D SLAM robot Fukushima",
+        "site:hal.science nuclear investigation robotics radiological measurement"
+      ]
     },
     {
       "tab_slug": "val",
@@ -488,7 +539,7 @@
       "watch_title": "SLAM LiDAR-only et benchmarks",
       "added_count": 2,
       "visible_unread": 11,
-      "notes": "LiDAR-only: odometrie LiDAR 2D rapide et benchmark terrain Monte Carlo/EKF pour pose estimation SLAM 2D.",
+      "notes": "LiDAR-only: odometrie LiDAR 2D rapide et benchmark terrain Monte Carlo/EKF pour pose estimation SLAM 2D; passe HAL controlee sans ajout supplementaire assez specifique.",
       "added_titles": [
         "LIA-LO: an efficient 2D LiDAR odometry algorithm based on intersection point constraints between lines and coordinate axes",
         "A Real-World Benchmark of Monte Carlo-Assisted EKF Odometry for Online Pose Estimation in 2D LiDAR SLAM"
@@ -501,13 +552,33 @@
         "LIA-LO: an efficient 2D LiDAR odometry algorithm based on intersection point constraints between lines and coordinate axes",
         "A Real-World Benchmark of Monte Carlo-Assisted EKF Odometry for Online Pose Estimation in 2D LiDAR SLAM"
       ],
-      "summary": "LiDAR-only: odometrie LiDAR 2D rapide et benchmark terrain Monte Carlo/EKF pour pose estimation SLAM 2D.",
+      "summary": "LiDAR-only: odometrie LiDAR 2D rapide et benchmark terrain Monte Carlo/EKF pour pose estimation SLAM 2D; passe HAL controlee sans ajout supplementaire assez specifique.",
       "refined_context": "Selection stricte LiDAR-only, mobile robot reel, evaluation SLAM/odometrie et protocole reproductible; exclusion des papiers VIO/RGB-D/camera.",
       "prompt_interpretation": "J ai garde les resultats 2D/3D LiDAR sans dependance visuelle directe et ecarte les benchmarks multimodaux type Hilti lorsque le LiDAR n etait pas central.",
       "rating_guidance": "Peu de ratings explicites, donc pondération forte de la correspondance LiDAR-only et des protocoles terrain/benchmark.",
-      "scanned_sources": ["IEEE", "ScienceDirect", "Elsevier", "Springer", "MDPI", "PubMed", "HAL", "arXiv", "Google Scholar"],
-      "suggested_sources": ["MDPI Sensors SLAM", "Industrial Robot / Emerald", "SLAM benchmark repositories"],
-      "search_terms": ["2D LiDAR SLAM benchmark 2026", "LiDAR only odometry mobile robot 2026", "motion capture ground truth LiDAR SLAM"]
+      "scanned_sources": [
+        "HAL API",
+        "IEEE",
+        "ScienceDirect",
+        "Elsevier",
+        "Springer",
+        "MDPI",
+        "PubMed",
+        "arXiv",
+        "Google Scholar"
+      ],
+      "suggested_sources": [
+        "MDPI Sensors SLAM",
+        "Industrial Robot / Emerald",
+        "SLAM benchmark repositories",
+        "HAL LiDAR-only queries"
+      ],
+      "search_terms": [
+        "2D LiDAR SLAM benchmark 2026",
+        "LiDAR only odometry mobile robot 2026",
+        "motion capture ground truth LiDAR SLAM",
+        "site:hal.science LiDAR SLAM odometry"
+      ]
     },
     {
       "tab_slug": "nathan",
@@ -515,7 +586,7 @@
       "watch_title": "SiPM ASIC et electronique de lecture",
       "added_count": 2,
       "visible_unread": 9,
-      "notes": "SiPM/readout: polarisation temperature-compensee et module SiPM refroidi avec integration front-end pour RICH.",
+      "notes": "SiPM/readout: polarisation temperature-compensee et module SiPM refroidi avec integration front-end pour RICH; HAL controle sans nouveau resultat SiPM assez cible.",
       "added_titles": [
         "A Microprocessor-Based Temperature-Compensated Bias-Voltage Source for a Silicon Photomultiplier",
         "An integrated housing with active cooling for Silicon Photomultipliers arrays in next generation of Ring Imaging Cherenkov detectors"
@@ -528,94 +599,176 @@
         "A Microprocessor-Based Temperature-Compensated Bias-Voltage Source for a Silicon Photomultiplier",
         "An integrated housing with active cooling for Silicon Photomultipliers arrays in next generation of Ring Imaging Cherenkov detectors"
       ],
-      "summary": "SiPM/readout: polarisation temperature-compensee et module SiPM refroidi avec integration front-end pour RICH.",
+      "summary": "SiPM/readout: polarisation temperature-compensee et module SiPM refroidi avec integration front-end pour RICH; HAL controle sans nouveau resultat SiPM assez cible.",
       "refined_context": "Les signaux forts favorisent electronique SiPM concrete, stabilisation thermique, readout multicanal, timing et integration detecteur.",
       "prompt_interpretation": "J ai cherche chez editeurs et instrumentation, pas seulement les couples ASIC connus, pour capter les modules et briques d alimentation/readout pertinents.",
       "rating_guidance": "Les anciens ratings eleves sur Timepix/identification beta et SiPM timing favorisent les resultats instrumentation/readout; les papiers purement detection de surface restent faibles.",
-      "scanned_sources": ["IEEE", "ScienceDirect", "Springer", "NIM A", "PubMed", "arXiv", "fabricants SiPM"],
-      "suggested_sources": ["IEEE NSS/MIC", "Nuclear Instruments and Methods A", "Springer instrumentation journals"],
-      "search_terms": ["SiPM temperature compensated bias 2026", "SiPM readout electronics 2026", "SiPM active cooling front-end module"]
+      "scanned_sources": [
+        "HAL API",
+        "IEEE",
+        "ScienceDirect",
+        "Springer",
+        "NIM A",
+        "PubMed",
+        "arXiv",
+        "fabricants SiPM"
+      ],
+      "suggested_sources": [
+        "IEEE NSS/MIC",
+        "Nuclear Instruments and Methods A",
+        "Springer instrumentation journals",
+        "HAL SiPM/readout queries"
+      ],
+      "search_terms": [
+        "SiPM temperature compensated bias 2026",
+        "SiPM readout electronics 2026",
+        "SiPM active cooling front-end module",
+        "site:hal.science SiPM readout electronics"
+      ]
     },
     {
       "tab_slug": "pierre-louis",
       "tab_name": "Pierre-Louis",
       "watch_title": "Traitement de donnees nucleaires",
-      "added_count": 2,
-      "visible_unread": 5,
-      "notes": "Spectrometrie nucleaire: denoising autoencoder robuste aux contaminants et quantification radioisotopes en environnements extremes.",
+      "added_count": 3,
+      "visible_unread": 6,
+      "notes": "Spectrometrie nucleaire: denoising autoencoder robuste, quantification radioisotopes et depot CEA HAL sur analyse/classification de particules radioactives aeroportees.",
       "added_titles": [
         "A denoising autoencoder for dual-target radionuclide quantification robust to unseen contamination and high background",
-        "Deep learning-based radioisotope quantification for extreme environments"
+        "Deep learning-based radioisotope quantification for extreme environments",
+        "Electrostatic collector for airborne radioactive particles control"
       ],
-      "articles_added": 2,
-      "unread_count": 5,
-      "science_added": 2,
+      "articles_added": 3,
+      "unread_count": 6,
+      "science_added": 3,
       "press_added": 0,
       "new_titles": [
         "A denoising autoencoder for dual-target radionuclide quantification robust to unseen contamination and high background",
-        "Deep learning-based radioisotope quantification for extreme environments"
+        "Deep learning-based radioisotope quantification for extreme environments",
+        "Electrostatic collector for airborne radioactive particles control"
       ],
-      "summary": "Spectrometrie nucleaire: denoising autoencoder robuste aux contaminants et quantification radioisotopes en environnements extremes.",
+      "summary": "Spectrometrie nucleaire: denoising autoencoder robuste, quantification radioisotopes et depot CEA HAL sur analyse/classification de particules radioactives aeroportees.",
       "refined_context": "Priorite au traitement de spectres gamma, denoising, quantification, robustesse bruit/contamination et modeles IA appliques a la mesure nucleaire.",
       "prompt_interpretation": "J ai retenu un papier recent et un papier un peu limite temporellement mais tres cible, car il correspond fortement aux signaux de pertinence.",
       "rating_guidance": "Les articles notes haut sur sim-to-real/denoising et bas sur sujets trop generiques recentrent la veille vers le signal exploitable en spectrometrie.",
-      "scanned_sources": ["ScienceDirect", "Elsevier", "Springer", "MDPI", "PubMed", "HAL", "arXiv", "Google Scholar"],
-      "suggested_sources": ["Nuclear Engineering and Technology", "Radiation Physics and Chemistry", "Applied Radiation and Isotopes"],
-      "search_terms": ["gamma spectrum denoising autoencoder radionuclide quantification 2026", "nuclear measurement data processing deep learning 2026", "radioisotope quantification extreme environments"]
+      "scanned_sources": [
+        "HAL API",
+        "ScienceDirect",
+        "Elsevier",
+        "Springer",
+        "MDPI",
+        "PubMed",
+        "arXiv",
+        "Google Scholar"
+      ],
+      "suggested_sources": [
+        "Nuclear Engineering and Technology",
+        "Radiation Physics and Chemistry",
+        "Applied Radiation and Isotopes",
+        "HAL CEA spectroscopy/classification"
+      ],
+      "search_terms": [
+        "gamma spectrum denoising autoencoder radionuclide quantification 2026",
+        "nuclear measurement data processing deep learning 2026",
+        "radioisotope quantification extreme environments",
+        "site:hal.science gamma spectrometry classification radionuclide"
+      ]
     },
     {
       "tab_slug": "lucas",
       "tab_name": "Lucas",
       "watch_title": "Unity, XR et simulation scientifique",
-      "added_count": 3,
-      "visible_unread": 5,
-      "notes": "XR/simulation: 3D Gaussian Splatting pour jumeaux industriels, Unity 7 et support Android XR/XREAL.",
+      "added_count": 4,
+      "visible_unread": 6,
+      "notes": "XR/simulation: 3D Gaussian Splatting pour jumeaux industriels, Unity 7, Android XR/XREAL et these HAL sur NeRF/3DGS haute fidelite.",
       "added_titles": [
         "Semantic-guided 3D Gaussian splatting for sparse-view reconstruction in industrial digital twins",
         "Unite Seoul 2026 Keynote Recap: Announcing Unity 7",
-        "Unity announces support for XREAL AURA"
+        "Unity announces support for XREAL AURA",
+        "Approaches for High-Fidelity Novel View Synthesis : From Casual Captures to Novel Views"
       ],
-      "articles_added": 3,
-      "unread_count": 5,
-      "science_added": 1,
+      "articles_added": 4,
+      "unread_count": 6,
+      "science_added": 2,
       "press_added": 2,
       "new_titles": [
         "Semantic-guided 3D Gaussian splatting for sparse-view reconstruction in industrial digital twins",
         "Unite Seoul 2026 Keynote Recap: Announcing Unity 7",
-        "Unity announces support for XREAL AURA"
+        "Unity announces support for XREAL AURA",
+        "Approaches for High-Fidelity Novel View Synthesis : From Casual Captures to Novel Views"
       ],
-      "summary": "XR/simulation: 3D Gaussian Splatting pour jumeaux industriels, Unity 7 et support Android XR/XREAL.",
+      "summary": "XR/simulation: 3D Gaussian Splatting pour jumeaux industriels, Unity 7, Android XR/XREAL et these HAL sur NeRF/3DGS haute fidelite.",
       "refined_context": "Les ratings forts favorisent Unity/XR concret, Gaussian Splatting exploitable dans moteurs temps reel et jumeaux numeriques industriels.",
       "prompt_interpretation": "J ai combine sources scientifiques et annonces industrielles officielles lorsque l impact outil Unity/XR etait direct.",
       "rating_guidance": "Les notes hautes sur Gaussian Splatting Unity, Quest/Android XR et digital twin poussent ces themes devant les papiers purement rendu academique.",
-      "scanned_sources": ["SIGGRAPH", "IEEE", "CVPR", "NVIDIA Research", "Unity Blog", "Springer", "ScienceDirect", "HAL", "arXiv"],
-      "suggested_sources": ["Unity Blog", "Springer XR/industrial digital twins", "SIGGRAPH/Eurographics real-time rendering"],
-      "search_terms": ["Unity XR Android XR 2026", "Gaussian Splatting industrial digital twin 2026", "Unity 7 PolySpatial Unreal"]
+      "scanned_sources": [
+        "HAL API",
+        "SIGGRAPH",
+        "IEEE",
+        "CVPR",
+        "NVIDIA Research",
+        "Unity Blog",
+        "Springer",
+        "ScienceDirect",
+        "arXiv"
+      ],
+      "suggested_sources": [
+        "Unity Blog",
+        "Springer XR/industrial digital twins",
+        "SIGGRAPH/Eurographics real-time rendering",
+        "HAL 3DGS/NeRF theses"
+      ],
+      "search_terms": [
+        "Unity XR Android XR 2026",
+        "Gaussian Splatting industrial digital twin 2026",
+        "Unity 7 PolySpatial Unreal",
+        "site:hal.science Gaussian Splatting NeRF"
+      ]
     },
     {
       "tab_slug": "thibaud-d",
       "tab_name": "Thibaud D",
       "watch_title": "Representations polytopiques pour robots autonomes",
-      "added_count": 1,
-      "visible_unread": 2,
-      "notes": "Geometrie robotique: planification et controle polytopique avec CBF, LiDAR et validation embarquee.",
+      "added_count": 3,
+      "visible_unread": 4,
+      "notes": "Geometrie robotique: planification/controle polytopique, mondes polygonaux et navigation mobile en regions convexes avec MPC/CBF.",
       "added_titles": [
-        "Safe Polytope-in-Polytope Motion Planning and Control with Control Barrier Functions"
+        "Safe Polytope-in-Polytope Motion Planning and Control with Control Barrier Functions",
+        "On the Coverage of Planar Worlds with Simulated Mobile Ad Hoc Networks",
+        "Crowd navigation in a multi-room environment: a model predictive control framework for mobile robots"
       ],
-      "articles_added": 1,
-      "unread_count": 2,
-      "science_added": 1,
+      "articles_added": 3,
+      "unread_count": 4,
+      "science_added": 3,
       "press_added": 0,
       "new_titles": [
-        "Safe Polytope-in-Polytope Motion Planning and Control with Control Barrier Functions"
+        "Safe Polytope-in-Polytope Motion Planning and Control with Control Barrier Functions",
+        "On the Coverage of Planar Worlds with Simulated Mobile Ad Hoc Networks",
+        "Crowd navigation in a multi-room environment: a model predictive control framework for mobile robots"
       ],
-      "summary": "Geometrie robotique: planification et controle polytopique avec CBF, LiDAR et validation embarquee.",
+      "summary": "Geometrie robotique: planification/controle polytopique, mondes polygonaux et navigation mobile en regions convexes avec MPC/CBF.",
       "refined_context": "Priorite aux representations convexes/polytopiques utiles a SLAM, planification et controle sur robot mobile reel.",
       "prompt_interpretation": "J ai privilegie les approches geometriques avec validation materielle ou lien capteurs LiDAR, et ecarte le path planning trop generique.",
       "rating_guidance": "Le rating fort de PolyMap a oriente vers les methodes polytopiques/convexes, temps reel et exploitables par robot autonome.",
-      "scanned_sources": ["arXiv", "IEEE", "Springer", "HAL", "robotics conferences"],
-      "suggested_sources": ["arXiv robotics planning", "RSS/ICRA/IROS geometry planning", "lab pages autonomous systems"],
-      "search_terms": ["polytope path planning LiDAR robot 2026", "polyhedral representation SLAM path planning", "control barrier function polytope mobile robot"]
+      "scanned_sources": [
+        "HAL API",
+        "arXiv",
+        "IEEE",
+        "Springer",
+        "robotics conferences"
+      ],
+      "suggested_sources": [
+        "HAL polygonal worlds/mobile robots",
+        "arXiv robotics planning",
+        "RSS/ICRA/IROS geometry planning",
+        "lab pages autonomous systems"
+      ],
+      "search_terms": [
+        "polytope path planning LiDAR robot 2026",
+        "polyhedral representation SLAM path planning",
+        "control barrier function polytope mobile robot",
+        "site:hal.science polygonal worlds mobile robot"
+      ]
     },
     {
       "tab_slug": "julien-v",
@@ -640,7 +793,7 @@
     }
   ],
   "status": "success",
-  "articles_added": 15,
+  "articles_added": 26,
   "tabs_processed": 8
 }
 </script>
