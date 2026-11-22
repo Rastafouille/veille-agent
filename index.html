@@ -420,274 +420,292 @@
 
 <script id="watch-agent-meta" type="application/json">
 {
-  "last_watch": "2026-11-16T07:24:00+01:00",
+  "last_watch": "2026-11-22T16:10:00+01:00",
   "next_watch": "2026-11-23T08:00:00+01:00",
-  "updated_at": "2026-11-16T07:24:00+01:00",
+  "updated_at": "2026-11-22T16:10:00+01:00",
   "agent": "Codex MCP Supabase",
-  "summary": "Run complet approfondi du 16/11/2026 sur les sept veilles actives, avec recherches multi-sources, lecture des ratings et verification des doublons titre/DOI/lien. 9 nouvelles fiches ajoutees a Supabase; les choix de lecture et masquage anterieurs sont conserves. Le site et les notifications refletent les compteurs relus.",
+  "summary": "Run complet approfondi du 22/11/2026 sur les sept veilles, avec lecture des ratings, recherche multi-sources et deduplication stricte. 10 nouvelles fiches ajoutees et 1 fiche existante mise a jour vers sa version editeur; choix de lecture et masquage conserves.",
   "runs": [
     {
-      "tab_slug": "humanoide",
-      "tab_name": "Humanoide",
-      "watch_title": "Robotique humanoide",
-      "added_count": 4,
-      "visible_unread": 59,
-      "notes": "Quatre travaux arXiv recents sur perception et mouvement depuis simulation, loco-manipulation, encodeur inertiel humain/humanoide et benchmark unifie; mesures/transfer reel mentionnes avec leurs limites.",
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
       "added_titles": [
-        "Perceptive Humanoid Motion from Simulation",
-        "Kimodo-Policy: Learning Kinematic Action Models for Humanoid Loco-Manipulation",
-        "A Unified Inertial Encoder for Human and Humanoid Motion",
-        "LocoManiLab: A Unified Testbed for Data, Policies, Controllers, and Deployment in Humanoid Loco-Manipulation"
+        "ECHO: In-Context Behavior Foundation Model for Humanoid Whole-Body Control",
+        "PGX: Physically Grounded Execution for Long-Horizon Humanoid Loco-Manipulation",
+        "ReLoco: Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors",
+        "LocoMuJoCo: A Comprehensive Imitation Learning Benchmark for Whole-Body Control"
       ],
-      "articles_added": 4,
-      "unread_count": 59,
-      "science_added": 4,
       "press_added": 0,
-      "summary": "4 nouveaux travaux humanoides; priorite au transfert sim-to-real, perception et validation sur plateformes physiques.",
-      "refined_context": "Mobilite, perception et manipulation; distinguer clairement simulation, benchmark et validation robot reel.",
-      "prompt_interpretation": "Recherche approfondie par onglet sur sources primaires et deduplication titre/lien.",
-      "rating_guidance": "Priorite aux methodes avec transfert ou evaluation physique; ne pas confondre succes simule et deploiement.",
-      "scanned_sources": [
-        "arXiv",
-        "pages de projets/laboratoires",
-        "IEEE/RSS/ICRA/IROS"
+      "added_count": 4,
+      "summary": "Quatre travaux arXiv: adaptation comportementale in-context avec essai Unitree G1, execution loco-manipulation physiquement ancree, locomotion/relevement deployes sur Tiangong 3.0 et benchmark imitation multi-plateformes.",
+      "watch_title": "Robotique humanoide",
+      "refined_context": "Priorite aux validations physiques, transfert et controle corps entier; distinguer benchmark et deploiement.",
+      "tab_name": "Humanoide",
+      "search_terms": [
+        "humanoid whole-body control November 2026",
+        "humanoid loco-manipulation physical deployment",
+        "humanoid motion capture benchmark"
       ],
       "suggested_sources": [
         "arXiv",
-        "HAL",
-        "IEEE"
+        "IEEE",
+        "RSS/ICRA/IROS",
+        "pages de laboratoires"
       ],
-      "search_terms": [
-        "humanoid perception motion simulation November 2026",
-        "humanoid loco-manipulation real robot",
-        "human humanoid inertial motion encoder"
-      ]
+      "visible_unread": 63,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 4,
+      "scanned_sources": [
+        "arXiv",
+        "IEEE",
+        "RSS/ICRA/IROS",
+        "pages de laboratoires"
+      ],
+      "notes": "Quatre travaux arXiv: adaptation comportementale in-context avec essai Unitree G1, execution loco-manipulation physiquement ancree, locomotion/relevement deployes sur Tiangong 3.0 et benchmark imitation multi-plateformes.",
+      "science_added": 4,
+      "tab_slug": "humanoide",
+      "unread_count": 63
     },
     {
-      "tab_slug": "jerem",
-      "tab_name": "Jerem",
-      "watch_title": "Robotique nucleaire et cartographie radiologique",
-      "added_count": 1,
-      "visible_unread": 2,
-      "notes": "Ajout Elsevier de novembre sur cartographie radiologique spatio-temporelle, avec mesures Fukushima et champ de detonation; la validation spatiale par blocs nuance les scores. Le Wiley 10.1002/rob.70357 est deja present, note 10 et masque par l'utilisateur; conserve sans modification.",
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
       "added_titles": [
-        "A spatiotemporally corrected radiological contamination mapping platform for multi-scenario nuclear and radiological emergencies"
+        "Digital twins in nuclear science and Engineering: Bridging AI, Real-Time Data, and physical systems"
       ],
-      "articles_added": 1,
-      "unread_count": 2,
-      "science_added": 1,
       "press_added": 0,
-      "summary": "1 nouvelle publication de cartographie radiologique. Le papier Wiley tres pertinent est bien en base mais reste masque selon le choix utilisateur.",
-      "refined_context": "Priorite au terrain nucleaire, fusion radiologique/LiDAR, contamination, autonomies et retours de qualification; aucune reactivation d'articles masques.",
-      "prompt_interpretation": "Recherche approfondie multi-editeurs, HAL, pages industrielles et sources primaires.",
-      "rating_guidance": "Ratings 8-10 des cartographies et deployments guident la pertinence; filtrer la simulation seule.",
-      "scanned_sources": [
+      "added_count": 1,
+      "summary": "Revue Elsevier sur les jumeaux numeriques en science nucleaire: IA, donnees temps reel, validation et systemes physiques; pertinente au theme mais ce nest pas une demonstration robotique terrain.",
+      "watch_title": "Robotique nucleaire et cartographie radiologique",
+      "refined_context": "Favoriser les qualifications et deployments nucleaires; conserver les ratings et masquages existants.",
+      "tab_name": "Jerem",
+      "search_terms": [
+        "nuclear digital twins AI real-time data 2026",
+        "nuclear robotics field deployment HAL",
+        "radiological mapping robot 2026"
+      ],
+      "suggested_sources": [
         "ScienceDirect/Elsevier",
-        "Wiley Journal of Field Robotics",
+        "Wiley",
         "HAL",
+        "IEEE",
         "DOE/UKAEA/CEA",
         "pages projet/labo"
       ],
-      "suggested_sources": [
-        "HAL",
+      "visible_unread": 3,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 1,
+      "scanned_sources": [
+        "ScienceDirect/Elsevier",
         "Wiley",
-        "Elsevier",
+        "HAL",
         "IEEE",
-        "DOE/UKAEA"
+        "DOE/UKAEA/CEA",
+        "pages projet/labo"
       ],
-      "search_terms": [
-        "radiological contamination mapping November 2026",
-        "nuclear robotics field deployment HAL",
-        "gamma LiDAR robot investigation nuclear"
-      ]
+      "notes": "Revue Elsevier sur les jumeaux numeriques en science nucleaire: IA, donnees temps reel, validation et systemes physiques; pertinente au theme mais ce nest pas une demonstration robotique terrain.",
+      "science_added": 1,
+      "tab_slug": "jerem",
+      "unread_count": 3
     },
     {
-      "tab_slug": "lucas",
-      "tab_name": "Lucas",
-      "watch_title": "Unity, XR et simulation scientifique",
-      "added_count": 0,
-      "visible_unread": 6,
-      "notes": "Recherche sur Unity/Unreal, Meta XR, simulation scientifique, rendu temps reel et 3DGS; aucune nouvelle fiche assez directement exploitable. Notification inclut la fiche non notifiee du 9 novembre.",
-      "added_titles": [],
-      "articles_added": 0,
-      "unread_count": 6,
-      "science_added": 0,
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
+      "added_titles": [
+        "DynamicGS: Spatiotemporal Motion Distillation for Dynamic Scene Reconstruction with Gaussian Splatting",
+        "CAD-guided editable 3D Gaussian reconstruction framework for industrial assembly preview",
+        "A Gaussian Primitive Data Management Framework for Efficient 3DGS Trajectory Rendering",
+        "Unite Tokyo 2026 Keynote recap: Built for the speed of your ideas"
+      ],
       "press_added": 0,
-      "summary": "Aucune nouvelle fiche ajoutee; suivi XR et rendu industriel sans doublon pertinent.",
-      "refined_context": "XR industriel, simulation scientifique, jumeaux numeriques, GPU et neural rendering; jeu pur exclu.",
-      "prompt_interpretation": "Recherche approfondie sur documentation officielle, editeurs et recherche primaire.",
-      "rating_guidance": "Les notes sur 3DGS/XR favorisent les outils de visualisation et d'inspection utilisables.",
-      "scanned_sources": [
-        "Meta XR Developers",
-        "Unity/OpenXR",
+      "added_count": 4,
+      "summary": "Trois publications sur 3DGS dynamique, reconstruction industrielle guidee par CAD et rendu de trajectoires; plus le recap officiel Unite Tokyo sur les outils Unity.",
+      "watch_title": "Unity, XR et simulation scientifique",
+      "refined_context": "XR industriel, visualisation scientifique, jumeaux numeriques et rendu temps reel; evaluer la validation industrielle.",
+      "tab_name": "Lucas",
+      "search_terms": [
+        "dynamic 3D Gaussian splatting November 2026",
+        "CAD guided industrial 3D reconstruction",
+        "Unity Unite Tokyo 2026 tools"
+      ],
+      "suggested_sources": [
+        "MDPI",
+        "ScienceDirect/Elsevier",
+        "arXiv",
+        "Unity officiel",
         "SIGGRAPH",
-        "ScienceDirect",
         "NVIDIA Research",
         "HAL"
       ],
-      "suggested_sources": [
-        "Meta",
-        "Unity",
+      "visible_unread": 10,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 4,
+      "scanned_sources": [
+        "MDPI",
+        "ScienceDirect/Elsevier",
+        "arXiv",
+        "Unity officiel",
         "SIGGRAPH",
-        "HAL",
-        "ScienceDirect"
+        "NVIDIA Research",
+        "HAL"
       ],
-      "search_terms": [
-        "scientific visualization XR November 2026",
-        "Unity Meta XR Simulator release notes",
-        "Gaussian splatting real-time industrial visualization"
-      ]
+      "notes": "Trois publications sur 3DGS dynamique, reconstruction industrielle guidee par CAD et rendu de trajectoires; plus le recap officiel Unite Tokyo sur les outils Unity.",
+      "science_added": 4,
+      "tab_slug": "lucas",
+      "unread_count": 10
     },
     {
-      "tab_slug": "nathan",
-      "tab_name": "Nathan",
-      "watch_title": "SiPM ASIC, readout et spectroscopie nucleaire IA",
-      "added_count": 3,
-      "visible_unread": 23,
-      "notes": "Trois travaux de novembre sur identification gamma CNN-Transformer et correction de spectres, reconstruction spatiale par DNN sur SiPM, et traitement configurable d'impulsions gamma par RESHAPE.",
-      "added_titles": [
-        "A deep learning approach for radionuclide identification with CZT Compton cameras: CNN-Transformer fusion and spectrum correction",
-        "Position-sensitive silicon photomultiplier array with enhanced position reconstruction by means of a deep neural network",
-        "RESHAPE: Resolution and efficiency in spectroscopy, height analyzer processor engine - A configurable pulse processing system utilizing pulse shaper and kernel density estimation"
-      ],
-      "articles_added": 3,
-      "unread_count": 23,
-      "science_added": 3,
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
+      "added_titles": [],
       "press_added": 0,
-      "summary": "3 nouveaux travaux sur IA de spectrometrie, reconstruction SiPM et traitement numerique d'impulsions.",
-      "refined_context": "ASIC/readout SiPM, spectrometrie IA, deconvolution, donnees synthetiques et generalisation sim-to-real.",
-      "prompt_interpretation": "Recherche approfondie ScienceDirect/NIM A, IEEE et sources de conference.",
-      "rating_guidance": "Prioriser lecture SiPM configurable, compensation/robustesse et analyse spectrale nucleaire.",
+      "added_count": 0,
+      "summary": "Aucun nouvel article assez pertinent apres verification; les candidats SiPM, IA spectrale et sessions IEEE recents etaient deja repertories.",
+      "watch_title": "SiPM ASIC, readout et spectroscopie nucleaire IA",
+      "refined_context": "Readout SiPM, spectrometrie IA, identification radionucleides et traitement de signal.",
+      "tab_name": "Nathan",
+      "search_terms": [
+        "SiPM DNN spectroscopy November 2026",
+        "gamma radionuclide identification CNN",
+        "nuclear spectroscopy pulse processing"
+      ],
+      "suggested_sources": [
+        "ScienceDirect/NIM A",
+        "IEEE NSS/MIC",
+        "HAL",
+        "arXiv",
+        "Springer",
+        "PubMed"
+      ],
+      "visible_unread": 23,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 0,
       "scanned_sources": [
         "ScienceDirect/NIM A",
         "IEEE NSS/MIC",
         "HAL",
         "arXiv",
-        "Springer"
+        "Springer",
+        "PubMed"
       ],
-      "suggested_sources": [
-        "IEEE",
-        "ScienceDirect",
-        "HAL",
-        "arXiv"
-      ],
-      "search_terms": [
-        "SiPM DNN position reconstruction November 2026",
-        "CZT Compton CNN Transformer radionuclide November 2026",
-        "gamma spectroscopy configurable pulse processing RESHAPE"
-      ]
+      "notes": "Aucun nouvel article assez pertinent apres verification; les candidats SiPM, IA spectrale et sessions IEEE recents etaient deja repertories.",
+      "science_added": 0,
+      "tab_slug": "nathan",
+      "unread_count": 23
     },
     {
-      "tab_slug": "pierre-louis",
-      "tab_name": "Pierre-Louis",
-      "watch_title": "Traitement de donnees nucleaires",
-      "added_count": 0,
-      "visible_unread": 10,
-      "notes": "Recherche denoising, inversion, Bayesian, unmixing et contamination spectrale; les principaux candidats recents sont deja en base, dont le papier de quantification bayesienne d'octobre.",
-      "added_titles": [],
-      "articles_added": 0,
-      "unread_count": 10,
-      "science_added": 0,
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
+      "added_titles": [
+        "Multivariate calibration for on-line spectroscopic monitoring of nuclear process streams: a review from fuel reprocessing to fusion tritium plants"
+      ],
       "press_added": 0,
-      "summary": "Aucun nouvel article apres deduplication; papiers recents de spectrometrie deja repertories.",
-      "refined_context": "Denoising, optimisation bayesienne, problemes inverses, plug-and-play et unmixing de spectres nucleaires.",
-      "prompt_interpretation": "Recherche approfondie des sources primaires et verification des versions editeur/HAL/arXiv.",
-      "rating_guidance": "Conserver les choix masques/lus et eviter les doublons sous titre ou DOI different.",
-      "scanned_sources": [
+      "added_count": 1,
+      "summary": "Revue Springer sur la calibration multivariee de spectroscopie en ligne pour procedes nucleaires, du retraitement du combustible aux installations tritium.",
+      "watch_title": "Traitement de donnees nucleaires",
+      "refined_context": "Calibration, denoising, inversion et robustesse des mesures spectrales nucleaires.",
+      "tab_name": "Pierre-Louis",
+      "search_terms": [
+        "multivariate calibration online nuclear spectroscopy 2026",
+        "spectroscopic monitoring fuel reprocessing tritium"
+      ],
+      "suggested_sources": [
+        "Springer",
         "ScienceDirect",
         "HAL",
         "arXiv",
-        "Springer",
         "MDPI",
         "PubMed"
       ],
-      "suggested_sources": [
-        "HAL",
+      "visible_unread": 11,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 1,
+      "scanned_sources": [
+        "Springer",
         "ScienceDirect",
+        "HAL",
         "arXiv",
-        "Springer"
+        "MDPI",
+        "PubMed"
       ],
-      "search_terms": [
-        "gamma spectrum denoising inverse problem November 2026",
-        "Bayesian radionuclide quantification spectral unmixing",
-        "nuclear spectroscopy plug and play reconstruction"
-      ]
+      "notes": "Revue Springer sur la calibration multivariee de spectroscopie en ligne pour procedes nucleaires, du retraitement du combustible aux installations tritium.",
+      "science_added": 1,
+      "tab_slug": "pierre-louis",
+      "unread_count": 11
     },
     {
-      "tab_slug": "val",
-      "tab_name": "Val",
-      "watch_title": "SLAM LiDAR-only et benchmarks",
-      "added_count": 0,
-      "visible_unread": 14,
-      "notes": "Recherche strictement centree LiDAR 2D/3D et protocoles physiques avec motion capture; aucun candidat nouveau ne remplit le perimetre sans melange camera/VIO ou absence de verite terrain.",
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
       "added_titles": [],
-      "articles_added": 0,
-      "unread_count": 14,
-      "science_added": 0,
       "press_added": 0,
-      "summary": "Aucun nouvel article conforme au filtre LiDAR-only et motion capture.",
-      "refined_context": "Comparaison sur robot mobile reel, ATE/RPE, synchronisation et verite terrain motion capture; exclure Visual/VIO/RGB-D.",
-      "prompt_interpretation": "Recherche approfondie HAL, arXiv, IEEE et benchmarks/datasets.",
-      "rating_guidance": "Respect strict du perimetre capteur et validation physique; ne pas retenir les benchmarks visuels/multimodaux.",
+      "added_count": 0,
+      "summary": "Aucun nouveau candidat ne satisfait ensemble LiDAR-only, robot physique et verite terrain motion capture; les resultats camera/VIO ou sans ground truth sont exclus.",
+      "watch_title": "SLAM LiDAR-only et benchmarks",
+      "refined_context": "Perimetre strict LiDAR seul, comparaison physique et mesures ATE/RPE avec verite terrain.",
+      "tab_name": "Val",
+      "search_terms": [
+        "LiDAR-only SLAM motion capture benchmark 2026",
+        "physical robot LiDAR ground truth mocap"
+      ],
+      "suggested_sources": [
+        "HAL",
+        "IEEE",
+        "arXiv",
+        "MDPI",
+        "Newer College/Hilti/MulRan"
+      ],
+      "visible_unread": 14,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 0,
+      "articles_added": 0,
       "scanned_sources": [
         "HAL",
         "IEEE",
         "arXiv",
-        "datasets et pages de benchmarks",
-        "MDPI"
-      ],
-      "suggested_sources": [
-        "HAL",
-        "IEEE",
-        "arXiv",
+        "MDPI",
         "Newer College/Hilti/MulRan"
       ],
-      "search_terms": [
-        "LiDAR-only SLAM motion capture benchmark 2026",
-        "physical robot LiDAR SLAM ground truth mocap",
-        "2D LiDAR SLAM benchmark protocol"
-      ]
+      "notes": "Aucun nouveau candidat ne satisfait ensemble LiDAR-only, robot physique et verite terrain motion capture; les resultats camera/VIO ou sans ground truth sont exclus.",
+      "science_added": 0,
+      "tab_slug": "val",
+      "unread_count": 14
     },
     {
-      "tab_slug": "thibaud-d",
-      "tab_name": "Thibaud D",
-      "watch_title": "Representations polygonales/polytopiques pour robots autonomes",
-      "added_count": 1,
-      "visible_unread": 4,
-      "notes": "Ajout d'une methode embarquee de navigation sans carte utilisant une representation polygonale fermee de l'espace libre et un changement de sous-objectifs.",
-      "added_titles": [
-        "Closed-Polygon Free Space Representation and Subgoal Switching Regulation for robust mapless robot navigation"
-      ],
-      "articles_added": 1,
-      "unread_count": 4,
-      "science_added": 1,
+      "rating_guidance": "Nouveautes notees a 5 par defaut; ratings existants pris en compte pour affiner la pertinence.",
+      "added_titles": [],
       "press_added": 0,
-      "summary": "Nouvelle methode de navigation robotique fondee sur une representation polygonale de l'espace libre.",
-      "refined_context": "Representations polygonales/polytopiques en robotique, SLAM et planification de trajectoire.",
-      "prompt_interpretation": "Recherche approfondie par titres, DOI, HAL/arXiv et editeurs.",
-      "rating_guidance": "Priorite aux representations geometriques directement exploitees par le robot.",
+      "added_count": 0,
+      "summary": "Aucune nouvelle fiche; la fiche existante Velocity-obstacle-based MPC for shape-aware mobile robot motion planning a ete reliee a sa version editeur Elsevier (DOI 10.1016/j.robot.2026.105784), sans changer sa note ni son statut de lecture.",
+      "watch_title": "Representations polygonales/polytopiques pour robots autonomes",
+      "refined_context": "Representations polygonales directement exploitees pour navigation et planification robotique.",
+      "tab_name": "Thibaud D",
+      "search_terms": [
+        "polygonal robot motion planning 2026",
+        "shape-aware mobile robot planning publisher version"
+      ],
+      "suggested_sources": [
+        "ScienceDirect/Elsevier",
+        "IEEE",
+        "HAL",
+        "arXiv"
+      ],
+      "visible_unread": 4,
+      "prompt_interpretation": "Run approfondi: sources primaires, editeurs, HAL/arXiv, pages projet et deduplication titre/DOI/lien.",
+      "articles_updated": 1,
+      "articles_added": 0,
       "scanned_sources": [
         "ScienceDirect/Elsevier",
         "IEEE",
         "HAL",
         "arXiv"
       ],
-      "suggested_sources": [
-        "IEEE",
-        "HAL",
-        "arXiv",
-        "ScienceDirect"
-      ],
-      "search_terms": [
-        "closed polygon free space representation robot navigation",
-        "polygonal robot planning November 2026",
-        "polytope mapping path planning robot"
-      ]
+      "notes": "Aucune nouvelle fiche; la fiche existante Velocity-obstacle-based MPC for shape-aware mobile robot motion planning a ete reliee a sa version editeur Elsevier (DOI 10.1016/j.robot.2026.105784), sans changer sa note ni son statut de lecture.",
+      "science_added": 0,
+      "tab_slug": "thibaud-d",
+      "unread_count": 4
     }
   ],
   "status": "success",
-  "articles_added": 9,
-  "articles_updated": 0,
+  "articles_added": 10,
+  "articles_updated": 1,
   "tabs_processed": 7
 }
 </script>
